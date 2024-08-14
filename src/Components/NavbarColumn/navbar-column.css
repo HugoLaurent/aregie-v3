@@ -1,0 +1,129 @@
+.navbar-column-container {
+  min-width: 20%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-colum__date-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  gap: 10px;
+}
+
+.navbar-column__button-calendar {
+  background-color: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.navbar-column__button-calendar-text {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.navbar-column__date {
+  color: black;
+  font-weight: 700;
+}
+
+@media (max-width: 1000px) {
+  .navbar-colum__date-container {
+    flex-direction: column;
+  }
+
+  .navbar-column__button-calendar-text {
+    align-items: center;
+  }
+}
+
+.navbar-column__link-container {
+  height: 80vh;
+  overflow-y: scroll;
+}
+
+.navbar-column__menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.navbar-column__menu-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+  font-weight: 600;
+}
+
+.navbar-column__menu-title-active {
+  background-color: #0aabcd;
+}
+
+.white {
+  color: white;
+}
+
+.button-left-side {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrow,
+.navbar-icon__column {
+  transition: all 0.3s ease-in-out;
+}
+
+.arrow-down {
+  transform: rotate(0deg);
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+}
+
+.filter-on {
+  filter: invert(1);
+}
+
+.filter-off {
+  filter: invert(0);
+}
+
+.navbar-column__submenu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.navbar-column__submenu-item {
+  padding-left: 45px;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-column__submenu-item.active {
+  color: #0aabcd;
+  padding-left: 60px;
+}
+
+.navbar-column__submenu-item:hover {
+  color: #0aabcd;
+}
