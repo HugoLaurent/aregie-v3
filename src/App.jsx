@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Home, Login, Recette } from "./Pages";
-import { NavBar, NavbarColumn } from "./Components";
-
 import "./App.css";
+
+import { Home, Login, Recette } from "./Pages";
+import { BreadCrumbs, NavBar, NavbarColumn } from "./Components";
+import { AjouterRecette } from "./Pages/Recette/Components";
 
 function App() {
   return (
@@ -12,10 +13,15 @@ function App() {
         <div className="content-container">
           <NavbarColumn />
           <div className="main-content">
+            <BreadCrumbs />
             <Routes>
               <Route path="/" element={<Home />} />
               {/* ROUTES PIECE COMPTABLE */}
               <Route path="/recettes" element={<Recette />} />
+              <Route
+                path="/recettes/ajouter-une-recette"
+                element={<AjouterRecette />}
+              />
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
