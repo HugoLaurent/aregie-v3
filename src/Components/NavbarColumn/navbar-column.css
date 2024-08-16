@@ -1,6 +1,24 @@
 .navbar-column-container {
-  min-width: 20%;
+  position: relative;
+  width: 250px; /* Largeur quand la barre est élargie */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease-in-out;
+}
+
+.navbar-column-container.collapsed {
+  width: 80px; /* Largeur réduite quand la barre est collapsée */
+}
+
+@media (min-width: 1440px) {
+  .navbar-column-container {
+    width: 300px; /* Largeur élargie pour les écrans plus grands */
+  }
+
+  .navbar-column-container.collapsed {
+    width: 100px; /* Largeur réduite pour les écrans plus grands */
+  }
 }
 
 .navbar-colum__date-container {
@@ -23,6 +41,7 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  min-width: 60px;
 }
 
 .navbar-column__button-calendar-text {
@@ -51,6 +70,7 @@
 .navbar-column__link-container {
   height: 80vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .navbar-column__menu {
@@ -106,6 +126,22 @@
   filter: invert(0);
 }
 
+.navbar-title,
+.navbar-column__submenu,
+.navbar-column__button-calendar-text {
+  animation: fadeIn 0.3s ease-in-out forwards;
+  white-space: nowrap;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .navbar-column__submenu {
   display: flex;
   flex-direction: column;
@@ -126,4 +162,21 @@
 
 .navbar-column__submenu-item:hover {
   color: #0aabcd;
+}
+
+.navbar-column__collapse {
+  position: absolute;
+  right: 0;
+}
+
+.navbar-column__collapse img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transform: rotate(180deg);
+  transition: all 0.3s ease-in-out;
+}
+
+.collapse-active img {
+  transform: rotate(0deg);
 }
