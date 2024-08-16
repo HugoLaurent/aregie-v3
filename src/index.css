@@ -137,6 +137,12 @@ a:visited {
   color: inherit; /* Hérite la couleur du texte parent pour les liens visités */
 }
 
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
 body {
   overflow: hidden;
   font-family: "Inter", sans-serif;
