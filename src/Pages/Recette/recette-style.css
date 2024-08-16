@@ -1,4 +1,24 @@
-.Recette {
-  border: 1px solid red;
+.recette-container {
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.recette-title {
+  font-family: Inter, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 36px;
+  letter-spacing: -0.75px;
+}
+
+.recette__button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.recette__button-container-right {
+  display: flex;
+  gap: 10px;
 }
