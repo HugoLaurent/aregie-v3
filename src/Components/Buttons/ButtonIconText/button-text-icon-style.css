@@ -9,6 +9,7 @@
   background-color: transparent; /* Pas de fond visible au départ */
   border: none; /* Retirer la bordure si nécessaire */
   cursor: pointer; /* Change le curseur pour indiquer que c'est cliquable */
+  text-decoration: none; /* Retirer le soulignement pour les liens */
 }
 
 .button-icon-text-container::before {
@@ -19,16 +20,22 @@
   width: 100%;
   height: 100%;
   background-color: rgba(255, 255, 255, 0.2); /* Couleur du fond animé */
-  transition: left 0.3s; /* Transition de l'animation */
+  transition: left 0.3s, background-color 0.3s; /* Transition de l'animation */
   z-index: 0; /* Assure que le fond se place derrière le texte */
 }
 
 .button-icon-text-container:hover::before {
   left: 0; /* Déplace le fond à l'intérieur du bouton lors du survol */
+  background-color: var(
+    --hover-color,
+    rgba(255, 255, 255, 0.2)
+  ); /* Utilise la couleur de survol dynamique */
 }
 
 .button-icon-text-container span {
-  color: white;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
   position: relative;
   z-index: 1;
   filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0));
