@@ -51,7 +51,7 @@ export default function NavBar() {
     <nav className="Navbar">
       <section className="navbar-left">
         <article className="navbar__logo-container">
-          <Link to="/home">
+          <Link to="/">
             <img
               src={currentLogo}
               alt="Logo d'aregie"
@@ -73,6 +73,7 @@ export default function NavBar() {
           icon={door}
           alt="Icone d'une porte"
           text="Clôturer la journée"
+          textColor="#fff"
         />
 
         <span className="navbar-right__vertical-line"></span>
@@ -80,6 +81,7 @@ export default function NavBar() {
           icon={dashboard}
           alt="Icone d'un dashboard"
           text="Dashboard"
+          textColor="#fff"
         />
 
         <span className="navbar-right__vertical-line"></span>
