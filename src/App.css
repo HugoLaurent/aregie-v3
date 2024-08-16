@@ -1,5 +1,6 @@
 .app-container {
   height: 100vh;
+  overflow: hidden;
 }
 
 .content-container {
@@ -10,4 +11,5 @@
 .main-content {
   flex: 1;
   padding: 40px 20px;
+  background-color: #f0f8fa;
 }
