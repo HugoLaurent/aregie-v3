@@ -29,8 +29,7 @@ export default function Recette() {
             text="Éditions"
             color="#fff"
             textColor="#000"
-            hoverColor="rgba(128, 128, 128, 0.1)
-"
+            hoverColor="rgba(128, 128, 128, 0.1)"
           />
         </div>
       </article>
