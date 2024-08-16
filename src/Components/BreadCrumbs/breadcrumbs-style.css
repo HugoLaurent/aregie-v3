@@ -1,0 +1,19 @@
+.breadcrumbs-container {
+  display: flex;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.breadcrumbs-container li {
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.breadcrumbs-container li:hover {
+  color: #0aabcd;
+}
