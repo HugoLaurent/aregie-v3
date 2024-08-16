@@ -24,8 +24,10 @@ import add from "./icons/add.png";
 import search from "./icons/search.png";
 import print from "./icons/print.png";
 import logoBande from "./logo/logo-bande.png";
+import arrowBack from "./icons/arrow-back.png";
 
 export {
+  arrowBack,
   logoBande,
   logo,
   shortLogo,
