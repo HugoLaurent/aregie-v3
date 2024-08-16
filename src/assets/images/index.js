@@ -19,6 +19,7 @@ import CodaLogo from "./icons/CodaLogo.png";
 import FolderSimple from "./icons/FolderSimple.png";
 import GearSix from "./icons/GearSix.png";
 import UserCircleGear from "./icons/UserCircleGear.png";
+import caretRight from "./icons/CaretRight.png";
 
 export {
   logo,
@@ -42,4 +43,5 @@ export {
   GearSix,
   UserCircleGear,
   CaretUp,
+  caretRight,
 };

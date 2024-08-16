@@ -51,7 +51,7 @@ export default function NavBar() {
     <nav className="Navbar">
       <section className="navbar-left">
         <article className="navbar__logo-container">
-          <Link to="/racine">
+          <Link to="/home">
             <img
               src={currentLogo}
               alt="Logo d'aregie"

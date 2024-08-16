@@ -3,74 +3,12 @@ import { Link, useLocation } from "react-router-dom";
 
 import "./navbar-column.css";
 
-import {
-  calendarBlue,
-  CardHolder,
-  FolderSimple,
-  GearSix,
-  UserCircleGear,
-  CodaLogo,
-  CaretDown,
-} from "./../../assets/images";
-
-// Liste des éléments du menu
-const listToDisplay = [
-  {
-    category: "Pièces Comptables",
-    icon: CodaLogo,
-    items: [
-      { name: "Dépenses", link: "/depenses" },
-      { name: "Recettes", link: "/recettes" },
-      { name: "Factures", link: "/factures" },
-      { name: "Écritures autres", link: "/ecritures-autres" },
-    ],
-  },
-  {
-    category: "Comptes",
-    icon: CardHolder,
-    items: [
-      { name: "Bordereaux", link: "/bordereaux" },
-      { name: "Livre journal", link: "/livre-journal" },
-      { name: "Carnet de disponibilités", link: "/carnet-disponibilites" },
-      { name: "Balance", link: "/balance" },
-      { name: "Carnet de rectification", link: "/carnet-rectification" },
-    ],
-  },
-  {
-    category: "Administration",
-    icon: UserCircleGear,
-    items: [
-      { name: "Liste des tiers", link: "/liste-tiers" },
-      { name: "Liste des banques", link: "/liste-banques" },
-      { name: "Gestion des stocks", link: "/gestion-stocks" },
-    ],
-  },
-  {
-    category: "Paramétrage",
-    icon: GearSix,
-    items: [
-      { name: "Gestion de la régie", link: "/gestion-regie" },
-      { name: "Liste des utilisateurs", link: "/liste-utilisateurs" },
-      { name: "Gestion des modèles", link: "/gestion-modeles" },
-      { name: "Gestion des budgets", link: "/gestion-budgets" },
-      { name: "Gestion des règlements", link: "/gestion-reglements" },
-      { name: "Gestion des bordereaux", link: "/gestion-bordereaux" },
-    ],
-  },
-  {
-    category: "Arrêtés",
-    icon: FolderSimple,
-    items: [
-      { name: "Arrêtés de régie", link: "/arretes-regie" },
-      { name: "Arrêtés de nomination", link: "/arretes-nomination" },
-      { name: "Modèles documentaires", link: "/modeles-documentaires" },
-    ],
-  },
-];
+import { calendarBlue, CaretDown } from "./../../assets/images";
+import listToDisplay from "./../../assets/data/dataLeftNavbar";
 
 export default function NavbarColumn() {
   const [openCategories, setOpenCategories] = useState({});
-  const location = useLocation(); // Obtient l'URL actuelle
+  const location = useLocation();
 
   const toggleCategory = (category) => {
     setOpenCategories((prevState) => ({
@@ -136,7 +74,10 @@ export default function NavbarColumn() {
                     key={item.name}
                     to={item.link}
                     className={`navbar-column__submenu-item ${
-                      location.pathname === item.link ? "active" : ""
+                      location.pathname === item.link ||
+                      location.pathname.includes(item.link)
+                        ? "active"
+                        : ""
                     }`}
                   >
                     {item.name}
