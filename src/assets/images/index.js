@@ -20,8 +20,13 @@ import FolderSimple from "./icons/FolderSimple.png";
 import GearSix from "./icons/GearSix.png";
 import UserCircleGear from "./icons/UserCircleGear.png";
 import caretRight from "./icons/CaretRight.png";
+import add from "./icons/add.png";
+import search from "./icons/search.png";
+import print from "./icons/print.png";
+import logoBande from "./logo/logo-bande.png";
 
 export {
+  logoBande,
   logo,
   shortLogo,
   door,
@@ -44,4 +49,7 @@ export {
   UserCircleGear,
   CaretUp,
   caretRight,
+  add,
+  search,
+  print,
 };
