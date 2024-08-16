@@ -25,8 +25,14 @@ import search from "./icons/search.png";
 import print from "./icons/print.png";
 import logoBande from "./logo/logo-bande.png";
 import arrowBack from "./icons/arrow-back.png";
+import link from "./icons/link.png";
+import check from "./icons/check.png";
+import noteBlank from "./icons/note-blank.png";
 
 export {
+  noteBlank,
+  check,
+  link,
   arrowBack,
   logoBande,
   logo,
