@@ -28,8 +28,12 @@ import arrowBack from "./icons/arrow-back.png";
 import link from "./icons/link.png";
 import check from "./icons/check.png";
 import noteBlank from "./icons/note-blank.png";
+import remove from "./icons/remove.png";
+import addUser from "./icons/addUser.png";
 
 export {
+  addUser,
+  remove,
   noteBlank,
   check,
   link,
