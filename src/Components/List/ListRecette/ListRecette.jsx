@@ -8,6 +8,7 @@ import "ag-grid-enterprise";
 import { Loading } from "./../../index";
 import { AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
 import "./../list-style.css";
+import "./../../Loading/loading-style.css";
 import { logoBande } from "./../../../assets/images";
 
 export const ListRecette = () => {
@@ -39,6 +40,14 @@ export const ListRecette = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  const CustomLoadingOverlay = () => (
+    <div className="loading-container">
+      <img id="un" className="un" src={logoBande} alt="" />
+      <img className="2" src={logoBande} alt="" />
+      <img id="trois" className="trois" src={logoBande} alt="" />
+    </div>
+  );
 
   // Column definitions for AG Grid
   const depenseColumnDefs = [
@@ -123,12 +132,7 @@ export const ListRecette = () => {
         rowData={data}
         columnDefs={depenseColumnDefs}
         pagination={true}
-        loadingOverlayComponentParams={{ loadingOverlay: <Loading /> }}
-        overlayLoadingTemplate={`<div className="flex h-full justify-center items-center flex-col gap-5">
-        <img id='un' className="un" src=${logoBande} alt="" />
-        <img className="2" src=${logoBande} alt="" />
-        <img id='trois' className="trois" src=${logoBande} alt="" />
-      </div>`}
+        loadingOverlayComponent={CustomLoadingOverlay}
       />
     </motion.div>
   );
