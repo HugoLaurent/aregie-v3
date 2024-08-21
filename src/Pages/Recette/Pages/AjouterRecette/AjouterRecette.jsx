@@ -3,7 +3,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 import { ButtonIconText } from "../../../../Components/Buttons/index";
-import { AjouterTiers } from "./../../Components/index";
+import {
+  AjouterTiers,
+  BudgetRecette,
+  ReglementRecette,
+} from "./../../Components/index";
 
 import { arrowBack, link, check, noteBlank } from "../../../../assets/images";
 
@@ -95,6 +99,10 @@ export default function AjouterRecette() {
           formData={formData}
           setFormData={setFormData}
         />
+        <section className="ajouter-recette__budget-depense-container">
+          <BudgetRecette formData={formData} setFormData={setFormData} />
+          <ReglementRecette formData={formData} setFormData={setFormData} />
+        </section>
       </form>
     </motion.div>
   );

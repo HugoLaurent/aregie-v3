@@ -131,3 +131,9 @@ input#tiers-select {
   text-indent: 20px;
   background-position: 2%;
 }
+
+.ajouter-recette__budget-depense-container {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+}

@@ -30,8 +30,10 @@ import check from "./icons/check.png";
 import noteBlank from "./icons/note-blank.png";
 import remove from "./icons/remove.png";
 import addUser from "./icons/addUser.png";
+import penModif from "./icons/penModif.png";
 
 export {
+  penModif,
   addUser,
   remove,
   noteBlank,
