@@ -80,11 +80,10 @@
 }
 
 .ajouter-recette__add-user {
-  background-color: #f5f5f5;
   border-radius: 6px;
   background-color: rgba(10, 171, 205, 1);
   width: 60px;
-  height: 43px;
+  height: 40px;
 }
 
 .tiers-list-results {
@@ -101,8 +100,8 @@
 
 .tiers-delete {
   position: absolute;
-  right: 0.5rem;
-  top: -0.7rem;
+  right: 0.1rem;
+  top: -1.8rem;
 }
 
 .ajouter-recette__search-container button {
@@ -119,9 +118,11 @@
 }
 
 .ajouter-recette__tier-container input {
-  width: 20%;
+  width: 35%;
+  height: 40px;
   padding: 12px;
   border-radius: 6px;
+  border: 1px solid #d1d5db;
 }
 
 input#tiers-select {

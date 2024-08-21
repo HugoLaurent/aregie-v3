@@ -1,10 +1,10 @@
 import "./recette-style.css";
 
-import { ButtonIconText } from "./../../Components/Buttons";
-import { add, search, print } from "./../../assets/images";
-import { ListRecette } from "../../Components";
+import { ButtonIconText } from "../../Components/Buttons";
+import { add, search, print } from "../../assets/images";
+import { AjouterRecette } from "./Pages/index";
 
-export default function Recette() {
+export default function RecetteMain() {
   return (
     <section className="recette-container">
       <h2 className="recette-title">Liste des recettes</h2>
@@ -33,7 +33,7 @@ export default function Recette() {
           />
         </div>
       </article>
-      <ListRecette />
+      <AjouterRecette />
     </section>
   );
 }

@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 
-import { Home, Login, Recette } from "./Pages";
+import { Home, Login, RecetteMain } from "./Pages";
 import { BreadCrumbs, NavBar, NavbarColumn } from "./Components";
-import { AjouterRecette } from "./Pages/Recette/Components";
+import { AjouterRecette } from "./Pages/Recette/Pages";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               {/* ROUTES PIECE COMPTABLE */}
-              <Route path="/recettes" element={<Recette />} />
+              <Route path="/recettes" element={<RecetteMain />} />
               <Route
                 path="/recettes/ajouter-une-recette"
                 element={<AjouterRecette />}

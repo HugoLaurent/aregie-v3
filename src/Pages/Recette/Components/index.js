@@ -1,3 +1,3 @@
-import AjouterRecette from "./AjouterRecette/AjouterRecette";
+import AjouterTiers from "./AjouterTiers/AjouterTiers";
 
-export { AjouterRecette };
+export { AjouterTiers };

@@ -2,18 +2,12 @@ import "./ajouter-recette-style.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-import { ButtonIconText } from "./../../../../Components/Buttons/index";
-import {
-  arrowBack,
-  link,
-  check,
-  noteBlank,
-  userDark,
-  remove,
-  addUser,
-} from "./../../../../assets/images";
+import { ButtonIconText } from "../../../../Components/Buttons/index";
+import { AjouterTiers } from "./../../Components/index";
 
-import userData from "./../../../../assets/data/user.json";
+import { arrowBack, link, check, noteBlank } from "../../../../assets/images";
+
+import userData from "../../../../assets/data/user.json";
 
 export default function AjouterRecette() {
   const [searchResult, setSearchResult] = useState([]);
@@ -90,65 +84,17 @@ export default function AjouterRecette() {
             />
           </article>
         </section>
-        <article className="ajouter-recette__tier-container">
-          <div className="ajouter-recette__tier-header">
-            <h3>Sélectionner un tiers</h3>
-            {numberOfResult > 0 && (
-              <span className="tiers-list-results-number">
-                {numberOfResult} autres résultats...
-              </span>
-            )}
-          </div>
-          <div className="ajouter-recette__search-container">
-            {showInput && (
-              <>
-                <input
-                  className="ajouter-recette__search-input"
-                  type="search"
-                  id="tiers-select"
-                  name="tiersSelect"
-                  onChange={handleSearch}
-                  value={formData.tiersSelect}
-                  placeholder="Rechercher un utilisateur..."
-                />
-                <button
-                  className="ajouter-recette__add-user"
-                  onClick={() => {}}
-                >
-                  <img src={addUser} alt="" />
-                </button>
-              </>
-            )}
-            <div className="tiers-list-results">
-              {searchResult.length > 0 &&
-                searchResult.map((user) => (
-                  <ButtonIconText
-                    key={user.id}
-                    icon={userDark}
-                    text={user.name}
-                    color={"rgba(52, 164, 201, 0.3)"}
-                    onClick={() => {
-                      handleUserClick(user.name);
-                    }}
-                  />
-                ))}
-
-              {!showInput && (
-                <button
-                  className="tiers-delete-container"
-                  alt="Icone d'utilisateur"
-                  onClick={() => {
-                    setSearchResult([]),
-                      setShowInput(true),
-                      setFormData({ tiersSelect: "" });
-                  }}
-                >
-                  <img className="tiers-delete" src={remove} alt="" />
-                </button>
-              )}
-            </div>
-          </div>
-        </article>
+        <AjouterTiers
+          handleUserClick={handleUserClick}
+          handleSearch={handleSearch}
+          searchResult={searchResult}
+          setSearchResult={setSearchResult}
+          showInput={showInput}
+          setShowInput={setShowInput}
+          numberOfResult={numberOfResult}
+          formData={formData}
+          setFormData={setFormData}
+        />
       </form>
     </motion.div>
   );
