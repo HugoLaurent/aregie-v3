@@ -58,7 +58,7 @@ export default function AjouterRecette() {
       animate={{ opacity: 1 }}
       exit={{ x: "100vw", opacity: 0 }}
       transition={{ ease: "easeOut", duration: 1 }}
-      className="ag-theme-quartz ajouter-recette__container"
+      className="ajouter-recette__container"
     >
       <form onSubmit={handleSubmit}>
         <section className="ajouter-recette_header">

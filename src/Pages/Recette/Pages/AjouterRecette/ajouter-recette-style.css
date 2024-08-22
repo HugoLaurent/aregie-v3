@@ -1,12 +1,15 @@
-.ajouter-recette__container {
+.ajouter-recette__container form {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
 }
 
 .ajouter-recette_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .ajouter-recette__title-icone,

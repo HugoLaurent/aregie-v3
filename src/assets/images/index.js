@@ -32,8 +32,10 @@ import remove from "./icons/remove.png";
 import addUser from "./icons/addUser.png";
 import penModif from "./icons/penModif.png";
 import warningCircle from "./icons/warning-circle.png";
+import mathOperation from "./icons/math-operation.png";
 
 export {
+  mathOperation,
   warningCircle,
   penModif,
   addUser,

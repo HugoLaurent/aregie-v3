@@ -1,25 +1,25 @@
 import "./resume-recette-style.css";
 
-import { warningCircle } from "../../../../assets/images";
+import { mathOperation, warningCircle } from "../../../../assets/images";
 import { ButtonIconText } from "../../../../Components/Buttons";
 
 export default function ResumeRecette() {
   return (
     <section className="resume-recette__container">
-      <article>
+      <article className="resume-recette_wrapper">
         <h3>Résumé de la recette</h3>
-        <section>
-          <article>
-            <img src="" alt="" />
+        <section className="resume-recette__header">
+          <article className="resume-recette__highlight-text">
+            <img src={mathOperation} alt="" />
             <p>Votre budget est supérieur à la somme des règlements.</p>
           </article>
-          <article>
-            <p>Reste à régler</p>
+          <article className="resume-recette-total">
+            <span>Reste à régler</span>
             <p>10,00€</p>
           </article>
         </section>
       </article>
-      <article>
+      <article className="resume-recette__button-container">
         <ButtonIconText
           icon={warningCircle}
           text="Valider"
