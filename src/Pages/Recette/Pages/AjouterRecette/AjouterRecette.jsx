@@ -2,12 +2,13 @@ import "./ajouter-recette-style.css";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
-import { ButtonIconText } from "../../../../Components/Buttons/index";
+import { ButtonIconText } from "../../../../Components/Buttons";
 import {
   AjouterTiers,
   BudgetRecette,
   ReglementRecette,
-} from "./../../Components/index";
+  ResumeRecette,
+} from "./../../Components";
 
 import { arrowBack, link, check, noteBlank } from "../../../../assets/images";
 
@@ -103,6 +104,7 @@ export default function AjouterRecette() {
           <BudgetRecette formData={formData} setFormData={setFormData} />
           <ReglementRecette formData={formData} setFormData={setFormData} />
         </section>
+        <ResumeRecette />
       </form>
     </motion.div>
   );

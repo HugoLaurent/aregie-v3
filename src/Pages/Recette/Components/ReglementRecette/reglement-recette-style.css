@@ -1,10 +1,84 @@
 .reglement-recette__container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  padding: 20px;
   border-radius: 6px;
   background-color: #fff;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  min-width: 400px;
+  flex: 1;
+}
+
+.reglement-recette__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 6px 6px 0 0;
+  background-color: rgba(249, 250, 251, 1);
+  font-weight: 500;
+}
+
+.reglement-recette__items-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.reglement-recette__header > p,
+.reglement-recette__item > p {
+  width: 25%;
+  text-align: center;
+}
+p.first-column {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.reglement-recette__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 6px 6px 0 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.reglement-recette__item img {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+
+.reglement-recette__button-container {
+  padding: 20px;
+}
+
+.reglement-recette__button {
+  background-color: rgba(239, 248, 250, 1);
+  border-radius: 6px;
+  border: 1px dashed rgba(0, 129, 227, 1);
+  width: 100%;
+  padding: 10px;
+  color: rgba(10, 171, 205, 1);
+  transition: all 0.3s;
+}
+
+.reglement-recette__button:hover {
+  background-color: rgba(10, 171, 205, 1);
+  color: #fff;
+  border: 1px solid rgba(10, 171, 205, 1);
+}
+
+.reglement-recette__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 0 0 6px 6px;
+  background-color: rgba(249, 250, 251, 1);
+  font-weight: 500;
 }
