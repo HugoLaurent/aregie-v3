@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./ajouter-reference-styles.css";
 
 export default function AjouterReference({ setFormData }) {
