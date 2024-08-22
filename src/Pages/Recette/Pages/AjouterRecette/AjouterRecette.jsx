@@ -1,5 +1,5 @@
 import "./ajouter-recette-style.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import { ButtonIconText } from "../../../../Components/Buttons";
@@ -17,6 +17,7 @@ import { arrowBack, link, check, noteBlank } from "../../../../assets/images";
 import userData from "../../../../assets/data/user.json";
 import AjouterBudget from "./../../Components/Forms/AjouterBudget/AjouterBudget";
 import MainModal from "../../../../Components/Modals/MainModal";
+import AjouterReglement from "../../Components/Forms/AjouterReglement/AjouterReglement";
 
 export default function AjouterRecette() {
   const [searchResult, setSearchResult] = useState([]);
@@ -24,7 +25,8 @@ export default function AjouterRecette() {
   const [numberOfResult, setNumberOfResult] = useState(null);
   const [showNoteInput, setShowNoteInput] = useState(false);
   const [showReference, setShowReference] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [showModalBudget, setShowModalBudget] = useState(false);
+  const [showModalReglement, setShowModalReglement] = useState(false);
   const [montantDepenseTotal, setMontantDepenseTotal] = useState(0);
   const [montantReglementTotal, setMontantReglementTotal] = useState(0);
 
@@ -133,19 +135,32 @@ export default function AjouterRecette() {
           <BudgetRecette
             formData={formData}
             setFormData={setFormData}
-            setShowModal={setShowModal}
+            setShowModalBudget={setShowModalBudget}
             montantDepenseTotal={montantDepenseTotal}
             setMontantDepenseTotal={setMontantDepenseTotal}
           />
-          <ReglementRecette formData={formData} setFormData={setFormData} />
+          <ReglementRecette
+            formData={formData}
+            setFormData={setFormData}
+            setShowModalReglement={setShowModalReglement}
+            montantReglementTotal={montantReglementTotal}
+            setMontantReglementTotal={setMontantReglementTotal}
+          />
         </section>
         <ResumeRecette
           montantDepenseTotal={montantDepenseTotal}
           checkEquality={checkEquality}
         />
-        <MainModal show={showModal}>
+        <MainModal show={showModalBudget}>
           <AjouterBudget
-            setShowModal={setShowModal}
+            setShowModalBudget={setShowModalBudget}
+            formData={formData}
+            setFormData={setFormData}
+          />
+        </MainModal>
+        <MainModal show={showModalReglement}>
+          <AjouterReglement
+            setShowModalBudget={setShowModalReglement}
             formData={formData}
             setFormData={setFormData}
           />

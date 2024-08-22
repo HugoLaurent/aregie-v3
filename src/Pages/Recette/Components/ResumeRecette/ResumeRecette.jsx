@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import "./resume-recette-style.css";
 
 import { mathOperation, warningCircle } from "../../../../assets/images";
 import { ButtonIconText } from "../../../../Components/Buttons";
 
-export default function ResumeRecette({ montantDepenseTotal, checkEquality }) {
+export default function ResumeRecette({ montantDepenseTotal }) {
   return (
     <section className="resume-recette__container">
       <article className="resume-recette_wrapper">

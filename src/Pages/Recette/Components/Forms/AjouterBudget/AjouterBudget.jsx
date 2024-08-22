@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import "./ajouter-budget-style.css";
 import { useState } from "react";
 import { check, x } from "../../../../../assets/images";
 import { Switch } from "../../../../../Components";
 import { ButtonIconText } from "../../../../../Components/Buttons";
 
-export default function AjouterBudget({ setShowModal, formData, setFormData }) {
-  const [showNonVersable, setShowNonVersable] = useState(false);
+export default function AjouterBudget({ setShowModalBudget, setFormData }) {
+  const [setShowNonVersable] = useState(false);
   const [showDate, setShowDate] = useState(false);
   const [showCommentaire, setShowCommentaire] = useState(false);
 
@@ -25,7 +26,7 @@ export default function AjouterBudget({ setShowModal, formData, setFormData }) {
         },
       ],
     }));
-    setShowModal(false);
+    setShowModalBudget(false);
   };
 
   return (
@@ -35,7 +36,7 @@ export default function AjouterBudget({ setShowModal, formData, setFormData }) {
           <h3>Ajouter une ligne budgétaire</h3>
           <button
             onClick={() => {
-              setShowModal(false);
+              setShowModalBudget(false);
             }}
           >
             <img src={x} alt="" />
@@ -109,7 +110,10 @@ export default function AjouterBudget({ setShowModal, formData, setFormData }) {
           </article>
         </section>
         <section className="ajouter-budget__footer">
-          <ButtonIconText text="Annuler" onClick={() => setShowModal(false)} />
+          <ButtonIconText
+            text="Annuler"
+            onClick={() => setShowModalBudget(false)}
+          />
           <ButtonIconText
             icon={check}
             text="Valider"

@@ -5,8 +5,7 @@ import { penModif } from "../../../../assets/images";
 
 export default function BudgetRecette({
   formData,
-
-  setShowModal,
+  setShowModalBudget,
   montantDepenseTotal,
   setMontantDepenseTotal,
 }) {
@@ -41,7 +40,7 @@ export default function BudgetRecette({
 
         <article className="budget-recette__button-container">
           <button
-            onClick={() => setShowModal(true)}
+            onClick={() => setShowModalBudget(true)}
             className="budget-recette__button"
           >
             Ajouter une entrée budget

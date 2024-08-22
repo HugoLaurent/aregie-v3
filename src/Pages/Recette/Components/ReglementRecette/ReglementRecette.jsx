@@ -2,7 +2,13 @@
 import { penModif } from "../../../../assets/images";
 import "./reglement-recette-style.css";
 
-export default function ReglementRecette({ formData, setFormData }) {
+export default function ReglementRecette({
+  formData,
+  setShowModalReglement,
+  montantDepenseTotal,
+  setMontantDepenseTotal,
+  setFormData,
+}) {
   return (
     <section className="reglement-recette__container">
       <article className="budget-recette__header">
@@ -20,7 +26,14 @@ export default function ReglementRecette({ formData, setFormData }) {
         <img src={penModif} alt="" />
       </article>
       <article className="budget-recette__button-container">
-        <button className="budget-recette__button">Ajouter un règlement</button>
+        <button
+          onClick={() => {
+            setShowModalReglement(true);
+          }}
+          className="budget-recette__button"
+        >
+          Ajouter un règlement
+        </button>
       </article>
 
       <article className="budget-recette__footer">
