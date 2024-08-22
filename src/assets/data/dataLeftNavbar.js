@@ -11,7 +11,6 @@ const listToDisplay = [
     category: "Pièces Comptables",
     icon: CodaLogo,
     items: [
-      { name: "Dépenses", link: "/depenses" },
       {
         name: "Recettes",
         title: "Liste des recettes",
@@ -21,6 +20,7 @@ const listToDisplay = [
           link: "/recettes/ajouter-une-recette",
         },
       },
+      { name: "Dépenses", link: "/depenses" },
 
       { name: "Factures", link: "/factures" },
       { name: "Écritures autres", link: "/ecritures-autres" },

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import "./ajouter-tiers-style.css";
+import "./selectionner-tiers-style.css";
 
 import { ButtonIconText } from "../../../../Components/Buttons/index";
 import { userDark, remove, addUser } from "../../../../assets/images";
@@ -27,7 +27,7 @@ export default function AjouterTiers({
       </div>
       <div className="ajouter-recette__search-container">
         {showInput && (
-          <>
+          <div className="ajouter-recette__input-wrapper">
             <input
               className="ajouter-recette__search-input"
               type="search"
@@ -40,7 +40,7 @@ export default function AjouterTiers({
             <button className="ajouter-recette__add-user" onClick={() => {}}>
               <img src={addUser} alt="" />
             </button>
-          </>
+          </div>
         )}
         <div className="tiers-list-results">
           {searchResult.length > 0 &&

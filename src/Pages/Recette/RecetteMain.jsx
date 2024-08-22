@@ -2,7 +2,7 @@ import "./recette-style.css";
 
 import { ButtonIconText } from "../../Components/Buttons";
 import { add, search, print } from "../../assets/images";
-import { AjouterRecette } from "./Pages/index";
+import { ListRecette } from "../../Components";
 
 export default function RecetteMain() {
   return (
@@ -33,7 +33,7 @@ export default function RecetteMain() {
           />
         </div>
       </article>
-      <AjouterRecette />
+      <ListRecette />
     </section>
   );
 }

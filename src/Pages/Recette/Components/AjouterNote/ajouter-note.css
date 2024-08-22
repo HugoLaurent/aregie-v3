@@ -1,0 +1,35 @@
+.note-container {
+  display: flex;
+  gap: 15px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1;
+  min-width: 400px;
+  animation: fadeNoteIn 1s ease-out;
+}
+
+@keyframes fadeNoteIn {
+  from {
+    width: 0;
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.note-container textarea {
+  border: none;
+  width: 100%;
+  resize: none;
+  padding: 0px;
+}
+
+.note-container textarea:focus {
+  outline: none;
+}

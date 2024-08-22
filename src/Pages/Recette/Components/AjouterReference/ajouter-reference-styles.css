@@ -1,0 +1,30 @@
+.ajouter-reference__container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  min-width: 100px;
+  flex: 1;
+  animation: fadeRefIn 1s ease-out;
+}
+
+.ajouter-reference__container input {
+  height: 40px;
+  border-radius: 6px;
+  padding: 0 10px;
+  border: 1px solid #d1d5db;
+}
+
+@keyframes fadeRefIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

@@ -4,10 +4,12 @@ import { motion } from "framer-motion";
 
 import { ButtonIconText } from "../../../../Components/Buttons";
 import {
-  AjouterTiers,
+  AjouterNote,
+  AjouterReference,
   BudgetRecette,
   ReglementRecette,
   ResumeRecette,
+  SelectionnerTiers,
 } from "./../../Components";
 
 import { arrowBack, link, check, noteBlank } from "../../../../assets/images";
@@ -18,14 +20,23 @@ export default function AjouterRecette() {
   const [searchResult, setSearchResult] = useState([]);
   const [showInput, setShowInput] = useState(true);
   const [numberOfResult, setNumberOfResult] = useState(null);
+  const [showNoteInput, setShowNoteInput] = useState(false);
+  const [showReference, setShowReference] = useState(false);
+
   const [formData, setFormData] = useState({
     tiersSelect: "",
+    reference: "",
+    note: "",
+    depenseBudget: [{}],
+    depenseReglement: [{}],
   });
 
   const handleSearch = (e) => {
     const search = e.target.value;
-    setFormData({ ...formData, tiersSelect: search });
-
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      tiersSelect: search,
+    }));
     if (search === "") {
       setSearchResult([]);
       setNumberOfResult(null);
@@ -41,7 +52,6 @@ export default function AjouterRecette() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Log formData for debugging
     console.log("Form Data:", formData);
   };
 
@@ -74,12 +84,14 @@ export default function AjouterRecette() {
               text="Ajouter une référence"
               color={"#fff"}
               hoverColor={"rgba(128, 128, 128, 0.1)"}
+              onClick={() => setShowReference(!showReference)}
             />
             <ButtonIconText
               icon={noteBlank}
               text="Ajouter une note"
               color={"#fff"}
               hoverColor={"rgba(128, 128, 128, 0.1)"}
+              onClick={() => setShowNoteInput(!showNoteInput)}
             />
             <ButtonIconText
               icon={check}
@@ -89,17 +101,21 @@ export default function AjouterRecette() {
             />
           </article>
         </section>
-        <AjouterTiers
-          handleUserClick={handleUserClick}
-          handleSearch={handleSearch}
-          searchResult={searchResult}
-          setSearchResult={setSearchResult}
-          showInput={showInput}
-          setShowInput={setShowInput}
-          numberOfResult={numberOfResult}
-          formData={formData}
-          setFormData={setFormData}
-        />
+        <section className="ajouter-recette__tiers-note-container">
+          {showReference && <AjouterReference setFormData={setFormData} />}
+          <SelectionnerTiers
+            handleUserClick={handleUserClick}
+            handleSearch={handleSearch}
+            searchResult={searchResult}
+            setSearchResult={setSearchResult}
+            showInput={showInput}
+            setShowInput={setShowInput}
+            numberOfResult={numberOfResult}
+            formData={formData}
+            setFormData={setFormData}
+          />
+          {showNoteInput && <AjouterNote setFormData={setFormData} />}
+        </section>
         <section className="ajouter-recette__budget-depense-container">
           <BudgetRecette formData={formData} setFormData={setFormData} />
           <ReglementRecette formData={formData} setFormData={setFormData} />
