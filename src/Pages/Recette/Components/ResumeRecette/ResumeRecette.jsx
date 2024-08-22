@@ -3,7 +3,7 @@ import "./resume-recette-style.css";
 import { mathOperation, warningCircle } from "../../../../assets/images";
 import { ButtonIconText } from "../../../../Components/Buttons";
 
-export default function ResumeRecette() {
+export default function ResumeRecette({ montantDepenseTotal, checkEquality }) {
   return (
     <section className="resume-recette__container">
       <article className="resume-recette_wrapper">
@@ -15,7 +15,7 @@ export default function ResumeRecette() {
           </article>
           <article className="resume-recette-total">
             <span>Reste à régler</span>
-            <p>10,00€</p>
+            <p>{montantDepenseTotal} €</p>
           </article>
         </section>
       </article>

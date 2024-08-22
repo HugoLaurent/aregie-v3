@@ -33,8 +33,10 @@ import addUser from "./icons/addUser.png";
 import penModif from "./icons/penModif.png";
 import warningCircle from "./icons/warning-circle.png";
 import mathOperation from "./icons/math-operation.png";
+import x from "./icons/x.png";
 
 export {
+  x,
   mathOperation,
   warningCircle,
   penModif,

@@ -4,6 +4,7 @@ import "./App.css";
 import { Home, Login, RecetteMain } from "./Pages";
 import { BreadCrumbs, NavBar, NavbarColumn } from "./Components";
 import { AjouterRecette } from "./Pages/Recette/Pages";
+import MainModal from "./Components/Modals/MainModal";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               />
               <Route path="/login" element={<Login />} />
             </Routes>
+            {/* <MainModal /> */}
           </div>
         </div>
       </div>
