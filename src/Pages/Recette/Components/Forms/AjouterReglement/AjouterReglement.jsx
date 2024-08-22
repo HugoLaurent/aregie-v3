@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+// Parent Component: AjouterRecette
 import "./ajouter-reglement-style.css";
 import { useState } from "react";
 import { check, x } from "../../../../../assets/images";
@@ -44,8 +45,8 @@ export default function AjouterReglement({
         </article>
         <article className="ajouter-reglement__text-info">
           <div>
-            <label htmlFor="modele">Modèle</label>
-            <select type="text" id="modele">
+            <label htmlFor="reglement">Modèle</label>
+            <select type="text" id="reglement">
               <option value="001-Carte Bancaire">001-Carte Bancaire</option>
               <option value="002-Espèce">002-Espèce</option>
             </select>
@@ -87,7 +88,10 @@ export default function AjouterReglement({
           </article>
         </section>
         <section className="ajouter-reglement__footer">
-          <ButtonIconText text="Annuler" onClick={() => setShowModal(false)} />
+          <ButtonIconText
+            text="Annuler"
+            onClick={() => setShowModalReglement(false)}
+          />
           <ButtonIconText
             icon={check}
             text="Valider"

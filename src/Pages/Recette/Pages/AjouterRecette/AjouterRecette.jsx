@@ -160,7 +160,7 @@ export default function AjouterRecette() {
         </MainModal>
         <MainModal show={showModalReglement}>
           <AjouterReglement
-            setShowModalBudget={setShowModalReglement}
+            setShowModalReglement={setShowModalReglement}
             formData={formData}
             setFormData={setFormData}
           />
