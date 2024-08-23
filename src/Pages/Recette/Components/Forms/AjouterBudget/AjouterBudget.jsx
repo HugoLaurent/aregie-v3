@@ -5,7 +5,11 @@ import { check, x } from "../../../../../assets/images";
 import { Switch } from "../../../../../Components";
 import { ButtonIconText } from "../../../../../Components/Buttons";
 
-export default function AjouterBudget({ setShowModalBudget, setFormData }) {
+export default function AjouterBudget({
+  setShowModalBudget,
+  setFormData,
+  formData,
+}) {
   const [setShowNonVersable] = useState(false);
   const [showDate, setShowDate] = useState(false);
   const [showCommentaire, setShowCommentaire] = useState(false);
@@ -17,8 +21,8 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      depenseBudget: [
-        ...prevFormData.depenseBudget,
+      budget: [
+        ...prevFormData.budget,
         {
           budget,
           quantite,
@@ -26,7 +30,7 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
         },
       ],
     }));
-    setShowModalBudget(false);
+    console.log("formData", formData);
   };
 
   return (
@@ -115,6 +119,7 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
             onClick={() => setShowModalBudget(false)}
           />
           <ButtonIconText
+            type={"button"}
             icon={check}
             text="Valider"
             color={"rgba(107, 114, 128, 0.3)"}

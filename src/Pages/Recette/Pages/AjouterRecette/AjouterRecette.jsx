@@ -34,8 +34,8 @@ export default function AjouterRecette() {
     tiers: "",
     reference: "",
     note: "",
-    depenseBudget: [],
-    depenseReglement: [],
+    budget: [],
+    reglement: [],
   });
 
   const handleSearch = (e) => {

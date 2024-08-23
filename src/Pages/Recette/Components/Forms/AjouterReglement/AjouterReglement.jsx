@@ -19,8 +19,8 @@ export default function AjouterReglement({
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      depenseReglement: [
-        ...prevFormData.depenseReglement,
+      reglement: [
+        ...prevFormData.reglement,
         {
           reglement,
           montant,
@@ -93,6 +93,7 @@ export default function AjouterReglement({
             onClick={() => setShowModalReglement(false)}
           />
           <ButtonIconText
+            type={"button"}
             icon={check}
             text="Valider"
             color={"rgba(107, 114, 128, 0.3)"}

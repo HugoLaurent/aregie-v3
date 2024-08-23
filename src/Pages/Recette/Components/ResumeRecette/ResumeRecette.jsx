@@ -65,5 +65,3 @@ export default function ResumeRecette({
     </section>
   );
 }
-
-// background: rgba(0, 129, 227, 1);rgba(255, 165, 0, 1)
