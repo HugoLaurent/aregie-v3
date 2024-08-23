@@ -1,24 +1,30 @@
-import { useEffect, useState } from "react";
-import { AgGridReact } from "ag-grid-react";
-import { motion } from "framer-motion";
+// Children component of List.jsx
 
+import "./../list-style.css";
+import "./../../Loading/loading-style.css";
+
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import "ag-grid-enterprise";
-import { Popup } from "./../../index";
 import { AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
-import "./../list-style.css";
-import "./../../Loading/loading-style.css";
+
+import { Popup } from "./../../index";
 import { greenCheck, logoBande } from "./../../../assets/images";
-import { useLocation } from "react-router-dom";
 
 export const ListRecette = () => {
+  // On récupère les données de la location envoyé par le composant enfant au moment de la redirection au vu du succès de la creation d'une recette
   const location = useLocation();
   const { showPopup: initialShowPopup, message } = location.state || {
     showPopup: false,
     message: "",
   };
   const [showPopup, setShowPopup] = useState(initialShowPopup);
+
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -39,6 +45,7 @@ export const ListRecette = () => {
       const data = await response.json();
       setLoading(false);
       setData(data);
+      console.log(data);
     } catch (error) {
       console.error("Fetch error:", error);
     }
@@ -56,20 +63,25 @@ export const ListRecette = () => {
     </div>
   );
 
-  // Column definitions for AG Grid
+  // Définitions de colonnes pour AG Grid
   const depenseColumnDefs = [
     { headerName: "Ticket", field: "id", width: 100 },
     {
       headerName: "Référence",
       field: "reference",
       filter: true,
+      valueGetter: (params) => params.data.reference || "N/A",
     },
-    { headerName: "Tiers", field: "nom", filter: true },
+    {
+      headerName: "Tiers",
+      field: "tiers",
+      filter: true,
+      valueGetter: (params) => params.data.tiers || "N/A",
+    },
     {
       headerName: "Date",
       field: "date",
       filter: "agDateColumnFilter",
-
       tooltipValueGetter: (p) =>
         p.value
           ? new Date(p.value).toLocaleDateString("fr-FR", {
@@ -79,23 +91,30 @@ export const ListRecette = () => {
               day: "numeric",
             })
           : "",
-
       cellRenderer: (params) =>
-        new Date(params.value).toLocaleDateString("fr-FR"),
+        params.value
+          ? new Date(params.value).toLocaleDateString("fr-FR")
+          : "N/A",
     },
-    { headerName: "Modèle", field: "type" },
+    {
+      headerName: "Modèle",
+      field: "budget[0].modele",
+      valueGetter: (params) => params.data.budget?.[0]?.modele || "N/A",
+    },
     {
       headerName: "Montant",
-      field: "montant",
+      field: "reglement[0].montant",
       filter: "agNumberColumnFilter",
-      valueFormatter: (params) => `${params.value} €`,
+      valueGetter: (params) => params.data.reglement?.[0]?.montant || "N/A",
+      valueFormatter: (params) =>
+        params.value !== "N/A" ? `${params.value} €` : params.value,
       cellStyle: { display: "flex", justifyContent: "center" },
     },
     {
-      headerName: "Réglement",
-      field: "reglement",
+      headerName: "Règlement",
+      field: "reglement[0].reglement",
+      valueGetter: (params) => params.data.reglement?.[0]?.reglement || "N/A",
       filter: true,
-
       cellStyle: { display: "flex", justifyContent: "center" },
     },
     {
