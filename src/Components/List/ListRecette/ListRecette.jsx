@@ -5,13 +5,20 @@ import { motion } from "framer-motion";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import "ag-grid-enterprise";
-import { Loading } from "./../../index";
+import { Popup } from "./../../index";
 import { AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
 import "./../list-style.css";
 import "./../../Loading/loading-style.css";
-import { logoBande } from "./../../../assets/images";
+import { greenCheck, logoBande } from "./../../../assets/images";
+import { useLocation } from "react-router-dom";
 
 export const ListRecette = () => {
+  const location = useLocation();
+  const { showPopup: initialShowPopup, message } = location.state || {
+    showPopup: false,
+    message: "",
+  };
+  const [showPopup, setShowPopup] = useState(initialShowPopup);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -133,6 +140,15 @@ export const ListRecette = () => {
         columnDefs={depenseColumnDefs}
         pagination={true}
         loadingOverlayComponent={CustomLoadingOverlay}
+      />
+      <Popup
+        icon={greenCheck}
+        title="Création d'une recette"
+        description={message}
+        bgIcon="#FFC107"
+        colorBorder="#FF9800"
+        showPopup={showPopup}
+        setShowPopup={setShowPopup}
       />
     </motion.div>
   );

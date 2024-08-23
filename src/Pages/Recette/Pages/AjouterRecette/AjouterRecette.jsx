@@ -1,5 +1,6 @@
 import "./ajouter-recette-style.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import { ButtonIconText } from "../../../../Components/Buttons";
@@ -20,6 +21,10 @@ import MainModal from "../../../../Components/Modals/MainModal";
 import AjouterReglement from "../../Components/Forms/AjouterReglement/AjouterReglement";
 
 export default function AjouterRecette() {
+  const navigate = useNavigate();
+
+  const [showPopup, setShowPopup] = useState(false);
+  const [message, setMessage] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showInput, setShowInput] = useState(true);
   const [numberOfResult, setNumberOfResult] = useState(null);
@@ -56,25 +61,49 @@ export default function AjouterRecette() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    fetch("http://localhost:3000/recette/create-recette", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Response:", data);
-        // Handle the response data here
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        // Handle any errors here
+    setFormData({ ...formData, id: Math.floor(Math.random() * 1000) });
+
+    try {
+      const response = await fetch(
+        "http://localhost:3000/recette/create-recette",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      setMessage(result.message);
+
+      setFormData({
+        tiers: "",
+        reference: "",
+        note: "",
+        budget: [],
+        reglement: [],
       });
-    console.log("Form Data:", formData);
+
+      navigate("/recettes", {
+        state: {
+          showPopup: true,
+          message: result.message,
+        },
+      });
+
+      // Handle the response data here
+    } catch (error) {
+      console.error("Error:", error);
+      // Handle any errors here
+    }
   };
 
   const handleUserClick = (userName) => {
