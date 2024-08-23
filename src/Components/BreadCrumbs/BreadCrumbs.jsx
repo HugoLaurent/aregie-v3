@@ -1,4 +1,5 @@
 import "./breadcrumbs-style.css";
+import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import listToDisplay from "../../assets/data/dataLeftNavbar";
 import { caretRight } from "../../assets/images";
@@ -29,8 +30,8 @@ export default function BreadCrumbs() {
         });
 
         return (
-          <>
-            <li className="breadcrumbds-item" key={index}>
+          <React.Fragment key={index}>
+            <li className="breadcrumbds-item">
               <Link to={fullPath} role="button">
                 {foundName}
               </Link>
@@ -38,7 +39,7 @@ export default function BreadCrumbs() {
             {index < locationArray.length - 1 && (
               <img src={caretRight} alt="Caret Right" />
             )}
-          </>
+          </React.Fragment>
         );
       })}
     </ol>
