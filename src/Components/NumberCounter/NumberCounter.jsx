@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./number-counter-style.css";
 import { useState, useEffect } from "react";
 import { motion, animate } from "framer-motion";

@@ -35,9 +35,11 @@ import warningCircle from "./icons/warning-circle.png";
 import mathOperation from "./icons/math-operation.png";
 import x from "./icons/x.png";
 import mathOperationGreen from "./icons/math-operation-green.png";
+import mathOperationGrey from "./icons/math-operation-grey.png";
 import greenCheck from "./icons/green-check.png";
 
 export {
+  mathOperationGrey,
   greenCheck,
   mathOperationGreen,
   x,

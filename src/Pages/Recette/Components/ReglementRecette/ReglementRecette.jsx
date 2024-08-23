@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import { penModif } from "../../../../assets/images";
 import "./reglement-recette-style.css";

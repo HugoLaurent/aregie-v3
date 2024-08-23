@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import "./button-text-icon-style.css";
 
@@ -11,6 +10,7 @@ export default function ButtonIconText({
   link,
   textColor,
   type,
+  disabled,
   hoverColor, // Ajout de la prop pour la couleur de survol
 }) {
   // Crée un objet pour les styles en ligne
@@ -25,6 +25,7 @@ export default function ButtonIconText({
 
   return (
     <Component
+      disabled={disabled}
       to={link}
       onClick={onClick}
       className="button-icon-text-container"

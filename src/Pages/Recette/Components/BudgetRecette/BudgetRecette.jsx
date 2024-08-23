@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect } from "react";
 import "./budget-recette-style.css";
 import { penModif } from "../../../../assets/images";

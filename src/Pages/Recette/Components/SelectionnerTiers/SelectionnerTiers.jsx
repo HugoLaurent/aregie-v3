@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./selectionner-tiers-style.css";
 
 import { ButtonIconText } from "../../../../Components/Buttons/index";

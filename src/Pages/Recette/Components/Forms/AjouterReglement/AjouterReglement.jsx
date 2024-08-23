@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./ajouter-reglement-style.css";
 import { useState } from "react";
 import { check, warningCircle, x } from "../../../../../assets/images";

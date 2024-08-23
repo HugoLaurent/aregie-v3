@@ -25,18 +25,23 @@
 
 .resume-recette__highlight-text {
   display: flex;
-  background-color: rgba(255, 165, 0, 0.08);
+  background-color: lightgrey;
   width: fit-content;
   gap: 5px;
   align-items: center;
   padding: 5px 10px;
   border-radius: 6px;
-  color: rgba(255, 165, 0, 1);
+  color: white;
 }
 
 .green {
   color: rgba(0, 128, 0, 1);
   background-color: rgba(0, 128, 0, 0.08);
+}
+
+.yellow {
+  color: rgba(255, 165, 0, 1);
+  background-color: rgba(255, 165, 0, 0.08);
 }
 
 .resume-recette-total span {

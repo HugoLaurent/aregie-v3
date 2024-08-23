@@ -182,6 +182,7 @@ export default function AjouterRecette() {
         <ResumeRecette
           montantDepenseTotal={montantDepenseTotal}
           montantReglementTotal={montantReglementTotal}
+          formData={formData}
         />
         <MainModal show={showModalBudget}>
           <AjouterBudget

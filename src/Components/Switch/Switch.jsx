@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./switch-style.css";
 
 export default function Switch({ setShow, show }) {

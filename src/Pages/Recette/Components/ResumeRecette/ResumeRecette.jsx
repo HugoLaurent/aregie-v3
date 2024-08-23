@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import "./resume-recette-style.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   check,
   mathOperation,
   mathOperationGreen,
+  mathOperationGrey,
   warningCircle,
 } from "../../../../assets/images";
 import { ButtonIconText } from "../../../../Components/Buttons";
@@ -13,32 +13,82 @@ import { NumberCounter } from "../../../../Components";
 export default function ResumeRecette({
   montantDepenseTotal,
   montantReglementTotal,
+  formData,
 }) {
+  const [actualMontant, setActualMontant] = useState(0);
+  const [textValidation, setTextValidation] = useState("");
+  const [colorValidation, setColorValidation] = useState("grey");
+  const [backgroundText, setBackgroundText] = useState("");
+  const [iconButtonValidation, setIconButtonValidation] =
+    useState(warningCircle);
+  const [iconTextValidation, setIconTextValidation] =
+    useState(mathOperationGrey);
+
+  const checkFillFormData = () => {
+    const isTiersFilled = formData.tiers && formData.tiers.trim() !== "";
+    const isReferenceFilled =
+      formData.reference && formData.reference.trim() !== "";
+    const isNoteFilled = formData.note && formData.note.trim() !== "";
+    const isBudgetFilled = formData.budget && formData.budget.length > 0;
+    const isReglementFilled =
+      formData.reglement && formData.reglement.length > 0;
+
+    return (
+      isTiersFilled &&
+      isReferenceFilled &&
+      isNoteFilled &&
+      isBudgetFilled &&
+      isReglementFilled
+    );
+  };
+
   const checkEquality = () => {
     return montantDepenseTotal === montantReglementTotal;
   };
 
-  const [actualMontant, setActualMontant] = useState(0);
+  useEffect(() => {
+    const validateForm = () => {
+      if (!checkFillFormData()) {
+        setColorValidation("grey");
+        setIconTextValidation(mathOperationGrey);
+        setTextValidation(
+          "Merci de renseigner tous les champs pour valider la recette."
+        );
+        setIconButtonValidation(warningCircle);
+      } else if (!checkEquality()) {
+        setColorValidation("rgba(255, 165, 0, 1)");
+        setIconTextValidation(mathOperation);
+        setBackgroundText("yellow");
+        setTextValidation(
+          "Le montant total des dépenses et des règlements est différent."
+        );
+        setIconButtonValidation(warningCircle);
+      } else {
+        setColorValidation("rgba(0, 129, 227, 1)");
+        setIconTextValidation(mathOperationGreen);
+        setBackgroundText("green");
+        setTextValidation("Votre recette est prête à être validée.");
+        setIconButtonValidation(check);
+      }
+    };
+
+    validateForm();
+  }, [formData, montantDepenseTotal, montantReglementTotal]);
 
   return (
     <section className="resume-recette__container">
       <article className="resume-recette_wrapper">
         <h3>Résumé de la recette</h3>
         <section className="resume-recette__header">
-          {checkEquality() ? (
-            <article className="resume-recette__highlight-text green">
-              <img src={mathOperationGreen} alt="" />
-              <p>Votre recette est prête à être validée.</p>
-            </article>
-          ) : (
-            <article className="resume-recette__highlight-text">
-              <img src={mathOperation} alt="" />
-              <p>Votre budget est supérieur à la somme des règlements.</p>
-            </article>
-          )}
+          <article
+            className={`resume-recette__highlight-text ${backgroundText}`}
+          >
+            <img src={iconTextValidation} alt="" />
+            <p>{textValidation}</p>
+          </article>
+
           <article className="resume-recette-total">
             <span>Reste à régler</span>
-
             <NumberCounter
               from={actualMontant}
               to={montantDepenseTotal - montantReglementTotal}
@@ -50,15 +100,10 @@ export default function ResumeRecette({
       </article>
       <article className="resume-recette__button-container">
         <ButtonIconText
-          icon={
-            montantDepenseTotal === montantReglementTotal
-              ? check
-              : warningCircle
-          }
+          disabled={!checkFillFormData()}
+          icon={iconButtonValidation}
           text="Valider"
-          color={
-            !checkEquality() ? "rgba(255, 165, 0, 1)" : "rgba(0, 129, 227, 1)"
-          }
+          color={colorValidation}
           hoverColor=""
           textColor="white"
         />

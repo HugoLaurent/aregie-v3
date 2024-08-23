@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./ajouter-note.css";
 
 export default function AjouterNote({ setFormData }) {
