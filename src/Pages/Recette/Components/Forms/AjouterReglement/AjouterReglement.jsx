@@ -9,7 +9,6 @@ import { ButtonIconText } from "../../../../../Components/Buttons";
 export default function AjouterReglement({
   setShowModalReglement,
   setFormData,
-  formData,
 }) {
   const [setShowNonVersable] = useState(false);
 
@@ -27,7 +26,7 @@ export default function AjouterReglement({
         },
       ],
     }));
-    console.log("formData", formData);
+    setShowModalReglement(false);
   };
 
   return (

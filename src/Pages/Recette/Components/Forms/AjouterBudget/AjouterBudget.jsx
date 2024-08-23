@@ -5,11 +5,7 @@ import { check, x } from "../../../../../assets/images";
 import { Switch } from "../../../../../Components";
 import { ButtonIconText } from "../../../../../Components/Buttons";
 
-export default function AjouterBudget({
-  setShowModalBudget,
-  setFormData,
-  formData,
-}) {
+export default function AjouterBudget({ setShowModalBudget, setFormData }) {
   const [setShowNonVersable] = useState(false);
   const [showDate, setShowDate] = useState(false);
   const [showCommentaire, setShowCommentaire] = useState(false);
@@ -30,7 +26,7 @@ export default function AjouterBudget({
         },
       ],
     }));
-    console.log("formData", formData);
+    setShowModalBudget(false);
   };
 
   return (
