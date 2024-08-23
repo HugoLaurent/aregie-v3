@@ -18,6 +18,9 @@ export default function ResumeRecette({
     return montantDepenseTotal === montantReglementTotal;
   };
 
+  console.log("montantDepenseTotal", typeof montantDepenseTotal);
+  console.log("montantReglementTotal", typeof montantReglementTotal);
+
   const [actualMontant, setActualMontant] = useState(0);
 
   return (
@@ -38,6 +41,7 @@ export default function ResumeRecette({
           )}
           <article className="resume-recette-total">
             <span>Reste à régler</span>
+
             <NumberCounter
               from={actualMontant}
               to={montantDepenseTotal - montantReglementTotal}
