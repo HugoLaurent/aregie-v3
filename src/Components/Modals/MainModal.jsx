@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { motion, AnimatePresence } from "framer-motion";
 import "./main-modal-style.css";
 
