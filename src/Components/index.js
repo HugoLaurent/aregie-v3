@@ -4,6 +4,7 @@ import BreadCrumbs from "./BreadCrumbs/BreadCrumbs";
 import Loading from "./Loading/Loading";
 import Switch from "./Switch/Switch";
 import NumberCounter from "./NumberCounter/NumberCounter";
+import Popup from "./Popup/Popup";
 import { ListRecette } from "./List/ListRecette/ListRecette";
 
 export {
@@ -14,4 +15,5 @@ export {
   Switch,
   ListRecette,
   NumberCounter,
+  Popup,
 };
