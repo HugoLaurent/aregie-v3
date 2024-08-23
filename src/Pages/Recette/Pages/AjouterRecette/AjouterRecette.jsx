@@ -100,12 +100,6 @@ export default function AjouterRecette() {
               hoverColor={"rgba(128, 128, 128, 0.1)"}
               onClick={() => setShowNoteInput(!showNoteInput)}
             />
-            <ButtonIconText
-              icon={check}
-              text="Valider"
-              color={"rgba(107, 114, 128, 0.3)"}
-              textColor={"#fff"}
-            />
           </article>
         </section>
         <section className="ajouter-recette__tiers-note-container">
