@@ -25,13 +25,15 @@ export default function ReglementRecette({
         <p className="first-column">Règlement</p>
         <p>Total</p>
       </article>
-      {formData.depenseReglement.map((depense, index) => (
-        <article key={index} className="reglement-recette__item">
-          <p className="first-column">{depense.reglement}</p>
-          <p>{depense.montant}€</p>
-          <img src={penModif} alt="" />
-        </article>
-      ))}
+      <section className="budget-recette__items-container">
+        {formData.depenseReglement.map((depense, index) => (
+          <article key={index} className="reglement-recette__item">
+            <p className="first-column">{depense.reglement}</p>
+            <p>{depense.montant}€</p>
+            <img src={penModif} alt="" />
+          </article>
+        ))}
+      </section>
 
       <article className="reglement-recette__button-container">
         <button

@@ -37,22 +37,20 @@ export default function BudgetRecette({
             <img src={penModif} alt="" />
           </article>
         ))}
-
-        <article className="budget-recette__button-container">
-          <button
-            onClick={() => setShowModalBudget(true)}
-            className="budget-recette__button"
-          >
-            Ajouter une entrée budget
-          </button>
-        </article>
-        <article className="budget-recette__footer">
-          <p>Montant Total</p>
-          <p className="budget-recette__footer-total">
-            {montantDepenseTotal} €
-          </p>
-        </article>
       </section>
+
+      <article className="budget-recette__button-container">
+        <button
+          onClick={() => setShowModalBudget(true)}
+          className="budget-recette__button"
+        >
+          Ajouter une entrée budget
+        </button>
+      </article>
+      <article className="budget-recette__footer">
+        <p>Montant Total</p>
+        <p className="budget-recette__footer-total">{montantDepenseTotal} €</p>
+      </article>
     </section>
   );
 }

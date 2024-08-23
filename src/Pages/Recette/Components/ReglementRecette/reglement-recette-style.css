@@ -15,13 +15,15 @@
   padding: 20px;
   border-radius: 6px 6px 0 0;
   background-color: rgba(249, 250, 251, 1);
+  font-size: 14px;
+  font-weight: 600;
 }
 
 .reglement-recette__items-container {
   display: flex;
   flex-direction: column;
   height: 100%;
-  justify-content: space-between;
+  overflow-x: hidden;
 }
 
 .reglement-recette__header > p,
@@ -29,6 +31,11 @@
   width: 25%;
   text-align: center;
 }
+
+.reglement-recette__item > p {
+  font-size: 14px;
+}
+
 p.first-column {
   text-overflow: ellipsis;
   overflow: hidden;
@@ -44,6 +51,16 @@ p.first-column {
   border-radius: 6px 6px 0 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   position: relative;
+  animation: slideIn 0.5s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
 
 .reglement-recette__item img {

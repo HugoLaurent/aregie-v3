@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import "./resume-recette-style.css";
-
+import { useState } from "react";
 import {
   check,
   mathOperation,
@@ -8,6 +8,7 @@ import {
   warningCircle,
 } from "../../../../assets/images";
 import { ButtonIconText } from "../../../../Components/Buttons";
+import { NumberCounter } from "../../../../Components";
 
 export default function ResumeRecette({
   montantDepenseTotal,
@@ -16,6 +17,9 @@ export default function ResumeRecette({
   const checkEquality = () => {
     return montantDepenseTotal === montantReglementTotal;
   };
+
+  const [actualMontant, setActualMontant] = useState(0);
+
   return (
     <section className="resume-recette__container">
       <article className="resume-recette_wrapper">
@@ -34,7 +38,12 @@ export default function ResumeRecette({
           )}
           <article className="resume-recette-total">
             <span>Reste à régler</span>
-            <p>{montantDepenseTotal - montantReglementTotal} €</p>
+            <NumberCounter
+              from={actualMontant}
+              to={montantDepenseTotal - montantReglementTotal}
+              duration={3}
+              setActualMontant={setActualMontant}
+            />
           </article>
         </section>
       </article>
