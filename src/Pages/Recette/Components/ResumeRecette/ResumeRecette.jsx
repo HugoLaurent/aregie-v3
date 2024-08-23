@@ -18,9 +18,6 @@ export default function ResumeRecette({
     return montantDepenseTotal === montantReglementTotal;
   };
 
-  console.log("montantDepenseTotal", typeof montantDepenseTotal);
-  console.log("montantReglementTotal", typeof montantReglementTotal);
-
   const [actualMontant, setActualMontant] = useState(0);
 
   return (

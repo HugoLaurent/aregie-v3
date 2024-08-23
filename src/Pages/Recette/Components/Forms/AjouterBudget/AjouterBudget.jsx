@@ -111,6 +111,7 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
         </section>
         <section className="ajouter-budget__footer">
           <ButtonIconText
+            type={"button"}
             text="Annuler"
             onClick={() => setShowModalBudget(false)}
           />

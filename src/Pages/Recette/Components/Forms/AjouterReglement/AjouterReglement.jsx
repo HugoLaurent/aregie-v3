@@ -88,6 +88,7 @@ export default function AjouterReglement({
         </section>
         <section className="ajouter-reglement__footer">
           <ButtonIconText
+            type={"button"}
             text="Annuler"
             onClick={() => setShowModalReglement(false)}
           />
