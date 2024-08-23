@@ -18,7 +18,7 @@ export const ListRecette = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:3000/list", {
+      const response = await fetch("http://localhost:3000/recette", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
