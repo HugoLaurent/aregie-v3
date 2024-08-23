@@ -14,3 +14,16 @@
   background-color: #f0f8fa;
   overflow-y: scroll;
 }
+
+.popup-container {
+  position: fixed;
+  top: 63px;
+  right: 22px;
+  border-radius: 6px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
