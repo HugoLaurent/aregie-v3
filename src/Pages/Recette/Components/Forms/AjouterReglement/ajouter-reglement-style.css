@@ -26,6 +26,12 @@ section.ajouter-reglement__form {
   padding: 10px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
+  width: 100%;
+}
+
+input.invalid,
+select.invalid {
+  border: 1px solid red;
 }
 
 .ajouter-reglement__text-info {

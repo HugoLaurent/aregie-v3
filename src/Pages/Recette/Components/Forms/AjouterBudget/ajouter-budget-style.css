@@ -26,6 +26,12 @@ section.ajouter-budget__form {
   padding: 10px;
   border: 1px solid #d1d5db;
   border-radius: 6px;
+  background-color: white;
+}
+
+input.invalid,
+select.invalid {
+  border: 1px solid red;
 }
 
 .ajouter-budget__text-info {
