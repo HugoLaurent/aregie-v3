@@ -23,8 +23,6 @@ import AjouterReglement from "../../Components/Forms/AjouterReglement/AjouterReg
 export default function AjouterRecette() {
   const navigate = useNavigate();
 
-  const [showPopup, setShowPopup] = useState(false);
-  const [message, setMessage] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [showInput, setShowInput] = useState(true);
   const [numberOfResult, setNumberOfResult] = useState(null);
@@ -82,7 +80,6 @@ export default function AjouterRecette() {
       }
 
       const result = await response.json();
-      setMessage(result.message);
 
       setFormData({
         tiers: "",
