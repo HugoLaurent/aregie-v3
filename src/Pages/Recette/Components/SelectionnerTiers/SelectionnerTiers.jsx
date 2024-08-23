@@ -46,6 +46,7 @@ export default function AjouterTiers({
           {searchResult.length > 0 &&
             searchResult.map((user) => (
               <ButtonIconText
+                type={"button"}
                 key={user.id}
                 icon={userDark}
                 text={user.name}
@@ -58,6 +59,7 @@ export default function AjouterTiers({
 
           {!showInput && (
             <button
+              type={"button"}
               className="tiers-delete-container"
               alt="Icone d'utilisateur"
               onClick={() => {

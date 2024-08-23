@@ -10,7 +10,7 @@ export default function ReglementRecette({
   setMontantReglementTotal,
 }) {
   // Calcul du montant total
-  const totalMontant = formData.depenseReglement.reduce((acc, depense) => {
+  const totalMontant = formData.depenseReglement?.reduce((acc, depense) => {
     return acc + Number(depense.montant);
   }, 0);
 
@@ -26,7 +26,7 @@ export default function ReglementRecette({
         <p>Total</p>
       </article>
       <section className="budget-recette__items-container">
-        {formData.depenseReglement.map((depense, index) => (
+        {formData.depenseReglement?.map((depense, index) => (
           <article key={index} className="reglement-recette__item">
             <p className="first-column">{depense.reglement}</p>
             <p>{depense.montant}€</p>

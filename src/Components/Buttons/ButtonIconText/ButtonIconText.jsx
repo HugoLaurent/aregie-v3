@@ -10,6 +10,7 @@ export default function ButtonIconText({
   color,
   link,
   textColor,
+  type,
   hoverColor, // Ajout de la prop pour la couleur de survol
 }) {
   // Crée un objet pour les styles en ligne
@@ -28,6 +29,7 @@ export default function ButtonIconText({
       onClick={onClick}
       className="button-icon-text-container"
       style={buttonStyle}
+      type={type}
     >
       <img src={icon} alt={alt} className="icon" />
       <span>{text}</span>

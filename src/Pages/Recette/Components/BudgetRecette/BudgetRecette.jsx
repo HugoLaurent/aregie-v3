@@ -10,7 +10,7 @@ export default function BudgetRecette({
   setMontantDepenseTotal,
 }) {
   // Calcul du montant total
-  const totalMontant = formData.depenseBudget.reduce((acc, depense) => {
+  const totalMontant = formData.depenseBudget?.reduce((acc, depense) => {
     return acc + depense.quantite * depense.prixUnitaire;
   }, 0);
 
@@ -28,7 +28,7 @@ export default function BudgetRecette({
         <p>P.T.</p>
       </article>
       <section className="budget-recette__items-container">
-        {formData.depenseBudget.map((depense, index) => (
+        {formData.depenseBudget?.map((depense, index) => (
           <article key={index} className="budget-recette__item">
             <p className="first-column">{depense.budget}</p>
             <p>{depense.quantite}</p>

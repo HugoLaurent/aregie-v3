@@ -12,7 +12,7 @@ import {
   SelectionnerTiers,
 } from "./../../Components";
 
-import { arrowBack, link, check, noteBlank } from "../../../../assets/images";
+import { arrowBack, link, noteBlank } from "../../../../assets/images";
 
 import userData from "../../../../assets/data/user.json";
 import AjouterBudget from "./../../Components/Forms/AjouterBudget/AjouterBudget";
@@ -58,7 +58,22 @@ export default function AjouterRecette() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    fetch("http://localhost:3000/recette/create-recette", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Response:", data);
+        // Handle the response data here
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        // Handle any errors here
+      });
     console.log("Form Data:", formData);
   };
 
@@ -80,13 +95,14 @@ export default function AjouterRecette() {
       <form onSubmit={handleSubmit}>
         <section className="ajouter-recette_header">
           <article className="ajouter-recette__title-icone">
-            <button className="ajouter-recette__back-button">
+            <button type="button" className="ajouter-recette__back-button">
               <img src={arrowBack} alt="Retour" />
             </button>
             <h2>Ajouter une recette</h2>
           </article>
           <article className="ajouter-recette__button-right">
             <ButtonIconText
+              type={"button"}
               icon={link}
               text="Ajouter une référence"
               color={"#fff"}
@@ -94,6 +110,7 @@ export default function AjouterRecette() {
               onClick={() => setShowReference(!showReference)}
             />
             <ButtonIconText
+              type={"button"}
               icon={noteBlank}
               text="Ajouter une note"
               color={"#fff"}
