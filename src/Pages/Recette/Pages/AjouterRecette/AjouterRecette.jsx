@@ -30,14 +30,6 @@ export default function AjouterRecette() {
   const [montantDepenseTotal, setMontantDepenseTotal] = useState(0);
   const [montantReglementTotal, setMontantReglementTotal] = useState(0);
 
-  const checkEquality = (montantDepenseTotal, montantReglementTotal) => {
-    if (montantDepenseTotal !== montantReglementTotal) {
-      return false;
-    } else {
-      return true;
-    }
-  };
-
   const [formData, setFormData] = useState({
     tiersSelect: "",
     reference: "",
@@ -149,7 +141,7 @@ export default function AjouterRecette() {
         </section>
         <ResumeRecette
           montantDepenseTotal={montantDepenseTotal}
-          checkEquality={checkEquality}
+          montantReglementTotal={montantReglementTotal}
         />
         <MainModal show={showModalBudget}>
           <AjouterBudget

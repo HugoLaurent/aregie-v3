@@ -44,7 +44,9 @@ export default function ReglementRecette({
 
       <article className="reglement-recette__footer">
         <p>Total des règlements</p>
-        <p>{montantReglementTotal}€</p>
+        <p className="reglement-recette__footer-total">
+          {montantReglementTotal} €
+        </p>
       </article>
     </section>
   );

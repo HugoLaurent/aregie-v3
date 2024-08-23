@@ -79,5 +79,9 @@ p.first-column {
   padding: 20px;
   border-radius: 0 0 6px 6px;
   background-color: rgba(249, 250, 251, 1);
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.reglement-recette__footer-total {
+  font-size: 22px;
 }

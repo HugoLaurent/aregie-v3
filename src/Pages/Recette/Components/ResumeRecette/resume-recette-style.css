@@ -34,6 +34,11 @@
   color: rgba(255, 165, 0, 1);
 }
 
+.green {
+  color: rgba(0, 128, 0, 1);
+  background-color: rgba(0, 128, 0, 0.08);
+}
+
 .resume-recette-total span {
   font-weight: 500;
   font-size: 14px;

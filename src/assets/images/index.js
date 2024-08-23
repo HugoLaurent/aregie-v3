@@ -34,8 +34,10 @@ import penModif from "./icons/penModif.png";
 import warningCircle from "./icons/warning-circle.png";
 import mathOperation from "./icons/math-operation.png";
 import x from "./icons/x.png";
+import mathOperationGreen from "./icons/math-operation-green.png";
 
 export {
+  mathOperationGreen,
   x,
   mathOperation,
   warningCircle,
