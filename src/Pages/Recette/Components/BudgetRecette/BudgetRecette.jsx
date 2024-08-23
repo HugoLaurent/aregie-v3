@@ -41,6 +41,7 @@ export default function BudgetRecette({
 
       <article className="budget-recette__button-container">
         <button
+          type="button"
           onClick={() => setShowModalBudget(true)}
           className="budget-recette__button"
         >

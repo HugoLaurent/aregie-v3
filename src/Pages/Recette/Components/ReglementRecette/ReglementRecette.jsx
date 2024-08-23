@@ -37,6 +37,7 @@ export default function ReglementRecette({
 
       <article className="reglement-recette__button-container">
         <button
+          type="button"
           onClick={() => setShowModalReglement(true)}
           className="reglement-recette__button"
         >

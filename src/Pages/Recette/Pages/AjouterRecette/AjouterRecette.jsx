@@ -31,7 +31,7 @@ export default function AjouterRecette() {
   const [montantReglementTotal, setMontantReglementTotal] = useState(0);
 
   const [formData, setFormData] = useState({
-    tiersSelect: "",
+    tiers: "",
     reference: "",
     note: "",
     depenseBudget: [],
@@ -42,7 +42,7 @@ export default function AjouterRecette() {
     const search = e.target.value;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      tiersSelect: search,
+      tiers: search,
     }));
     if (search === "") {
       setSearchResult([]);
