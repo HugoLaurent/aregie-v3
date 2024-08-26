@@ -4,6 +4,7 @@ import ReglementRecette from "./ReglementRecette/ReglementRecette";
 import ResumeRecette from "./ResumeRecette/ResumeRecette";
 import AjouterNote from "./AjouterNote/AjouterNote";
 import AjouterReference from "./AjouterReference/AjouterReference";
+import CallToActions from "./CallToActions/CallToActions";
 
 export {
   SelectionnerTiers,
@@ -12,4 +13,5 @@ export {
   ResumeRecette,
   AjouterNote,
   AjouterReference,
+  CallToActions,
 };

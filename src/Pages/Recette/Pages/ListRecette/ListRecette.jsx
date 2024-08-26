@@ -1,7 +1,5 @@
 // Children component of List.jsx
-
-import "./../list-style.css";
-import "./../../Loading/loading-style.css";
+import "./list-recette-style.css";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -13,8 +11,9 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import "ag-grid-enterprise";
 import { AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
 
-import { Popup } from "./../../index";
-import { greenCheck, logoBande } from "./../../../assets/images";
+import { Popup } from "../../../../Components/index";
+import { greenCheck, logoBande } from "../../../../assets/images";
+import { CallToActions } from "../../Components";
 
 export const ListRecette = () => {
   // On récupère les données de la location envoyé par le composant enfant au moment de la redirection au vu du succès de la creation d'une recette
@@ -134,6 +133,13 @@ export const ListRecette = () => {
       field: "estBR9",
       width: "100px",
       cellStyle: { display: "flex", justifyContent: "center" },
+    },
+    {
+      field: "button",
+      headerName: "Button",
+      cellRenderer: (params) => {
+        return <CallToActions data={params.data} />;
+      },
     },
   ];
 

@@ -37,8 +37,10 @@ import x from "./icons/x.png";
 import mathOperationGreen from "./icons/math-operation-green.png";
 import mathOperationGrey from "./icons/math-operation-grey.png";
 import greenCheck from "./icons/green-check.png";
+import eye from "./icons/eye.png";
 
 export {
+  eye,
   mathOperationGrey,
   greenCheck,
   mathOperationGreen,

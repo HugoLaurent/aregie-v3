@@ -1,0 +1,71 @@
+/* list-style.css */
+.list-recette__container {
+  width: 100%; /* Largeur totale */
+  display: flex;
+  flex-direction: column;
+}
+
+.ag-theme-quartz {
+  height: 100%; /* La grille prend toute la hauteur du conteneur */
+  width: 100%; /* La grille prend toute la largeur du conteneur */
+}
+
+.ag-grid-container {
+  height: 100%;
+}
+
+.ag-grid-body {
+  overflow: auto; /* Assurez-vous que le contenu est défilable si nécessaire */
+}
+
+.ag-row:nth-child(even) {
+  background-color: #f9f9f9; /* Couleur pour les lignes paires */
+}
+
+#un {
+  animation: loading 3s ease-in-out infinite;
+  padding-bottom: 10px;
+}
+
+#trois {
+  animation: loading-reverse 3s ease-in-out infinite;
+  padding-top: 10px;
+}
+
+@keyframes loading {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes loading-reverse {
+  0% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+
+.fixed-actions {
+  position: sticky;
+  right: 0;
+  background: white;
+  z-index: 1; /* Assurez-vous que la colonne est au-dessus des autres colonnes */
+  border-left: 1px solid #ddd; /* Optionnel, pour une séparation visuelle */
+}
