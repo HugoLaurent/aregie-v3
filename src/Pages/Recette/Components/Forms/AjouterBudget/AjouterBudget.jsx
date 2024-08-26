@@ -1,10 +1,14 @@
 import "./ajouter-budget-style.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { check, warningCircle, x } from "../../../../../assets/images";
 import { Switch } from "../../../../../Components";
 import { ButtonIconText } from "../../../../../Components/Buttons";
 
-export default function AjouterBudget({ setShowModalBudget, setFormData }) {
+export default function AjouterBudget({
+  setShowModalBudget,
+  setFormData,
+  selectedDepense = null, // Ajout de la dépense existante à modifier
+}) {
   const [showNonVersable, setShowNonVersable] = useState(false);
   const [showDate, setShowDate] = useState(false);
   const [showCommentaire, setShowCommentaire] = useState(false);
@@ -20,6 +24,24 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
   const [invalidQuantite, setInvalidQuantite] = useState(false);
   const [invalidPrixUnitaire, setInvalidPrixUnitaire] = useState(false);
 
+  console.log(selectedDepense);
+
+  // Utiliser useEffect pour initialiser les états avec les valeurs existantes
+  useEffect(() => {
+    if (selectedDepense) {
+      setModele(selectedDepense.modele);
+      setBudget(selectedDepense.budget);
+      setQuantite(selectedDepense.quantite);
+      setPrixUnitaire(selectedDepense.prixUnitaire);
+      setPrixTotal(selectedDepense.quantite * selectedDepense.prixUnitaire);
+      setDate(selectedDepense.date);
+      setShowNonVersable(selectedDepense.nonVersable);
+      setCommentaire(selectedDepense.commentaire);
+      setShowDate(!!selectedDepense.date);
+      setShowCommentaire(!!selectedDepense.commentaire);
+    }
+  }, [selectedDepense]);
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     if (id === "quantite") {
@@ -32,6 +54,7 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
   };
 
   const handleBudgetSubmit = () => {
+    // Validations (inchangées)
     if (modele === "") {
       setInvalidModele(true);
       setTimeout(() => setInvalidModele(false), 3000);
@@ -58,19 +81,34 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      budget: [
-        ...prevFormData.budget,
-        {
-          id: prevFormData.budget.length + 1,
-          modele,
-          budget,
-          quantite,
-          prixUnitaire,
-          date,
-          nonVersable: showNonVersable,
-          commentaire,
-        },
-      ],
+      budget: selectedDepense
+        ? prevFormData.budget.map((item) =>
+            item.id === selectedDepense.id
+              ? {
+                  ...item,
+                  modele,
+                  budget,
+                  quantite,
+                  prixUnitaire,
+                  date,
+                  nonVersable: showNonVersable,
+                  commentaire,
+                }
+              : item
+          )
+        : [
+            ...prevFormData.budget,
+            {
+              id: prevFormData.budget.length + 1,
+              modele,
+              budget,
+              quantite,
+              prixUnitaire,
+              date,
+              nonVersable: showNonVersable,
+              commentaire,
+            },
+          ],
     }));
 
     setShowModalBudget(false);
@@ -83,7 +121,11 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
     <section className="ajouter-budget__container">
       <section className="ajouter-budget__form">
         <article className="ajouter-budget__header">
-          <h3>Ajouter une ligne budgétaire</h3>
+          <h3>
+            {selectedDepense
+              ? "Modifier la ligne budgétaire"
+              : "Ajouter une ligne budgétaire"}
+          </h3>
           <button type="button" onClick={() => setShowModalBudget(false)}>
             <img src={x} alt="Close" />
           </button>
@@ -95,7 +137,9 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
               id="modele"
               value={modele}
               onChange={(e) => setModele(e.target.value)}
-              className={invalidModele ? "invalid" : ""}
+              className={`modele ${invalidModele ? "invalid" : ""} ${
+                modele === "" ? "" : "valid-modele"
+              }`}
             >
               <option value="" disabled>
                 Choisissez un modèle.
@@ -110,7 +154,9 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
               id="budget"
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
-              className={invalidBudget ? "invalid" : ""}
+              className={`budget ${invalidModele ? "invalid" : ""} ${
+                budget === "" ? "" : "valid-budget"
+              }`}
             >
               <option value="" disabled>
                 Choisissez un budget.
@@ -173,6 +219,7 @@ export default function AjouterBudget({ setShowModalBudget, setFormData }) {
               <input
                 type="date"
                 id="date-debut"
+                value={date}
                 onChange={(e) => setDate(e.target.value)}
               />
             )}

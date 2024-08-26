@@ -32,6 +32,7 @@ export default function AjouterRecette() {
   const [showModalReglement, setShowModalReglement] = useState(false);
   const [montantDepenseTotal, setMontantDepenseTotal] = useState(0);
   const [montantReglementTotal, setMontantReglementTotal] = useState(0);
+  const [selectedDepense, setSelectedDepense] = useState(null);
 
   const [formData, setFormData] = useState({
     tiers: "",
@@ -164,7 +165,10 @@ export default function AjouterRecette() {
           <BudgetRecette
             formData={formData}
             setFormData={setFormData}
+            showModalBudget={showModalBudget}
             setShowModalBudget={setShowModalBudget}
+            selectedDepense={selectedDepense}
+            setSelectedDepense={setSelectedDepense}
             montantDepenseTotal={montantDepenseTotal}
             setMontantDepenseTotal={setMontantDepenseTotal}
           />
@@ -186,6 +190,7 @@ export default function AjouterRecette() {
             setShowModalBudget={setShowModalBudget}
             formData={formData}
             setFormData={setFormData}
+            selectedDepense={selectedDepense}
           />
         </MainModal>
         <MainModal show={showModalReglement}>

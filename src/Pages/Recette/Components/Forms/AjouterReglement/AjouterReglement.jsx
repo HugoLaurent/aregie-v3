@@ -57,7 +57,7 @@ export default function AjouterReglement({
         </article>
         <article className="ajouter-reglement__text-info">
           <div>
-            <label htmlFor="reglement">Modèle</label>
+            <label htmlFor="reglement">Mode de règlement</label>
             <select
               id="reglement"
               value={reglement}
@@ -72,7 +72,7 @@ export default function AjouterReglement({
             </select>
           </div>
           <div>
-            <label htmlFor="montant">Montant du règlement</label>
+            <label htmlFor="montant">Montant</label>
             <div className="input-number__container">
               <p>€</p>
               <input

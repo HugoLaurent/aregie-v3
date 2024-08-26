@@ -29,6 +29,27 @@ section.ajouter-budget__form {
   background-color: white;
 }
 
+/* Styles par défaut pour les <select> avec les classes .modele et .budget */
+.ajouter-budget__form select.modele,
+.ajouter-budget__form select.budget {
+  color: grey; /* Couleur du texte par défaut */
+  font-style: italic; /* Style de police par défaut */
+}
+
+/* Styles pour les options dans les <select> */
+.ajouter-budget__form select.modele option,
+.ajouter-budget__form select.budget option {
+  color: black; /* Couleur du texte des options */
+  font-style: normal; /* Style de police des options */
+}
+
+/* Styles lorsque la classe .valid est appliquée aux <select> */
+.ajouter-budget__form select.valid-modele,
+.ajouter-budget__form select.valid-budget {
+  color: black; /* Couleur du texte lorsque la classe .valid est appliquée */
+  font-style: normal; /* Style de police lorsque la classe .valid est appliquée */
+}
+
 input.invalid,
 select.invalid {
   border: 1px solid red;

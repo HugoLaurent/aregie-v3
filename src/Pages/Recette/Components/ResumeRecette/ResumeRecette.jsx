@@ -1,5 +1,5 @@
 import "./resume-recette-style.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   check,
   mathOperation,
@@ -24,7 +24,8 @@ export default function ResumeRecette({
   const [iconTextValidation, setIconTextValidation] =
     useState(mathOperationGrey);
 
-  const checkFillFormData = () => {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const checkFillFormData = useCallback(() => {
     const isTiersFilled = formData.tiers && formData.tiers.trim() !== "";
     const isReferenceFilled =
       formData.reference && formData.reference.trim() !== "";
@@ -40,11 +41,11 @@ export default function ResumeRecette({
       isBudgetFilled &&
       isReglementFilled
     );
-  };
+  });
 
-  const checkEquality = () => {
+  const checkEquality = useCallback(() => {
     return montantDepenseTotal === montantReglementTotal;
-  };
+  }, [montantDepenseTotal, montantReglementTotal]);
 
   useEffect(() => {
     const validateForm = () => {
@@ -73,7 +74,13 @@ export default function ResumeRecette({
     };
 
     validateForm();
-  }, [formData, montantDepenseTotal, montantReglementTotal]);
+  }, [
+    checkEquality,
+    checkFillFormData,
+    formData,
+    montantDepenseTotal,
+    montantReglementTotal,
+  ]);
 
   return (
     <section className="resume-recette__container">
@@ -92,7 +99,7 @@ export default function ResumeRecette({
             <NumberCounter
               from={actualMontant}
               to={montantDepenseTotal - montantReglementTotal}
-              duration={3}
+              duration={2}
               setActualMontant={setActualMontant}
             />
           </article>

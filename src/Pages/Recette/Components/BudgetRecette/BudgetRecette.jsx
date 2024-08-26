@@ -1,22 +1,36 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./budget-recette-style.css";
 import { penModif } from "../../../../assets/images";
+import AjouterBudget from "../Forms/AjouterBudget/AjouterBudget";
 
 export default function BudgetRecette({
   formData,
+  setFormData,
+  showModalBudget,
+  selectedDepense,
+  setSelectedDepense,
   setShowModalBudget,
   montantDepenseTotal,
   setMontantDepenseTotal,
 }) {
+  // État pour la dépense sélectionnée
+
   // Calcul du montant total
   const totalMontant = formData.budget?.reduce((acc, depense) => {
     return acc + depense.quantite * depense.prixUnitaire;
   }, 0);
 
-  // Mise à jour de l'état (utiliser useEffect si c'est un composant fonctionnel)
   useEffect(() => {
     setMontantDepenseTotal(totalMontant);
   }, [formData.budget, setMontantDepenseTotal, totalMontant]);
+
+  // Modifier une entrée budget
+  const handleModifyDepense = (depense) => {
+    setSelectedDepense(depense);
+    setShowModalBudget(true);
+
+    // Définit la dépense sélectionnée
+  };
 
   return (
     <section className="budget-recette__container">
@@ -33,7 +47,11 @@ export default function BudgetRecette({
             <p>{depense.quantite}</p>
             <p>{depense.prixUnitaire} €</p>
             <p>{depense.quantite * depense.prixUnitaire} €</p>
-            <img src={penModif} alt="" />
+            <img
+              onClick={() => handleModifyDepense(depense)}
+              src={penModif}
+              alt="Modifier"
+            />
           </article>
         ))}
       </section>
@@ -41,7 +59,10 @@ export default function BudgetRecette({
       <article className="budget-recette__button-container">
         <button
           type="button"
-          onClick={() => setShowModalBudget(true)}
+          onClick={() => {
+            setSelectedDepense(null); // Réinitialiser la dépense sélectionnée lors de l'ajout d'une nouvelle
+            setShowModalBudget(true);
+          }}
           className="budget-recette__button"
         >
           Ajouter une entrée budget
