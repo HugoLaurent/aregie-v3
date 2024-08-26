@@ -20,7 +20,7 @@ export default function AjouterBudget({
   const [date, setDate] = useState("");
   const [commentaire, setCommentaire] = useState("");
   const [invalidModele, setInvalidModele] = useState(false);
-  const [invalidBudget, setInvalidBudget] = useState(false);
+  const [setInvalidBudget] = useState(false);
   const [invalidQuantite, setInvalidQuantite] = useState(false);
   const [invalidPrixUnitaire, setInvalidPrixUnitaire] = useState(false);
 
