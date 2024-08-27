@@ -44,11 +44,13 @@ export default function BudgetRecette({
             <p>{depense.quantite}</p>
             <p>{depense.prixUnitaire} €</p>
             <p>{depense.quantite * depense.prixUnitaire} €</p>
-            <img
-              onClick={() => handleModifyDepense(depense)}
-              src={penModif}
-              alt="Modifier"
-            />
+            {!lockButton && (
+              <img
+                onClick={() => handleModifyDepense(depense)}
+                src={penModif}
+                alt="Modifier"
+              />
+            )}
           </article>
         ))}
       </section>

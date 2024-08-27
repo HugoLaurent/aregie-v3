@@ -30,7 +30,7 @@ export default function ReglementRecette({
           <article key={index} className="reglement-recette__item">
             <p className="first-column">{depense.reglement}</p>
             <p>{depense.montant}€</p>
-            <img src={penModif} alt="" />
+            {!lockButton && <img src={penModif} alt="" />}
           </article>
         ))}
       </section>

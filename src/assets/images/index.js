@@ -38,8 +38,14 @@ import mathOperationGreen from "./icons/math-operation-green.png";
 import mathOperationGrey from "./icons/math-operation-grey.png";
 import greenCheck from "./icons/green-check.png";
 import eye from "./icons/eye.png";
+import penWhite from "./icons/pen-white.png";
+import paperclip from "./icons/paperclip.png";
+import clockBackward from "./icons/clock-backward.png";
 
 export {
+  paperclip,
+  clockBackward,
+  penWhite,
   eye,
   mathOperationGrey,
   greenCheck,

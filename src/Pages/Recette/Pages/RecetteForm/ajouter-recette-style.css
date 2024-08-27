@@ -1,32 +1,33 @@
-.ajouter-recette__container form {
+.recette__container form {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
 }
 
-.ajouter-recette_header {
+.recette_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.ajouter-recette__title-icone,
-.ajouter-recette__button-right {
+.recette__title-icone,
+.recette__button-right {
   display: flex;
   gap: 20px;
   align-items: center;
 }
 
-.ajouter-recette__back-button {
+.recette__back-button {
   position: relative;
   background-color: rgba(107, 114, 128, 0.3);
   border-radius: 6px;
   padding: 8px;
 }
 
-.ajouter-recette__back-button::before {
+.recette__back-button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -38,12 +39,12 @@
   z-index: 0; /* Assure que le fond se place derrière le texte */
 }
 
-.ajouter-recette__back-button:hover::before {
+.recette__back-button:hover::before {
   left: 0;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.ajouter-recette__title-icone h2 {
+.recette__title-icone h2 {
   font-family: Inter, sans-serif;
   font-size: 30px;
   font-weight: 600;
@@ -51,9 +52,9 @@
   letter-spacing: -0.75px;
 }
 
-.ajouter-recette__tiers-reference-container,
-.ajouter-recette__budget-depense-container,
-.ajouter-recette__tiers-note-container {
+.recette__tiers-reference-container,
+.recette__budget-depense-container,
+.recette__tiers-note-container {
   display: flex;
   gap: 15px;
   justify-content: space-between;

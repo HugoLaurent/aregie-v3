@@ -43,6 +43,7 @@ export default function SelectionnerTiers({
               placeholder="Rechercher un utilisateur..."
             />
             <button
+              type="button"
               disabled={lockButton}
               className="ajouter-recette__add-user"
               onClick={() => {}}
