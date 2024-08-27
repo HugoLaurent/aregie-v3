@@ -1,6 +1,6 @@
 import "./ajouter-recette-style.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../../../redux/reducers/popupReducer";
@@ -29,25 +29,27 @@ import {
   penWhite,
 } from "../../../../assets/images";
 
+// Fonction générique pour vérifier si un champ existe
+const checkIfFieldExists = (field) => field && field.trim() !== "";
+
 export default function RecetteForm() {
   const { id } = useParams();
   const isEditMode = Boolean(id);
-  console.log("id", id);
-
-  console.log("isEditMode", isEditMode);
 
   const [searchResult, setSearchResult] = useState([]);
   const [numberOfResult, setNumberOfResult] = useState(null);
 
   const [showInput, setShowInput] = useState(true);
-  const [showNoteInput, setShowNoteInput] = useState(isEditMode);
-  const [showReference, setShowReference] = useState(isEditMode);
   const [showModalBudget, setShowModalBudget] = useState(false);
   const [showModalReglement, setShowModalReglement] = useState(false);
   const [montantDepenseTotal, setMontantDepenseTotal] = useState(0);
   const [montantReglementTotal, setMontantReglementTotal] = useState(0);
   const [selectedDepense, setSelectedDepense] = useState(null);
   const [lockButton, setLockButton] = useState(isEditMode);
+
+  const [showReference, setShowReference] = useState(false);
+  const [showNoteInput, setShowNoteInput] = useState(false);
+
   const [formData, setFormData] = useState({
     tiers: "",
     reference: "",
@@ -67,6 +69,8 @@ export default function RecetteForm() {
           const data = await response.json();
           const { tiers, reference, note, budget, reglement } = data;
           setFormData({ tiers, reference, note, budget, reglement });
+          setShowReference(checkIfFieldExists(reference));
+          setShowNoteInput(checkIfFieldExists(note));
         } catch (error) {
           console.error("Erreur lors du fetch:", error);
         }
@@ -75,18 +79,21 @@ export default function RecetteForm() {
     }
   }, [id, isEditMode]);
 
-  const handleOpenPopup = (successMessage) => {
-    dispatch(
-      openPopup({
-        title: successMessage,
-        description: `La recette a été ${
-          isEditMode ? "modifiée" : "ajoutée"
-        } avec succès pour le tiers ${formData.tiersSelect}`,
-        icon: greenCheck,
-        colorBorder: "green",
-      })
-    );
-  };
+  const handleOpenPopup = useCallback(
+    (successMessage) => {
+      dispatch(
+        openPopup({
+          title: successMessage,
+          description: `La recette a été ${
+            isEditMode ? "modifiée" : "ajoutée"
+          } avec succès pour le tiers ${formData.tiersSelect}`,
+          icon: greenCheck,
+          colorBorder: "green",
+        })
+      );
+    },
+    [dispatch, formData.tiersSelect, isEditMode]
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,8 +101,6 @@ export default function RecetteForm() {
       ? `http://localhost:3000/recette/${id}`
       : "http://localhost:3000/recette/create-recette";
     const method = isEditMode ? "PUT" : "POST";
-
-    setFormData({ ...formData, id: id });
 
     try {
       const response = await fetch(url, {
@@ -132,7 +137,7 @@ export default function RecetteForm() {
     setSearchResult([userData.find((user) => user.name === userName)]);
     setNumberOfResult(null);
     setShowInput(false);
-    setFormData({ ...formData, tiersSelect: userName });
+    setFormData((prevFormData) => ({ ...prevFormData, tiersSelect: userName }));
   };
 
   const handleSearch = (e) => {
