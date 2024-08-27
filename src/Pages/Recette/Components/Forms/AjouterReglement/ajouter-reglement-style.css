@@ -75,7 +75,7 @@ select.invalid {
   flex: 1;
 }
 
-.ajouter-reglement__cheque-infos > div > input {
+input {
   padding: 10px;
   border: 1px solid #d1d5db;
   border-radius: 6px;

@@ -14,6 +14,7 @@ export default function AjouterReglement({
   const [numeroCompte, setNumeroCompte] = useState("");
   const [invalidReglement, setInvalidReglement] = useState(false);
   const [invalidMontant, setInvalidMontant] = useState(false);
+  const [tiersPayeur, setTiersPayeur] = useState("");
   const [showTiersPayeur, setShowTiersPayeur] = useState(false);
   const [showNonVersable, setShowNonVersable] = useState(false);
   const [showReferencesExternes, setShowReferencesExternes] = useState(false);
@@ -41,7 +42,7 @@ export default function AjouterReglement({
           numeroCheque,
           numeroCompte,
           montant,
-          tiersPayeur: showTiersPayeur,
+          tiersPayeur,
           nonVersable: showNonVersable,
           referencesExternes: showReferencesExternes,
         },
@@ -120,6 +121,17 @@ export default function AjouterReglement({
             <div className="ajouter-reglement-label">
               <Switch setShow={setShowTiersPayeur} show={showTiersPayeur} />
               <p>Ajouter un tiers-payeur</p>
+            </div>
+
+            <div>
+              {showTiersPayeur && (
+                <input
+                  type="text"
+                  id="tiers-payeur"
+                  value={tiersPayeur}
+                  onChange={(e) => setTiersPayeur(e.target.value)}
+                />
+              )}
             </div>
           </article>
           <hr />
