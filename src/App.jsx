@@ -2,8 +2,8 @@ import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Home, Login, RecetteMain } from "./Pages";
-import { BreadCrumbs, NavBar, NavbarColumn } from "./Components";
-import { AjouterRecette } from "./Pages/Recette/Pages";
+import { BreadCrumbs, NavBar, NavbarColumn, Popup } from "./Components";
+import { AjouterRecette, ConsulterRecette } from "./Pages/Recette/Pages";
 
 function App() {
   return (
@@ -22,11 +22,14 @@ function App() {
                 path="/recettes/ajouter-une-recette"
                 element={<AjouterRecette />}
               />
+              <Route path="/recettes/:id" element={<ConsulterRecette />} />
+
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
         </div>
       </div>
+      <Popup />
     </Router>
   );
 }

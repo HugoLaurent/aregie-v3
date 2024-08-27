@@ -1,6 +1,6 @@
 import "./ajouter-reference-styles.css";
 
-export default function AjouterReference({ setFormData }) {
+export default function AjouterReference({ formData, setFormData }) {
   const handleReferenceChange = (e) => {
     const referenceValue = e.target.value;
     setFormData((prevFormData) => ({
@@ -14,6 +14,7 @@ export default function AjouterReference({ setFormData }) {
       <h3>Référence</h3>
       <input
         onChange={handleReferenceChange}
+        value={formData?.reference}
         placeholder="Référence de la dépense (n° de facture, ticket, etc.)"
       />
     </section>

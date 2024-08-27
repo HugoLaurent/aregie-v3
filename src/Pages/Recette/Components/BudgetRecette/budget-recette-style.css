@@ -73,6 +73,10 @@ p.first-column {
   padding: 20px;
 }
 
+.disable {
+  display: none;
+}
+
 .budget-recette__button {
   background-color: rgba(239, 248, 250, 1);
   border-radius: 6px;

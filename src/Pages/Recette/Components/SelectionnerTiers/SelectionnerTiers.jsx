@@ -3,7 +3,7 @@ import "./selectionner-tiers-style.css";
 import { ButtonIconText } from "../../../../Components/Buttons/index";
 import { userDark, remove, addUser } from "../../../../assets/images";
 
-export default function AjouterTiers({
+export default function SelectionnerTiers({
   searchResult,
   setSearchResult,
   showInput,
@@ -13,7 +13,12 @@ export default function AjouterTiers({
   setFormData,
   handleSearch,
   handleUserClick,
+  lockButton,
 }) {
+  if (formData.tiers !== "") {
+    console.log(showInput);
+  }
+
   return (
     <article className="ajouter-recette__tier-container">
       <div className="ajouter-recette__tier-header">
@@ -28,23 +33,29 @@ export default function AjouterTiers({
         {showInput && (
           <div className="ajouter-recette__input-wrapper">
             <input
+              disabled={lockButton}
               className="ajouter-recette__search-input"
               type="search"
               id="tiers-select"
               name="tiersSelect"
               onChange={handleSearch}
-              value={formData.tiersSelect}
+              value={formData.tiersSelect === "" ? "" : formData.tiers}
               placeholder="Rechercher un utilisateur..."
             />
-            <button className="ajouter-recette__add-user" onClick={() => {}}>
+            <button
+              disabled={lockButton}
+              className="ajouter-recette__add-user"
+              onClick={() => {}}
+            >
               <img src={addUser} alt="" />
             </button>
           </div>
         )}
         <div className="tiers-list-results">
-          {searchResult.length > 0 &&
+          {searchResult?.length > 0 &&
             searchResult.map((user) => (
               <ButtonIconText
+                disabled={lockButton}
                 type={"button"}
                 key={user.id}
                 icon={userDark}
@@ -58,6 +69,7 @@ export default function AjouterTiers({
 
           {!showInput && (
             <button
+              disabled={lockButton}
               type={"button"}
               className="tiers-delete-container"
               alt="Icone d'utilisateur"

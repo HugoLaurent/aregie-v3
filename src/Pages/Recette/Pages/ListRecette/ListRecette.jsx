@@ -3,7 +3,6 @@ import "./list-recette-style.css";
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -11,18 +10,11 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import "ag-grid-enterprise";
 import { AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
 
-import { Popup } from "../../../../Components/index";
-import { greenCheck, logoBande } from "../../../../assets/images";
+import { logoBande } from "../../../../assets/images";
 import { CallToActions } from "../../Components";
 
-export const ListRecette = () => {
+export default function ListRecette() {
   // On récupère les données de la location envoyé par le composant enfant au moment de la redirection au vu du succès de la creation d'une recette
-  const location = useLocation();
-  const { showPopup: initialShowPopup, message } = location.state || {
-    showPopup: false,
-    message: "",
-  };
-  const [showPopup, setShowPopup] = useState(initialShowPopup);
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -166,15 +158,6 @@ export const ListRecette = () => {
         pagination={true}
         loadingOverlayComponent={CustomLoadingOverlay}
       />
-      <Popup
-        icon={greenCheck}
-        title="Création d'une recette"
-        description={message}
-        bgIcon="#FFC107"
-        colorBorder="#FF9800"
-        showPopup={showPopup}
-        setShowPopup={setShowPopup}
-      />
     </motion.div>
   );
-};
+}

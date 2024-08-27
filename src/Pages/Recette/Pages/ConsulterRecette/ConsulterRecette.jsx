@@ -1,9 +1,13 @@
-import "./ajouter-recette-style.css";
-import { useState } from "react";
+import "./consulter-recette-style.css";
+
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../../../redux/reducers/popupReducer";
 import { useNavigate } from "react-router-dom";
+
+import userData from "./../../../../assets/data/user.json";
 
 import {
   AjouterNote,
@@ -17,7 +21,6 @@ import {
 } from "./../../Components";
 import { ButtonIconText } from "../../../../Components/Buttons";
 import MainModal from "../../../../Components/Modals/MainModal";
-
 import {
   arrowBack,
   greenCheck,
@@ -25,75 +28,48 @@ import {
   noteBlank,
 } from "../../../../assets/images";
 
-import userData from "../../../../assets/data/user.json";
-
-export default function AjouterRecette() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  const handleOpenPopup = () => {
-    dispatch(
-      openPopup({
-        title: "Recette ajoutée avec succès",
-        description: `La recette a été ajoutée avec succès pour le tiers ${formData.tiersSelect}`,
-        icon: greenCheck,
-        colorBorder: "green",
-      })
-    );
-  };
+export default function ConsulterRecette() {
+  const { id } = useParams();
 
   const [searchResult, setSearchResult] = useState([]);
   const [showInput, setShowInput] = useState(true);
+
+  const [showNoteInput, setShowNoteInput] = useState(true);
   const [numberOfResult, setNumberOfResult] = useState(null);
-  const [showNoteInput, setShowNoteInput] = useState(false);
-  const [showReference, setShowReference] = useState(false);
+  const [showReference, setShowReference] = useState(true);
   const [showModalBudget, setShowModalBudget] = useState(false);
   const [showModalReglement, setShowModalReglement] = useState(false);
   const [montantDepenseTotal, setMontantDepenseTotal] = useState(0);
   const [montantReglementTotal, setMontantReglementTotal] = useState(0);
   const [selectedDepense, setSelectedDepense] = useState(null);
+  const [lockButton, setLockButton] = useState(true);
 
-  const [formData, setFormData] = useState({
-    tiers: "",
-    reference: "",
-    note: "",
-    budget: [],
-    reglement: [],
-  });
-
-  const handleSearch = (e) => {
-    const search = e.target.value;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      tiers: search,
-    }));
-    if (search === "") {
-      setSearchResult([]);
-      setNumberOfResult(null);
-    } else {
-      const result = userData.filter((user) =>
-        user.name.toLowerCase().includes(search.toLowerCase())
-      );
-      setNumberOfResult(result.length - 4);
-      setSearchResult(result.slice(0, 4));
-    }
-  };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const handleOpenPopup = () => {
+      dispatch(
+        openPopup({
+          title: "Recette ajoutée avec succès",
+          description: `La recette a été ajoutée avec succès pour le tiers ${formData.tiersSelect}`,
+          icon: greenCheck,
+          colorBorder: "green",
+        })
+      );
+    };
     setFormData({ ...formData, id: Math.floor(Math.random() * 1000) });
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/recette/create-recette",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("http://localhost:3000/recette/" + id, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
@@ -128,6 +104,55 @@ export default function AjouterRecette() {
     setFormData({ ...formData, tiersSelect: userName });
   };
 
+  const handleSearch = (e) => {
+    const search = e.target.value;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      tiers: search,
+    }));
+    if (search === "") {
+      setSearchResult([]);
+      setNumberOfResult(null);
+    } else {
+      const result = userData.filter((user) =>
+        user.name.toLowerCase().includes(search.toLowerCase())
+      );
+      setNumberOfResult(result.length - 4);
+      setSearchResult(result.slice(0, 4));
+    }
+  };
+
+  const [formData, setFormData] = useState({
+    tiers: "",
+    reference: "",
+    note: "",
+    budget: [],
+    reglement: [],
+  });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/recette/${id}`);
+        const data = await response.json();
+
+        const { tiers, reference, note, budget, reglement } = data;
+        setFormData({
+          tiers,
+          reference,
+          note,
+          budget,
+          reglement,
+        });
+        console.log(formData);
+      } catch (error) {
+        console.error("Erreur lors du fetch:", error);
+      }
+    };
+
+    fetchData();
+  }, [id]);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -142,29 +167,40 @@ export default function AjouterRecette() {
             <button type="button" className="ajouter-recette__back-button">
               <img src={arrowBack} alt="Retour" />
             </button>
-            <h2>Ajouter une recette</h2>
+            <h2>Recette n°{id}</h2>
           </article>
           <article className="ajouter-recette__button-right">
             <ButtonIconText
               type={"button"}
               icon={link}
-              text="Ajouter une référence"
+              text="Voir les statuts"
               color={"#fff"}
               hoverColor={"rgba(128, 128, 128, 0.1)"}
-              onClick={() => setShowReference(!showReference)}
+              onClick={() => {}}
             />
             <ButtonIconText
               type={"button"}
               icon={noteBlank}
-              text="Ajouter une note"
+              text="Voir les pièces jointes"
               color={"#fff"}
               hoverColor={"rgba(128, 128, 128, 0.1)"}
-              onClick={() => setShowNoteInput(!showNoteInput)}
+              onClick={() => {}}
+            />
+            <ButtonIconText
+              type={"button"}
+              icon={noteBlank}
+              text="Modifier"
+              textColor={"white"}
+              color={"rgba(0, 129, 227, 1)"}
+              hoverColor={"rgba(0, 129, 227, 0.1)"}
+              onClick={() => setLockButton(!lockButton)}
             />
           </article>
         </section>
         <section className="ajouter-recette__tiers-note-container">
-          {showReference && <AjouterReference setFormData={setFormData} />}
+          {showReference && (
+            <AjouterReference setFormData={setFormData} formData={formData} />
+          )}
           <SelectionnerTiers
             handleUserClick={handleUserClick}
             handleSearch={handleSearch}
@@ -175,48 +211,58 @@ export default function AjouterRecette() {
             numberOfResult={numberOfResult}
             formData={formData}
             setFormData={setFormData}
+            lockButton={lockButton}
           />
-          {showNoteInput && <AjouterNote setFormData={setFormData} />}
+          {showNoteInput && (
+            <AjouterNote setFormData={setFormData} formData={formData} />
+          )}
         </section>
         <section className="ajouter-recette__budget-depense-container">
           <BudgetRecette
             formData={formData}
             setFormData={setFormData}
-            showModalBudget={showModalBudget}
+            showModalBudget={true}
             setShowModalBudget={setShowModalBudget}
             selectedDepense={selectedDepense}
             setSelectedDepense={setSelectedDepense}
             montantDepenseTotal={montantDepenseTotal}
             setMontantDepenseTotal={setMontantDepenseTotal}
+            lockButton={lockButton}
           />
           <ReglementRecette
             formData={formData}
             setFormData={setFormData}
+            showModalReglement={true}
             setShowModalReglement={setShowModalReglement}
             montantReglementTotal={montantReglementTotal}
             setMontantReglementTotal={setMontantReglementTotal}
+            lockButton={lockButton}
           />
         </section>
-        <ResumeRecette
-          montantDepenseTotal={montantDepenseTotal}
-          montantReglementTotal={montantReglementTotal}
-          formData={formData}
-        />
-        <MainModal show={showModalBudget}>
-          <AjouterBudget
-            setShowModalBudget={setShowModalBudget}
-            formData={formData}
-            setFormData={setFormData}
-            selectedDepense={selectedDepense}
-          />
-        </MainModal>
-        <MainModal show={showModalReglement}>
-          <AjouterReglement
-            setShowModalReglement={setShowModalReglement}
-            formData={formData}
-            setFormData={setFormData}
-          />
-        </MainModal>
+        {!lockButton && (
+          <>
+            <ResumeRecette
+              montantDepenseTotal={montantDepenseTotal}
+              montantReglementTotal={montantReglementTotal}
+              formData={formData}
+            />
+            <MainModal show={showModalBudget}>
+              <AjouterBudget
+                setShowModalBudget={setShowModalBudget}
+                formData={formData}
+                setFormData={setFormData}
+                selectedDepense={selectedDepense}
+              />
+            </MainModal>
+            <MainModal show={showModalReglement}>
+              <AjouterReglement
+                setShowModalReglement={setShowModalReglement}
+                formData={formData}
+                setFormData={setFormData}
+              />
+            </MainModal>
+          </>
+        )}
       </form>
     </motion.div>
   );

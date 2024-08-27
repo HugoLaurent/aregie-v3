@@ -1,29 +1,24 @@
 import "./popup-style.css";
-import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { closePopup } from "./../../redux/reducers/popupReducer";
 import { motion, AnimatePresence } from "framer-motion";
 import { x } from "../../assets/images";
 
-export default function Popup({
-  icon,
-  title,
-  description,
-  colorBorder,
-  showPopup,
-  setShowPopup,
-}) {
-  useEffect(() => {
-    if (showPopup) {
-      const timer = setTimeout(() => {
-        setShowPopup(false);
-      }, 5000); // Set the popup to disappear after 5 seconds
+const Popup = () => {
+  const dispatch = useDispatch();
+  const { isOpen, popupProps } = useSelector((state) => state.popup);
 
-      return () => clearTimeout(timer); // Cleanup timer on component unmount or when showPopup changes
-    }
-  }, [showPopup, setShowPopup]);
+  const handleClose = () => {
+    dispatch(closePopup());
+  };
+
+  setTimeout(() => {
+    handleClose();
+  }, 7000);
 
   return (
     <AnimatePresence>
-      {showPopup && (
+      {isOpen && (
         <motion.section
           initial={{ opacity: 0, transform: "translateX(100%)" }}
           animate={{ opacity: 1, transform: "translateX(0%)" }}
@@ -33,17 +28,23 @@ export default function Popup({
         >
           <div className="popup">
             <div className="popup-header">
-              <img src={icon} className="popup-header-icon" alt="Icon" />
+              <img
+                src={popupProps.icon}
+                className="popup-header-icon"
+                alt="Icon"
+              />
             </div>
             <div className="popup-body">
-              <div className="popup-header-title">{title}</div>
-              <div className="popup-body-description">{description}</div>
+              <div className="popup-header-title">{popupProps.title}</div>
+              <div className="popup-body-description">
+                {popupProps.description}
+              </div>
             </div>
             <img
               src={x}
               className="popup-header-close"
-              style={{ color: colorBorder }}
-              onClick={() => setShowPopup(false)}
+              style={{ color: popupProps.colorBorder }}
+              onClick={handleClose}
               alt="Close Icon"
             />
           </div>
@@ -51,4 +52,6 @@ export default function Popup({
       )}
     </AnimatePresence>
   );
-}
+};
+
+export default Popup;

@@ -11,7 +11,7 @@ export default function ButtonIconText({
   textColor,
   type,
   disabled,
-  hoverColor, // Ajout de la prop pour la couleur de survol
+  hoverColor,
 }) {
   // Crée un objet pour les styles en ligne
   const buttonStyle = {

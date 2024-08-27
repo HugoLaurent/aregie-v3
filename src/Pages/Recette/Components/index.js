@@ -5,6 +5,8 @@ import ResumeRecette from "./ResumeRecette/ResumeRecette";
 import AjouterNote from "./AjouterNote/AjouterNote";
 import AjouterReference from "./AjouterReference/AjouterReference";
 import CallToActions from "./CallToActions/CallToActions";
+import AjouterBudget from "./Forms/AjouterBudget/AjouterBudget";
+import AjouterReglement from "./Forms/AjouterReglement/AjouterReglement";
 
 export {
   SelectionnerTiers,
@@ -14,4 +16,6 @@ export {
   AjouterNote,
   AjouterReference,
   CallToActions,
+  AjouterBudget,
+  AjouterReglement,
 };

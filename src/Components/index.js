@@ -5,7 +5,6 @@ import Loading from "./Loading/Loading";
 import Switch from "./Switch/Switch";
 import NumberCounter from "./NumberCounter/NumberCounter";
 import Popup from "./Popup/Popup";
-import { ListRecette } from "../Pages/Recette/Pages/ListRecette/ListRecette";
 
 export {
   NavBar,
@@ -13,7 +12,6 @@ export {
   BreadCrumbs,
   Loading,
   Switch,
-  ListRecette,
   NumberCounter,
   Popup,
 };

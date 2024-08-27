@@ -1,17 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./budget-recette-style.css";
 import { penModif } from "../../../../assets/images";
-import AjouterBudget from "../Forms/AjouterBudget/AjouterBudget";
 
 export default function BudgetRecette({
   formData,
-  setFormData,
-  showModalBudget,
-  selectedDepense,
   setSelectedDepense,
   setShowModalBudget,
   montantDepenseTotal,
   setMontantDepenseTotal,
+  lockButton,
 }) {
   // État pour la dépense sélectionnée
 
@@ -56,8 +53,13 @@ export default function BudgetRecette({
         ))}
       </section>
 
-      <article className="budget-recette__button-container">
+      <article
+        className={`budget-recette__button-container ${
+          lockButton ? "disable" : ""
+        }`}
+      >
         <button
+          disabled={lockButton}
           type="button"
           onClick={() => {
             setSelectedDepense(null); // Réinitialiser la dépense sélectionnée lors de l'ajout d'une nouvelle

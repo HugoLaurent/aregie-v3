@@ -2,7 +2,7 @@ import "./recette-style.css";
 
 import { ButtonIconText } from "../../Components/Buttons";
 import { add, search, print } from "../../assets/images";
-import { ListRecette } from "../../Components";
+import { ListRecette } from "./Pages";
 
 export default function RecetteMain() {
   return (

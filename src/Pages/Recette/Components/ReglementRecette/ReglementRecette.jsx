@@ -7,6 +7,7 @@ export default function ReglementRecette({
   setShowModalReglement,
   montantReglementTotal,
   setMontantReglementTotal,
+  lockButton,
 }) {
   // Calcul du montant total
   const totalMontant = formData.reglement?.reduce((acc, depense) => {
@@ -34,7 +35,11 @@ export default function ReglementRecette({
         ))}
       </section>
 
-      <article className="reglement-recette__button-container">
+      <article
+        className={`reglement-recette__button-container ${
+          lockButton ? "disable" : ""
+        }`}
+      >
         <button
           type="button"
           onClick={() => setShowModalReglement(true)}
