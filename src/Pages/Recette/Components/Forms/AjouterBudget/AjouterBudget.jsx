@@ -20,7 +20,7 @@ export default function AjouterBudget({
   const [date, setDate] = useState("");
   const [commentaire, setCommentaire] = useState("");
   const [invalidModele, setInvalidModele] = useState(false);
-  const [setInvalidBudget] = useState(false);
+  const [invalidBudget, setInvalidBudget] = useState(false);
   const [invalidQuantite, setInvalidQuantite] = useState(false);
   const [invalidPrixUnitaire, setInvalidPrixUnitaire] = useState(false);
 
@@ -39,6 +39,11 @@ export default function AjouterBudget({
       setCommentaire(selectedDepense.commentaire);
       setShowDate(!!selectedDepense.date);
       setShowCommentaire(!!selectedDepense.commentaire);
+    } else {
+      const savedModele = localStorage.getItem("modeleChoice");
+      if (savedModele) {
+        setModele(savedModele);
+      }
     }
   }, [selectedDepense]);
 
@@ -54,7 +59,7 @@ export default function AjouterBudget({
   };
 
   const handleBudgetSubmit = () => {
-    // Validations (inchangées)
+    // Validations
     if (modele === "") {
       setInvalidModele(true);
       setTimeout(() => setInvalidModele(false), 3000);
@@ -114,6 +119,11 @@ export default function AjouterBudget({
     setShowModalBudget(false);
   };
 
+  const handleModeleChoice = (e) => {
+    setModele(e.target.value);
+    localStorage.setItem("modeleChoice", e.target.value);
+  };
+
   const canValidate =
     modele !== "" && budget !== "" && quantite !== "" && prixUnitaire !== "";
 
@@ -136,7 +146,7 @@ export default function AjouterBudget({
             <select
               id="modele"
               value={modele}
-              onChange={(e) => setModele(e.target.value)}
+              onChange={handleModeleChoice}
               className={`modele ${invalidModele ? "invalid" : ""} ${
                 modele === "" ? "" : "valid-modele"
               }`}
@@ -154,7 +164,7 @@ export default function AjouterBudget({
               id="budget"
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
-              className={`budget ${invalidModele ? "invalid" : ""} ${
+              className={`budget ${invalidBudget ? "invalid" : ""} ${
                 budget === "" ? "" : "valid-budget"
               }`}
             >
@@ -219,7 +229,7 @@ export default function AjouterBudget({
               <input
                 type="date"
                 id="date-debut"
-                value={date}
+                value={date.split("T")[0]}
                 onChange={(e) => setDate(e.target.value)}
               />
             )}
@@ -234,7 +244,11 @@ export default function AjouterBudget({
           <hr />
           <article className="ajouter-budget__commentaire">
             <div className="ajouter-budget-label">
-              <Switch setShow={setShowCommentaire} show={showCommentaire} />
+              <Switch
+                setShow={setShowCommentaire}
+                show={showCommentaire}
+                value={commentaire === "" ? false : true}
+              />
               <p>Commentaires</p>
             </div>
             {showCommentaire && (
