@@ -5,6 +5,7 @@ import "./reglement-recette-style.css";
 export default function ReglementRecette({
   formData,
   setShowModalReglement,
+  setSelectedDepense,
   montantReglementTotal,
   setMontantReglementTotal,
   lockButton,
@@ -19,6 +20,13 @@ export default function ReglementRecette({
     setMontantReglementTotal(totalMontant);
   }, [formData.reglement, setMontantReglementTotal, totalMontant]);
 
+  const handleModifyRecette = (depense) => {
+    setSelectedDepense(depense);
+    setShowModalReglement(true);
+
+    // Définit la dépense sélectionnée
+  };
+
   return (
     <section className="reglement-recette__container">
       <article className="reglement-recette__header">
@@ -30,7 +38,13 @@ export default function ReglementRecette({
           <article key={index} className="reglement-recette__item">
             <p className="first-column">{depense.reglement}</p>
             <p>{depense.montant}€</p>
-            {!lockButton && <img src={penModif} alt="" />}
+            {!lockButton && (
+              <img
+                onClick={() => handleModifyRecette(depense)}
+                src={penModif}
+                alt=""
+              />
+            )}
           </article>
         ))}
       </section>

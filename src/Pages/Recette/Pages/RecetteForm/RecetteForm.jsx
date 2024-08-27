@@ -287,6 +287,7 @@ export default function RecetteForm() {
             formData={formData}
             setFormData={setFormData}
             showModalReglement={showModalReglement}
+            setSelectedDepense={setSelectedDepense}
             setShowModalReglement={setShowModalReglement}
             montantReglementTotal={montantReglementTotal}
             setMontantReglementTotal={setMontantReglementTotal}
@@ -294,29 +295,28 @@ export default function RecetteForm() {
           />
         </section>
         {!lockButton && (
-          <>
-            <ResumeRecette
-              montantDepenseTotal={montantDepenseTotal}
-              montantReglementTotal={montantReglementTotal}
-              formData={formData}
-            />
-            <MainModal show={showModalBudget}>
-              <AjouterBudget
-                setShowModalBudget={setShowModalBudget}
-                formData={formData}
-                setFormData={setFormData}
-                selectedDepense={selectedDepense}
-              />
-            </MainModal>
-            <MainModal show={showModalReglement}>
-              <AjouterReglement
-                setShowModalReglement={setShowModalReglement}
-                formData={formData}
-                setFormData={setFormData}
-              />
-            </MainModal>
-          </>
+          <ResumeRecette
+            montantDepenseTotal={montantDepenseTotal}
+            montantReglementTotal={montantReglementTotal}
+            formData={formData}
+          />
         )}
+        <MainModal show={showModalBudget}>
+          <AjouterBudget
+            setShowModalBudget={setShowModalBudget}
+            formData={formData}
+            setFormData={setFormData}
+            selectedDepense={selectedDepense}
+          />
+        </MainModal>
+        <MainModal show={showModalReglement}>
+          <AjouterReglement
+            setShowModalReglement={setShowModalReglement}
+            formData={formData}
+            setFormData={setFormData}
+            selectedDepense={selectedDepense}
+          />
+        </MainModal>
       </form>
     </motion.div>
   );

@@ -7,7 +7,7 @@ import { ButtonIconText } from "../../../../../Components/Buttons";
 export default function AjouterBudget({
   setShowModalBudget,
   setFormData,
-  selectedDepense = null, // Ajout de la dépense existante à modifier
+  selectedDepense = null,
 }) {
   const [showNonVersable, setShowNonVersable] = useState(false);
   const [showDate, setShowDate] = useState(false);
@@ -24,9 +24,6 @@ export default function AjouterBudget({
   const [invalidQuantite, setInvalidQuantite] = useState(false);
   const [invalidPrixUnitaire, setInvalidPrixUnitaire] = useState(false);
 
-  console.log(selectedDepense);
-
-  // Utiliser useEffect pour initialiser les états avec les valeurs existantes
   useEffect(() => {
     if (selectedDepense) {
       setModele(selectedDepense.modele);
@@ -37,8 +34,8 @@ export default function AjouterBudget({
       setDate(selectedDepense.date);
       setShowNonVersable(selectedDepense.nonVersable);
       setCommentaire(selectedDepense.commentaire);
-      setShowDate(!!selectedDepense.date);
-      setShowCommentaire(!!selectedDepense.commentaire);
+      setShowDate(Boolean(selectedDepense.date)); // Set to true if there is a date
+      setShowCommentaire(Boolean(selectedDepense.commentaire)); // Set to true if there is a commentaire
     } else {
       const savedModele = localStorage.getItem("modeleChoice");
       if (savedModele) {
@@ -59,7 +56,6 @@ export default function AjouterBudget({
   };
 
   const handleBudgetSubmit = () => {
-    // Validations
     if (modele === "") {
       setInvalidModele(true);
       setTimeout(() => setInvalidModele(false), 3000);
@@ -244,11 +240,7 @@ export default function AjouterBudget({
           <hr />
           <article className="ajouter-budget__commentaire">
             <div className="ajouter-budget-label">
-              <Switch
-                setShow={setShowCommentaire}
-                show={showCommentaire}
-                value={commentaire === "" ? false : true}
-              />
+              <Switch setShow={setShowCommentaire} show={showCommentaire} />
               <p>Commentaires</p>
             </div>
             {showCommentaire && (

@@ -1,5 +1,5 @@
 import "./ajouter-reglement-style.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { check, warningCircle, x } from "../../../../../assets/images";
 import { Switch } from "../../../../../Components";
 import { ButtonIconText } from "../../../../../Components/Buttons";
@@ -7,17 +7,31 @@ import { ButtonIconText } from "../../../../../Components/Buttons";
 export default function AjouterReglement({
   setShowModalReglement,
   setFormData,
+  selectedDepense = null,
 }) {
   const [reglement, setReglement] = useState("");
   const [montant, setMontant] = useState("");
   const [numeroCheque, setNumeroCheque] = useState("");
   const [numeroCompte, setNumeroCompte] = useState("");
-  const [invalidReglement, setInvalidReglement] = useState(false);
-  const [invalidMontant, setInvalidMontant] = useState(false);
   const [tiersPayeur, setTiersPayeur] = useState("");
   const [showTiersPayeur, setShowTiersPayeur] = useState(false);
   const [showNonVersable, setShowNonVersable] = useState(false);
   const [showReferencesExternes, setShowReferencesExternes] = useState(false);
+  const [invalidReglement, setInvalidReglement] = useState(false);
+  const [invalidMontant, setInvalidMontant] = useState(false);
+
+  useEffect(() => {
+    if (selectedDepense) {
+      setReglement(selectedDepense.reglement);
+      setMontant(selectedDepense.montant);
+      setNumeroCheque(selectedDepense.numeroCheque);
+      setNumeroCompte(selectedDepense.numeroCompte);
+      setTiersPayeur(selectedDepense.tiersPayeur);
+      setShowTiersPayeur(Boolean(selectedDepense.tiersPayeur)); // Set to true if there is a tiers payeur
+      setShowNonVersable(selectedDepense.nonVersable);
+      setShowReferencesExternes(Boolean(selectedDepense.referencesExternes)); // Set to true if there are external references
+    }
+  }, [selectedDepense]);
 
   const handleRecetteSubmit = () => {
     if (reglement === "") {
@@ -34,19 +48,34 @@ export default function AjouterReglement({
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      reglement: [
-        ...prevFormData.reglement,
-        {
-          id: prevFormData.reglement.length + 1,
-          reglement,
-          numeroCheque,
-          numeroCompte,
-          montant,
-          tiersPayeur,
-          nonVersable: showNonVersable,
-          referencesExternes: showReferencesExternes,
-        },
-      ],
+      reglement: selectedDepense
+        ? prevFormData.reglement.map((item) =>
+            item.id === selectedDepense.id
+              ? {
+                  ...item,
+                  reglement,
+                  montant,
+                  numeroCheque,
+                  numeroCompte,
+                  tiersPayeur,
+                  nonVersable: showNonVersable,
+                  referencesExternes: showReferencesExternes,
+                }
+              : item
+          )
+        : [
+            ...prevFormData.reglement,
+            {
+              id: prevFormData.reglement.length + 1,
+              reglement,
+              montant,
+              numeroCheque,
+              numeroCompte,
+              tiersPayeur,
+              nonVersable: showNonVersable,
+              referencesExternes: showReferencesExternes,
+            },
+          ],
     }));
     setShowModalReglement(false);
   };
@@ -55,7 +84,9 @@ export default function AjouterReglement({
     <section className="ajouter-reglement__container">
       <section className="ajouter-reglement__form">
         <article className="ajouter-reglement__header">
-          <h3>Ajouter un règlement</h3>
+          <h3>
+            {selectedDepense ? "Modifier un règlement" : "Ajouter un règlement"}
+          </h3>
           <button type="button" onClick={() => setShowModalReglement(false)}>
             <img src={x} alt="Close" />
           </button>
