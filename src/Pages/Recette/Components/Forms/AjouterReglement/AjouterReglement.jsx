@@ -10,6 +10,8 @@ export default function AjouterReglement({
 }) {
   const [reglement, setReglement] = useState("");
   const [montant, setMontant] = useState("");
+  const [numeroCheque, setNumeroCheque] = useState("");
+  const [numeroCompte, setNumeroCompte] = useState("");
   const [invalidReglement, setInvalidReglement] = useState(false);
   const [invalidMontant, setInvalidMontant] = useState(false);
   const [showTiersPayeur, setShowTiersPayeur] = useState(false);
@@ -36,6 +38,8 @@ export default function AjouterReglement({
         {
           id: prevFormData.reglement.length + 1,
           reglement,
+          numeroCheque,
+          numeroCompte,
           montant,
           tiersPayeur: showTiersPayeur,
           nonVersable: showNonVersable,
@@ -69,6 +73,7 @@ export default function AjouterReglement({
               </option>
               <option value="001-Carte Bancaire">001-Carte Bancaire</option>
               <option value="002-Espèce">002-Espèce</option>
+              <option value="003-Chèque">003-Chèque</option>
             </select>
           </div>
           <div>
@@ -86,6 +91,29 @@ export default function AjouterReglement({
             </div>
           </div>
         </article>
+        {reglement === "003-Chèque" && (
+          <article className="ajouter-reglement__cheque-infos">
+            <div>
+              <label htmlFor="numeroCheque">N° de chèque</label>
+              <input
+                type="text"
+                id="numeroCheque"
+                value={numeroCheque}
+                onChange={(e) => setNumeroCheque(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="numeroCompte">N° de compte</label>
+              <input
+                type="text"
+                id="numeroCompte"
+                value={numeroCompte}
+                onChange={(e) => setNumeroCompte(e.target.value)}
+              />
+            </div>
+          </article>
+        )}
+
         <section className="ajouter-reglement__parametre-container">
           <hr />
           <article className="ajouter-reglement__add-date">

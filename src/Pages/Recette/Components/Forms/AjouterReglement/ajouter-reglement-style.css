@@ -21,7 +21,7 @@ section.ajouter-reglement__form {
   align-items: center;
 }
 
-.ajouter-reglement__form input,
+.ajouter-reglement__form input#montant,
 .ajouter-reglement__form select {
   padding: 10px;
   border: 1px solid #d1d5db;
@@ -57,6 +57,28 @@ select.invalid {
   gap: 10px;
   width: 100%;
   flex: 1;
+}
+
+.ajouter-reglement__cheque-infos {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.ajouter-reglement__cheque-infos > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  flex: 1;
+}
+
+.ajouter-reglement__cheque-infos > div > input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
 }
 
 .ajouter-reglement__parametre-container {
