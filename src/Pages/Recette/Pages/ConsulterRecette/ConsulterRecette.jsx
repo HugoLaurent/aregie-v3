@@ -53,8 +53,8 @@ export default function ConsulterRecette() {
     const handleOpenPopup = () => {
       dispatch(
         openPopup({
-          title: "Recette ajoutée avec succès",
-          description: `La recette a été ajoutée avec succès pour le tiers ${formData.tiersSelect}`,
+          title: "Recette modifiée avec succès",
+          description: `La recette a été modifié avec succès pour le tiers ${formData.tiersSelect}`,
           icon: greenCheck,
           colorBorder: "green",
         })

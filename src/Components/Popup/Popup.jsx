@@ -1,4 +1,5 @@
 import "./popup-style.css";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closePopup } from "./../../redux/reducers/popupReducer";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,14 +8,19 @@ import { x } from "../../assets/images";
 const Popup = () => {
   const dispatch = useDispatch();
   const { isOpen, popupProps } = useSelector((state) => state.popup);
+  console.log("Popup ouvert");
 
-  const handleClose = () => {
-    dispatch(closePopup());
-  };
+  useEffect(() => {
+    if (isOpen) {
+      const timeoutId = setTimeout(() => {
+        dispatch(closePopup());
+        console.log("Popup fermé");
+      }, 5000);
 
-  setTimeout(() => {
-    handleClose();
-  }, 7000);
+      // Cleanup function to clear the timeout if the component unmounts or if isOpen changes
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isOpen, dispatch]);
 
   return (
     <AnimatePresence>
@@ -44,7 +50,7 @@ const Popup = () => {
               src={x}
               className="popup-header-close"
               style={{ color: popupProps.colorBorder }}
-              onClick={handleClose}
+              onClick={() => dispatch(closePopup())}
               alt="Close Icon"
             />
           </div>
