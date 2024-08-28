@@ -27,6 +27,7 @@ import {
   noteBlank,
   paperclip,
   penWhite,
+  x,
 } from "../../../../assets/images";
 
 // Fonction générique pour vérifier si un champ existe
@@ -244,6 +245,15 @@ export default function RecetteForm() {
                     onClick={() => setLockButton(!lockButton)}
                   />
                 )}
+                <ButtonIconText
+                  type={"button"}
+                  icon={lockButton ? penWhite : arrowBack}
+                  text={lockButton ? "Modifier" : "Annuler"}
+                  textColor={"white"}
+                  color={"rgba(0, 129, 227, 1)"}
+                  hoverColor={"rgba(0, 129, 227, 0.1)"}
+                  onClick={() => setLockButton(!lockButton)}
+                />
               </>
             )}
           </article>
