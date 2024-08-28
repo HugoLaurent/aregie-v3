@@ -1,15 +1,15 @@
 import {
-  CardHolder,
-  FolderSimple,
-  GearSix,
-  UserCircleGear,
-  CodaLogo,
+  CardHolderIcon,
+  FolderIcon,
+  GearIcon,
+  UserSettingsIcon,
+  CodaLogoIcon,
 } from "./../../assets/images";
 
 const listToDisplay = [
   {
     category: "Pièces Comptables",
-    icon: CodaLogo,
+    icon: CodaLogoIcon,
     items: [
       {
         name: "Recettes",
@@ -28,7 +28,7 @@ const listToDisplay = [
   },
   {
     category: "Comptes",
-    icon: CardHolder,
+    icon: CardHolderIcon,
     items: [
       { name: "Bordereaux", link: "/bordereaux" },
       { name: "Livre journal", link: "/livre-journal" },
@@ -39,7 +39,7 @@ const listToDisplay = [
   },
   {
     category: "Administration",
-    icon: UserCircleGear,
+    icon: UserSettingsIcon,
     items: [
       { name: "Liste des tiers", link: "/liste-tiers" },
       { name: "Liste des banques", link: "/liste-banques" },
@@ -48,7 +48,7 @@ const listToDisplay = [
   },
   {
     category: "Paramétrage",
-    icon: GearSix,
+    icon: GearIcon,
     items: [
       { name: "Gestion de la régie", link: "/gestion-regie" },
       { name: "Liste des utilisateurs", link: "/liste-utilisateurs" },
@@ -60,7 +60,7 @@ const listToDisplay = [
   },
   {
     category: "Arrêtés",
-    icon: FolderSimple,
+    icon: FolderIcon,
     items: [
       { name: "Arrêtés de régie", link: "/arretes-regie" },
       { name: "Arrêtés de nomination", link: "/arretes-nomination" },

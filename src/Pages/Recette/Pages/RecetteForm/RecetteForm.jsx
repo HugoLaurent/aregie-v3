@@ -21,14 +21,14 @@ import {
 import { ButtonIconText } from "../../../../Components/Buttons";
 import MainModal from "../../../../Components/Modals/MainModal";
 import {
-  arrowBack,
-  clockBackward,
-  greenCheck,
-  link,
-  noteBlank,
-  paperclip,
-  penWhite,
-  x,
+  ArrowBackIcon,
+  ClockBackwardIcon,
+  GreenCheckIcon,
+  LinkIcon,
+  NoteBlankIcon,
+  PaperclipIcon,
+  EditWhiteIcon,
+  CloseIcon,
 } from "../../../../assets/images";
 
 // Fonction générique pour vérifier si un champ existe
@@ -89,7 +89,7 @@ export default function RecetteForm() {
           description: `La recette a été ${
             isEditMode ? "modifiée" : "ajoutée"
           } avec succès pour le tiers ${formData.tiersSelect}`,
-          icon: greenCheck,
+          icon: GreenCheckIcon,
           colorBorder: "green",
         })
       );
@@ -185,7 +185,7 @@ export default function RecetteForm() {
               className="recette__back-button"
               onClick={() => navigate(-1)}
             >
-              <img src={arrowBack} alt="Retour" />
+              <img src={ArrowBackIcon} alt="Retour" />
             </button>
             <h2>{titleToReturn()}</h2>
           </article>
@@ -194,7 +194,7 @@ export default function RecetteForm() {
               <>
                 <ButtonIconText
                   type={"button"}
-                  icon={clockBackward}
+                  icon={ClockBackwardIcon}
                   text="Voir les statuts"
                   color={"#fff"}
                   hoverColor={"rgba(128, 128, 128, 0.1)"}
@@ -202,7 +202,7 @@ export default function RecetteForm() {
                 />
                 <ButtonIconText
                   type={"button"}
-                  icon={paperclip}
+                  icon={PaperclipIcon}
                   text="Voir les pièces jointes"
                   color={"#fff"}
                   hoverColor={"rgba(128, 128, 128, 0.1)"}
@@ -210,7 +210,7 @@ export default function RecetteForm() {
                 />
                 <ButtonIconText
                   type={"button"}
-                  icon={penWhite}
+                  icon={EditWhiteIcon}
                   text="Modifier"
                   textColor={"white"}
                   color={"rgba(0, 129, 227, 1)"}
@@ -223,7 +223,7 @@ export default function RecetteForm() {
               <>
                 <ButtonIconText
                   type={"button"}
-                  icon={link}
+                  icon={LinkIcon}
                   text="Ajouter une référence"
                   color={"#fff"}
                   hoverColor={"rgba(128, 128, 128, 0.1)"}
@@ -231,7 +231,7 @@ export default function RecetteForm() {
                 />
                 <ButtonIconText
                   type={"button"}
-                  icon={noteBlank}
+                  icon={NoteBlankIcon}
                   text="Ajouter une note"
                   color={"#fff"}
                   hoverColor={"rgba(128, 128, 128, 0.1)"}
@@ -240,7 +240,7 @@ export default function RecetteForm() {
                 {!location === "ajouter-une-recette" && (
                   <ButtonIconText
                     type={"button"}
-                    icon={noteBlank}
+                    icon={NoteBlankIcon}
                     text="Modifier"
                     textColor={"white"}
                     color={"rgba(0, 129, 227, 1)"}
@@ -250,7 +250,7 @@ export default function RecetteForm() {
                 )}
                 <ButtonIconText
                   type={"button"}
-                  icon={lockButton ? penWhite : arrowBack}
+                  icon={lockButton ? EditWhiteIcon : ArrowBackIcon}
                   text={lockButton ? "Modifier" : "Annuler"}
                   textColor={"white"}
                   color={"rgba(0, 129, 227, 1)"}

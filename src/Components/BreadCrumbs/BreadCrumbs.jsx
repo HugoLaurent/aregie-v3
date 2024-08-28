@@ -1,7 +1,7 @@
 import "./breadcrumbs-style.css";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { caretRight } from "../../assets/images";
+import { CaretRightIcon } from "../../assets/images";
 import listToDisplay from "../../assets/data/dataLeftNavbar";
 
 export default function BreadCrumbs() {
@@ -25,7 +25,7 @@ export default function BreadCrumbs() {
             {locationArray[0]}
           </Link>
         </li>
-        <img src={caretRight} alt="Caret Right" />
+        <img src={CaretRightIcon} alt="Caret Right" />
         <li>
           <span style={{ textTransform: "capitalize" }}>
             {locationArray[0]}
@@ -62,7 +62,7 @@ export default function BreadCrumbs() {
                 </Link>
               </li>
               {index < locationArray.length - 1 && (
-                <img src={caretRight} alt="Caret Right" />
+                <img src={CaretRightIcon} alt="Caret Right" />
               )}
             </React.Fragment>
           );

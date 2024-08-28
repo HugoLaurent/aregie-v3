@@ -3,7 +3,11 @@ import { Link, useLocation } from "react-router-dom";
 
 import "./navbar-column.css";
 
-import { calendarBlue, CaretDown, caretRight } from "./../../assets/images";
+import {
+  BlueCalendarIcon,
+  CaretDownIcon,
+  CaretRightIcon,
+} from "./../../assets/images";
 import listToDisplay from "./../../assets/data/dataLeftNavbar";
 import { ButtonIconText } from "../Buttons";
 
@@ -25,7 +29,7 @@ export default function NavbarColumn() {
     >
       <section className="navbar-colum__date-container">
         <button className="navbar-column__button-calendar">
-          <img src={calendarBlue} alt="Icone d'un calendrier" />
+          <img src={BlueCalendarIcon} alt="Icone d'un calendrier" />
         </button>
         {!isCollapsed && (
           <article className="navbar-column__button-calendar-text">
@@ -67,7 +71,7 @@ export default function NavbarColumn() {
                 )}
               </section>
               <img
-                src={CaretDown}
+                src={CaretDownIcon}
                 alt=""
                 className={`arrow ${
                   openCategories[menu.category]
@@ -106,7 +110,7 @@ export default function NavbarColumn() {
             onClick={() => {
               setIsCollapsed(!isCollapsed), setOpenCategories(false);
             }}
-            icon={caretRight}
+            icon={CaretRightIcon}
             text={isCollapsed ? "Agrandir" : "Réduire"}
           />
         </div>

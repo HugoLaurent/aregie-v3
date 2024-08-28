@@ -10,7 +10,7 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import "ag-grid-enterprise";
 import { AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
 
-import { logoBande } from "../../../../assets/images";
+import { BannerLogo } from "../../../../assets/images";
 import { CallToActions } from "../../Components";
 
 export default function ListRecette() {
@@ -47,9 +47,9 @@ export default function ListRecette() {
 
   const CustomLoadingOverlay = () => (
     <div className="loading-container">
-      <img id="un" className="un" src={logoBande} alt="" />
-      <img className="2" src={logoBande} alt="" />
-      <img id="trois" className="trois" src={logoBande} alt="" />
+      <img id="un" className="un" src={BannerLogo} alt="" />
+      <img className="2" src={BannerLogo} alt="" />
+      <img id="trois" className="trois" src={BannerLogo} alt="" />
     </div>
   );
 

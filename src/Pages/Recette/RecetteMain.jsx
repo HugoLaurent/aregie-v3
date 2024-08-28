@@ -1,7 +1,7 @@
 import "./recette-style.css";
 
 import { ButtonIconText } from "../../Components/Buttons";
-import { add, search, print } from "../../assets/images";
+import { AddIcon, SearchIcon, PrintIcon } from "../../assets/images";
 import { ListRecette } from "./Pages";
 
 export default function RecetteMain() {
@@ -11,21 +11,21 @@ export default function RecetteMain() {
       <article className="recette__button-container">
         <ButtonIconText
           link="/recettes/ajouter-une-recette"
-          icon={add}
+          icon={AddIcon}
           text="Ajouter une recette"
           color="#0081E3"
           textColor="#fff"
         />
         <div className="recette__button-container-right">
           <ButtonIconText
-            icon={search}
+            icon={SearchIcon}
             text="Rechercher"
             color="#fff"
             textColor="#000"
             hoverColor="rgba(128, 128, 128, 0.1)"
           />
           <ButtonIconText
-            icon={print}
+            icon={PrintIcon}
             text="Éditions"
             color="#fff"
             textColor="#000"

@@ -1,6 +1,10 @@
 import "./ajouter-budget-style.css";
 import { useState, useEffect } from "react";
-import { check, warningCircle, x } from "../../../../../assets/images";
+import {
+  CheckIcon,
+  WarningIcon,
+  CloseIcon,
+} from "../../../../../assets/images";
 import { Switch } from "../../../../../Components";
 import { ButtonIconText } from "../../../../../Components/Buttons";
 
@@ -133,7 +137,7 @@ export default function AjouterBudget({
               : "Ajouter une ligne budgétaire"}
           </h3>
           <button type="button" onClick={() => setShowModalBudget(false)}>
-            <img src={x} alt="Close" />
+            <img src={CloseIcon} alt="Close" />
           </button>
         </article>
         <article className="ajouter-budget__text-info">
@@ -260,7 +264,7 @@ export default function AjouterBudget({
           />
           <ButtonIconText
             type="button"
-            icon={!canValidate ? warningCircle : check}
+            icon={!canValidate ? WarningIcon : CheckIcon}
             text="Valider"
             color={!canValidate ? "rgb(255, 165, 0)" : "#00A7DC"}
             textColor="#fff"

@@ -4,19 +4,19 @@ import { Link } from "react-router-dom";
 import "./navbar-style.css";
 
 import {
-  logo,
-  shortLogo,
-  door,
-  calendarIcon,
-  dashboard,
-  notification,
-  user,
-  userDark,
-  reports,
-  closeDay,
-  closeYear,
-  signOut,
-  tools,
+  MainLogo,
+  ShortLogo,
+  DoorIcon,
+  CalendarIcon,
+  DashboardIcon,
+  NotificationIcon,
+  UserIcon,
+  UserDarkIcon,
+  ReportsIcon,
+  CloseDayIcon,
+  CloseYearIcon,
+  SignOutIcon,
+  ToolsIcon,
 } from "../../assets/images/index";
 
 import { ButtonList, ButtonIcon, ButtonIconText } from "../Buttons/index";
@@ -27,15 +27,15 @@ export default function NavBar() {
   const [openNavModal, setOpenNavModal] = useState(null);
   const [openToolsModal, setOpenToolsModal] = useState(null);
   const { isFullScreen, toggleFullScreen } = useFullScreen();
-  const [currentLogo, setCurrentLogo] = useState(logo);
+  const [currentLogo, setCurrentLogo] = useState(MainLogo);
 
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
       if (windowWidth < 1000) {
-        setCurrentLogo(shortLogo);
+        setCurrentLogo(ShortLogo);
       } else {
-        setCurrentLogo(logo);
+        setCurrentLogo(MainLogo);
       }
     };
 
@@ -61,7 +61,7 @@ export default function NavBar() {
         </article>
         <article className="navbar__cloture-container">
           <img
-            src={calendarIcon}
+            src={CalendarIcon}
             alt="Icone d'un calendrier"
             className="icon"
           />
@@ -70,7 +70,7 @@ export default function NavBar() {
       </section>
       <section className="navbar-right">
         <ButtonIconText
-          icon={door}
+          icon={DoorIcon}
           alt="Icone d'une porte"
           text="Clôturer la journée"
           textColor="#fff"
@@ -78,8 +78,8 @@ export default function NavBar() {
 
         <span className="navbar-right__vertical-line"></span>
         <ButtonIconText
-          icon={dashboard}
-          alt="Icone d'un dashboard"
+          icon={DashboardIcon}
+          alt="Icone d'un DashboardIcon"
           text="Dashboard"
           textColor="#fff"
         />
@@ -88,14 +88,14 @@ export default function NavBar() {
         <button className="navbar-right__notification-button">
           <div className="notification-wrapper">
             <img
-              src={notification}
+              src={NotificationIcon}
               alt="Icone de notification"
               className="icon notification"
             />
           </div>
         </button>
         <ButtonIcon
-          icon={tools}
+          icon={ToolsIcon}
           alt="Icone d'outils"
           onClick={() => {
             setOpenToolsModal(!openToolsModal);
@@ -103,7 +103,7 @@ export default function NavBar() {
           }}
         />
         <ButtonIcon
-          icon={user}
+          icon={UserIcon}
           alt="Icone d'utilisateur"
           onClick={() => {
             setOpenNavModal(!openNavModal);
@@ -122,32 +122,36 @@ export default function NavBar() {
         }`}
       >
         <li className="modal-nav__item">
-          <ButtonList icon={userDark} alt="Icone d'utilisateur" text="Profil" />
+          <ButtonList
+            icon={UserDarkIcon}
+            alt="Icone d'utilisateur"
+            text="Profil"
+          />
         </li>
         <li className="modal-nav__item">
           <ButtonList
-            icon={reports}
+            icon={ReportsIcon}
             alt="Icone de reports journaliers"
             text="Reports Journaliers"
           />
         </li>
         <li className="modal-nav__item">
           <ButtonList
-            icon={closeDay}
+            icon={CloseDayIcon}
             alt="Icone de cloture journalière"
             text="Clôture journalière"
           />
         </li>
         <li className="modal-nav__item">
           <ButtonList
-            icon={closeYear}
+            icon={CloseYearIcon}
             alt="Icone de cloture annuelle"
             text="Clôture annuelle"
           />
         </li>
         <li className="modal-nav__item">
           <ButtonList
-            icon={signOut}
+            icon={SignOutIcon}
             alt="Icone de déconnexion"
             text="Déconnexion"
           />
@@ -164,28 +168,32 @@ export default function NavBar() {
         }`}
       >
         <li className="modal-nav__item">
-          <ButtonList icon={tools} alt="Icone de Todo list" text="Todo List" />
+          <ButtonList
+            icon={ToolsIcon}
+            alt="Icone de Todo list"
+            text="Todo List"
+          />
         </li>
         <li className="modal-nav__item">
           <ButtonList
-            icon={tools}
+            icon={ToolsIcon}
             alt="Icone de suivie des logs"
             text="Suivie des logs"
           />
         </li>
         <li className="modal-nav__item">
           <ButtonList
-            icon={tools}
+            icon={ToolsIcon}
             alt="Icone de thème sombre"
             text="Thème sombre"
           />
         </li>
         <li className="modal-nav__item">
-          <ButtonList icon={tools} alt="Icone de caisse" text="Caisse" />
+          <ButtonList icon={ToolsIcon} alt="Icone de caisse" text="Caisse" />
         </li>
         <li className="modal-nav__item">
           <ButtonList
-            icon={tools}
+            icon={ToolsIcon}
             alt="Icone de plein écran"
             text={isFullScreen ? "Quitter le plein écran" : "Plein écran"}
             onClick={() => {

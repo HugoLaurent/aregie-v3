@@ -1,11 +1,11 @@
 import "./resume-recette-style.css";
 import { useState, useEffect, useCallback } from "react";
 import {
-  check,
-  mathOperation,
-  mathOperationGreen,
-  mathOperationGrey,
-  warningCircle,
+  CheckIcon,
+  MathOperationIcon,
+  MathOperationGreenIcon,
+  MathOperationGreyIcon,
+  WarningIcon,
 } from "../../../../assets/images";
 import { ButtonIconText } from "../../../../Components/Buttons";
 import { NumberCounter } from "../../../../Components";
@@ -19,10 +19,10 @@ export default function ResumeRecette({
   const [textValidation, setTextValidation] = useState("");
   const [colorValidation, setColorValidation] = useState("grey");
   const [backgroundText, setBackgroundText] = useState("");
-  const [iconButtonValidation, setIconButtonValidation] =
-    useState(warningCircle);
-  const [iconTextValidation, setIconTextValidation] =
-    useState(mathOperationGrey);
+  const [iconButtonValidation, setIconButtonValidation] = useState(WarningIcon);
+  const [iconTextValidation, setIconTextValidation] = useState(
+    MathOperationGreyIcon
+  );
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const checkFillFormData = useCallback(() => {
@@ -51,25 +51,25 @@ export default function ResumeRecette({
     const validateForm = () => {
       if (!checkFillFormData()) {
         setColorValidation("grey");
-        setIconTextValidation(mathOperationGrey);
+        setIconTextValidation(MathOperationGreyIcon);
         setTextValidation(
           "Merci de renseigner tous les champs pour valider la recette."
         );
-        setIconButtonValidation(warningCircle);
+        setIconButtonValidation(WarningIcon);
       } else if (!checkEquality()) {
         setColorValidation("rgba(255, 165, 0, 1)");
-        setIconTextValidation(mathOperation);
+        setIconTextValidation(MathOperationIcon);
         setBackgroundText("yellow");
         setTextValidation(
           "Le montant total des dépenses et des règlements est différent."
         );
-        setIconButtonValidation(warningCircle);
+        setIconButtonValidation(WarningIcon);
       } else {
         setColorValidation("rgba(0, 129, 227, 1)");
-        setIconTextValidation(mathOperationGreen);
+        setIconTextValidation(MathOperationGreenIcon);
         setBackgroundText("green");
         setTextValidation("Votre recette est prête à être validée.");
-        setIconButtonValidation(check);
+        setIconButtonValidation(CheckIcon);
       }
     };
 

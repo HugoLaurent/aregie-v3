@@ -7,7 +7,7 @@ export default function ButtonIconText({
   alt,
   text,
   color,
-  link,
+  LinkIcon,
   textColor,
   type,
   disabled,
@@ -21,12 +21,12 @@ export default function ButtonIconText({
   };
 
   // Détermine le composant à utiliser
-  const Component = link ? Link : "button";
+  const Component = LinkIcon ? Link : "button";
 
   return (
     <Component
       disabled={disabled}
-      to={link}
+      to={LinkIcon}
       onClick={onClick}
       className="button-icon-text-container"
       style={buttonStyle}

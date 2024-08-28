@@ -1,6 +1,6 @@
 import "./call-to-actions-style.css";
 import { useNavigate } from "react-router-dom";
-import { eye, print, x } from "../../../../assets/images";
+import { EyeIcon, PrintIcon, CloseIcon } from "../../../../assets/images";
 
 export default function CallToActions({ data }) {
   const navigate = useNavigate(); // Utilisation de useNavigate
@@ -13,7 +13,7 @@ export default function CallToActions({ data }) {
         }}
         className="cta-button"
       >
-        <img src={eye} alt="" />
+        <img src={EyeIcon} alt="" />
       </button>
       <button
         onClick={() => {
@@ -21,7 +21,7 @@ export default function CallToActions({ data }) {
         }}
         className="cta-button"
       >
-        <img src={print} alt="" />
+        <img src={PrintIcon} alt="" />
       </button>
       <button
         onClick={() => {
@@ -29,7 +29,7 @@ export default function CallToActions({ data }) {
         }}
         className="cta-button"
       >
-        <img src={x} alt="" />
+        <img src={CloseIcon} alt="" />
       </button>
     </div>
   );

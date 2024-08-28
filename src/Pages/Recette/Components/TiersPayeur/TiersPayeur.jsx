@@ -1,4 +1,4 @@
-import { userDark } from "../../../../assets/images";
+import { UserDarkIcon } from "../../../../assets/images";
 import { ButtonIconText } from "../../../../Components/Buttons";
 import "./tiers-payeur-style.css";
 
@@ -14,7 +14,7 @@ export default function TiersPayeur({ formData }) {
             disabled={true}
             type={"button"}
             key={index}
-            icon={userDark}
+            icon={UserDarkIcon}
             text={item}
             color={"rgba(255, 255, 255, 0.2)"}
           />

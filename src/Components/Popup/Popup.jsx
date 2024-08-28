@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { closePopup } from "./../../redux/reducers/popupReducer";
 import { motion, AnimatePresence } from "framer-motion";
-import { x } from "../../assets/images";
+import { CloseIcon } from "../../assets/images";
 
 const Popup = () => {
   const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Popup = () => {
               </div>
             </div>
             <img
-              src={x}
+              src={CloseIcon}
               className="popup-header-close"
               style={{ color: popupProps.colorBorder }}
               onClick={() => dispatch(closePopup())}

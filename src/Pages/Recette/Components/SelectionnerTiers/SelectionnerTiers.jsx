@@ -1,7 +1,11 @@
 import "./selectionner-tiers-style.css";
 
 import { ButtonIconText } from "../../../../Components/Buttons/index";
-import { userDark, remove, addUser } from "../../../../assets/images";
+import {
+  UserDarkIcon,
+  RemoveIcon,
+  AddUserIcon,
+} from "../../../../assets/images";
 
 export default function SelectionnerTiers({
   searchResult,
@@ -44,7 +48,7 @@ export default function SelectionnerTiers({
               className="ajouter-recette__add-user"
               onClick={() => {}}
             >
-              <img src={addUser} alt="" />
+              <img src={AddUserIcon} alt="" />
             </button>
           </div>
         )}
@@ -55,7 +59,7 @@ export default function SelectionnerTiers({
                 disabled={lockButton}
                 type={"button"}
                 key={user.id}
-                icon={userDark}
+                icon={UserDarkIcon}
                 text={user.name}
                 color={"rgba(52, 164, 201, 0.3)"}
                 onClick={() => {
@@ -76,7 +80,7 @@ export default function SelectionnerTiers({
                   setFormData({ tiersSelect: "" });
               }}
             >
-              <img className="tiers-delete" src={remove} alt="" />
+              <img className="tiers-delete" src={RemoveIcon} alt="" />
             </button>
           )}
         </div>

@@ -1,6 +1,10 @@
 import "./ajouter-reglement-style.css";
 import { useState, useEffect } from "react";
-import { check, warningCircle, x } from "../../../../../assets/images";
+import {
+  CheckIcon,
+  WarningIcon,
+  CloseIcon,
+} from "../../../../../assets/images";
 import { Switch } from "../../../../../Components";
 import { ButtonIconText } from "../../../../../Components/Buttons";
 
@@ -89,7 +93,7 @@ export default function AjouterReglement({
             {selectedDepense ? "Modifier un règlement" : "Ajouter un règlement"}
           </h3>
           <button type="button" onClick={() => setShowModalReglement(false)}>
-            <img src={x} alt="Close" />
+            <img src={CloseIcon} alt="Close" />
           </button>
         </article>
         <article className="ajouter-reglement__text-info">
@@ -220,7 +224,7 @@ export default function AjouterReglement({
           />
           <ButtonIconText
             type="button"
-            icon={reglement && montant ? check : warningCircle}
+            icon={reglement && montant ? CheckIcon : WarningIcon}
             text="Valider"
             color={reglement && montant ? "#00A7DC" : "rgb(255, 165, 0)"}
             textColor="#fff"
