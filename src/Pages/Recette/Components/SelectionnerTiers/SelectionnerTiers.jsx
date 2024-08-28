@@ -15,10 +15,6 @@ export default function SelectionnerTiers({
   handleUserClick,
   lockButton,
 }) {
-  if (formData.tiers !== "") {
-    console.log(showInput);
-  }
-
   return (
     <article className="ajouter-recette__tier-container">
       <div className="ajouter-recette__tier-header">

@@ -81,8 +81,6 @@ export default function AjouterReglement({
     setShowModalReglement(false);
   };
 
-  console.log(montantDepenseTotal);
-
   return (
     <section className="ajouter-reglement__container">
       <section className="ajouter-reglement__form">

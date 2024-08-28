@@ -4,7 +4,6 @@ import "./tiers-payeur-style.css";
 
 export default function TiersPayeur({ formData }) {
   const tiersPayeur = formData.reglement.map((item) => item.tiersPayeur);
-  console.log(tiersPayeur);
 
   return (
     <section className="recette__tiers-payeur">

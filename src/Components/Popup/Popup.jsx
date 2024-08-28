@@ -8,13 +8,11 @@ import { x } from "../../assets/images";
 const Popup = () => {
   const dispatch = useDispatch();
   const { isOpen, popupProps } = useSelector((state) => state.popup);
-  console.log("Popup ouvert");
 
   useEffect(() => {
     if (isOpen) {
       const timeoutId = setTimeout(() => {
         dispatch(closePopup());
-        console.log("Popup fermé");
       }, 5000);
 
       // Cleanup function to clear the timeout if the component unmounts or if isOpen changes

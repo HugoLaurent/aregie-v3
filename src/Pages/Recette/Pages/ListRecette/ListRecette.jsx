@@ -36,7 +36,6 @@ export default function ListRecette() {
       const data = await response.json();
       setLoading(false);
       setData(data);
-      console.log(data);
     } catch (error) {
       console.error("Fetch error:", error);
     }
