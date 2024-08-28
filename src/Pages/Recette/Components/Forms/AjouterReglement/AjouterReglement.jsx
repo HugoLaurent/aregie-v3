@@ -13,6 +13,7 @@ export default function AjouterReglement({
   setFormData,
   montantDepenseTotal,
   selectedDepense = null,
+  lockButton,
 }) {
   const [reglement, setReglement] = useState("");
   const [montant, setMontant] = useState("");
@@ -100,6 +101,7 @@ export default function AjouterReglement({
           <div>
             <label htmlFor="reglement">Mode de règlement</label>
             <select
+              disabled={lockButton}
               id="reglement"
               value={reglement}
               onChange={(e) => setReglement(e.target.value)}
@@ -118,6 +120,7 @@ export default function AjouterReglement({
             <div className="input-number__container">
               <p>€</p>
               <input
+                disabled={lockButton}
                 type="number"
                 id="montant"
                 placeholder="0,00"
@@ -133,6 +136,7 @@ export default function AjouterReglement({
             <div>
               <label htmlFor="numeroCheque">N° de chèque</label>
               <input
+                disabled={lockButton}
                 type="text"
                 id="numeroCheque"
                 value={numeroCheque}
@@ -142,6 +146,7 @@ export default function AjouterReglement({
             <div>
               <label htmlFor="numeroCompte">N° de compte</label>
               <input
+                disabled={lockButton}
                 type="text"
                 id="numeroCompte"
                 value={numeroCompte}
@@ -190,6 +195,7 @@ export default function AjouterReglement({
             <div>
               {showTiersPayeur && (
                 <input
+                  disabled={lockButton}
                   type="text"
                   id="tiers-payeur"
                   value={tiersPayeur}
@@ -219,17 +225,19 @@ export default function AjouterReglement({
         <section className="ajouter-reglement__footer">
           <ButtonIconText
             type="button"
-            text="Annuler"
+            text={lockButton ? "Fermer" : "Annuler"}
             onClick={() => setShowModalReglement(false)}
           />
-          <ButtonIconText
-            type="button"
-            icon={reglement && montant ? CheckIcon : WarningIcon}
-            text="Valider"
-            color={reglement && montant ? "#00A7DC" : "rgb(255, 165, 0)"}
-            textColor="#fff"
-            onClick={handleRecetteSubmit}
-          />
+          {!lockButton && (
+            <ButtonIconText
+              type="button"
+              icon={reglement && montant ? CheckIcon : WarningIcon}
+              text="Valider"
+              color={reglement && montant ? "#00A7DC" : "rgb(255, 165, 0)"}
+              textColor="#fff"
+              onClick={handleRecetteSubmit}
+            />
+          )}
         </section>
       </section>
     </section>

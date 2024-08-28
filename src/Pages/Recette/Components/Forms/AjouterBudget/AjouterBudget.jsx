@@ -12,6 +12,7 @@ export default function AjouterBudget({
   setShowModalBudget,
   setFormData,
   selectedDepense = null,
+  lockButton,
 }) {
   const [showNonVersable, setShowNonVersable] = useState(false);
   const [showDate, setShowDate] = useState(false);
@@ -144,6 +145,7 @@ export default function AjouterBudget({
           <div>
             <label htmlFor="modele">Modèle</label>
             <select
+              disabled={lockButton}
               id="modele"
               value={modele}
               onChange={handleModeleChoice}
@@ -161,6 +163,7 @@ export default function AjouterBudget({
           <div>
             <label htmlFor="budget">Budget</label>
             <select
+              disabled={lockButton}
               id="budget"
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
@@ -184,6 +187,7 @@ export default function AjouterBudget({
           <div>
             <label htmlFor="quantite">Quantité</label>
             <input
+              disabled={lockButton}
               type="number"
               id="quantite"
               placeholder="0"
@@ -195,6 +199,7 @@ export default function AjouterBudget({
           <div>
             <label htmlFor="prix unitaire">Prix unitaire</label>
             <input
+              disabled={lockButton}
               type="number"
               id="prix unitaire"
               placeholder="0,00"
@@ -227,6 +232,7 @@ export default function AjouterBudget({
             </div>
             {showDate && (
               <input
+                disabled={lockButton}
                 type="date"
                 id="date-debut"
                 value={date.split("T")[0]}
@@ -249,6 +255,7 @@ export default function AjouterBudget({
             </div>
             {showCommentaire && (
               <textarea
+                disabled={lockButton}
                 id="commentaire"
                 value={commentaire}
                 onChange={(e) => setCommentaire(e.target.value)}
@@ -259,17 +266,20 @@ export default function AjouterBudget({
         <section className="ajouter-budget__footer">
           <ButtonIconText
             type="button"
-            text="Annuler"
+            text={lockButton ? "Fermer" : "Annuler"}
             onClick={() => setShowModalBudget(false)}
           />
-          <ButtonIconText
-            type="button"
-            icon={!canValidate ? WarningIcon : CheckIcon}
-            text="Valider"
-            color={!canValidate ? "rgb(255, 165, 0)" : "#00A7DC"}
-            textColor="#fff"
-            onClick={handleBudgetSubmit}
-          />
+          {!lockButton && (
+            <ButtonIconText
+              disabled={lockButton}
+              type="button"
+              icon={!canValidate ? WarningIcon : CheckIcon}
+              text="Valider"
+              color={!canValidate ? "rgb(255, 165, 0)" : "#00A7DC"}
+              textColor="#fff"
+              onClick={handleBudgetSubmit}
+            />
+          )}
         </section>
       </section>
     </section>

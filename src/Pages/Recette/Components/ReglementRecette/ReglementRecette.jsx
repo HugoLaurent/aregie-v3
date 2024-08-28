@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { EditPenIcon } from "../../../../assets/images";
+import { EditPenIcon, EyeIcon } from "../../../../assets/images";
 import "./reglement-recette-style.css";
 
 export default function ReglementRecette({
@@ -38,13 +38,11 @@ export default function ReglementRecette({
           <article key={index} className="reglement-recette__item">
             <p className="first-column">{depense.reglement}</p>
             <p>{depense.montant}€</p>
-            {!lockButton && (
-              <img
-                onClick={() => handleModifyRecette(depense)}
-                src={EditPenIcon}
-                alt=""
-              />
-            )}
+            <img
+              onClick={() => handleModifyRecette(depense)}
+              src={!lockButton ? EditPenIcon : EyeIcon}
+              alt="Modifier"
+            />
           </article>
         ))}
       </section>

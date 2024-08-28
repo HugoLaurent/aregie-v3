@@ -28,7 +28,6 @@ import {
   NoteBlankIcon,
   PaperclipIcon,
   EditWhiteIcon,
-  CloseIcon,
 } from "../../../../assets/images";
 
 // Fonction générique pour vérifier si un champ existe
@@ -328,6 +327,7 @@ export default function RecetteForm() {
             formData={formData}
             setFormData={setFormData}
             selectedDepense={selectedDepense}
+            lockButton={lockButton}
           />
         </MainModal>
         <MainModal show={showModalReglement}>
@@ -337,6 +337,7 @@ export default function RecetteForm() {
             formData={formData}
             setFormData={setFormData}
             selectedDepense={selectedDepense}
+            lockButton={lockButton}
           />
         </MainModal>
       </form>

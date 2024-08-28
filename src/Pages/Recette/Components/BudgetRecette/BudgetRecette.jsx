@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./budget-recette-style.css";
-import { EditPenIcon } from "../../../../assets/images";
+import { EditPenIcon, EyeIcon } from "../../../../assets/images";
 
 export default function BudgetRecette({
   formData,
@@ -44,13 +44,12 @@ export default function BudgetRecette({
             <p>{depense.quantite}</p>
             <p>{depense.prixUnitaire} €</p>
             <p>{depense.quantite * depense.prixUnitaire} €</p>
-            {!lockButton && (
-              <img
-                onClick={() => handleModifyDepense(depense)}
-                src={EditPenIcon}
-                alt="Modifier"
-              />
-            )}
+
+            <img
+              onClick={() => handleModifyDepense(depense)}
+              src={!lockButton ? EditPenIcon : EyeIcon}
+              alt="Modifier"
+            />
           </article>
         ))}
       </section>
