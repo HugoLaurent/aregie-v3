@@ -208,7 +208,7 @@ export default function AjouterReglement({
           <article className="ajouter-reglement__non-versbale">
             <div className="ajouter-reglement-label">
               <Switch setShow={setShowNonVersable} show={showNonVersable} />
-              <p>Ligne budgétaire non-versable</p>
+              <p>Règlement non-versable</p>
             </div>
           </article>
           <hr />

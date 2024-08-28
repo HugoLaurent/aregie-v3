@@ -244,7 +244,7 @@ export default function AjouterBudget({
           <article className="ajouter-budget__non-versbale">
             <div className="ajouter-budget-label">
               <Switch setShow={setShowNonVersable} show={showNonVersable} />
-              <p>Ligne budgétaire non-versable</p>
+              <p>Budget non-versable</p>
             </div>
           </article>
           <hr />
