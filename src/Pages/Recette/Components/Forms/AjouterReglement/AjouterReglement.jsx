@@ -7,6 +7,7 @@ import { ButtonIconText } from "../../../../../Components/Buttons";
 export default function AjouterReglement({
   setShowModalReglement,
   setFormData,
+  montantDepenseTotal,
   selectedDepense = null,
 }) {
   const [reglement, setReglement] = useState("");
@@ -80,6 +81,8 @@ export default function AjouterReglement({
     setShowModalReglement(false);
   };
 
+  console.log(montantDepenseTotal);
+
   return (
     <section className="ajouter-reglement__container">
       <section className="ajouter-reglement__form">
@@ -140,6 +143,34 @@ export default function AjouterReglement({
                 type="text"
                 id="numeroCompte"
                 value={numeroCompte}
+                onChange={(e) => setNumeroCompte(e.target.value)}
+              />
+            </div>
+          </article>
+        )}
+        {reglement === "002-Espèce" && (
+          <article className="ajouter-reglement__cheque-infos">
+            <div>
+              <label htmlFor="numeroCheque">Total</label>
+              <input
+                disabled
+                type="text"
+                id="numeroCheque"
+                value={montantDepenseTotal + " €"}
+                onChange={(e) => setNumeroCheque(e.target.value)}
+              />
+            </div>
+            <div>
+              <label htmlFor="numeroCompte">Rendu monnaie</label>
+              <input
+                disabled
+                type="text"
+                id="numeroCompte"
+                value={
+                  montant - montantDepenseTotal <= 0
+                    ? "0 €"
+                    : montant - montantDepenseTotal + " €"
+                }
                 onChange={(e) => setNumeroCompte(e.target.value)}
               />
             </div>

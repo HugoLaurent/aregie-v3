@@ -7,8 +7,10 @@ import AjouterReference from "./AjouterReference/AjouterReference";
 import CallToActions from "./CallToActions/CallToActions";
 import AjouterBudget from "./Forms/AjouterBudget/AjouterBudget";
 import AjouterReglement from "./Forms/AjouterReglement/AjouterReglement";
+import TiersPayeur from "./TiersPayeur/TiersPayeur";
 
 export {
+  TiersPayeur,
   SelectionnerTiers,
   BudgetRecette,
   ReglementRecette,

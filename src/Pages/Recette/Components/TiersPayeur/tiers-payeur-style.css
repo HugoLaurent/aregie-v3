@@ -1,0 +1,18 @@
+.recette__tiers-payeur {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  height: auto;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  flex: 1;
+  min-width: 400px;
+}
+
+.recette__tiers-payeur__items-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}

@@ -16,6 +16,7 @@ import {
   AjouterReglement,
   AjouterBudget,
   ResumeRecette,
+  TiersPayeur,
 } from "../../Components";
 import { ButtonIconText } from "../../../../Components/Buttons";
 import MainModal from "../../../../Components/Modals/MainModal";
@@ -280,6 +281,9 @@ export default function RecetteForm() {
             setFormData={setFormData}
             lockButton={lockButton}
           />
+          {formData.reglement.some((item) => item.tiersPayeur) && (
+            <TiersPayeur formData={formData} />
+          )}
           {showNoteInput && (
             <AjouterNote
               setFormData={setFormData}
@@ -329,6 +333,7 @@ export default function RecetteForm() {
         <MainModal show={showModalReglement}>
           <AjouterReglement
             setShowModalReglement={setShowModalReglement}
+            montantDepenseTotal={montantDepenseTotal}
             formData={formData}
             setFormData={setFormData}
             selectedDepense={selectedDepense}
