@@ -158,11 +158,13 @@ export default function RecetteForm() {
 
   const titleToReturn = () => {
     if (isEditMode) {
-      return `Recette n°${id}`;
+      if (!lockButton) {
+        return `Modifier recette n°${id}`;
+      } else {
+        return `Recette n°${id}`;
+      }
     } else if (!id) {
       return "Ajouter une recette";
-    } else {
-      return "Modifier recette n°" + id;
     }
   };
 
