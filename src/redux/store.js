@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import modalSlice from "./slices/modalSlice";
-import popupSlice from "./slices/popupSlice";
+import modalSlice from "./slices/components/modalSlice";
+import popupSlice from "./slices/components/popupSlice";
 
 const store = configureStore({
   reducer: {

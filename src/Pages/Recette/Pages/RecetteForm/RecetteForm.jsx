@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { openPopup } from "../../../../redux/slices/popupSlice";
+import { openPopup } from "../../../../redux/slices/components/popupSlice";
 
 import userData from "../../../../assets/data/user.json";
 
