@@ -33,9 +33,9 @@ export default function AjouterReglement({
       setNumeroCheque(selectedDepense.numeroCheque);
       setNumeroCompte(selectedDepense.numeroCompte);
       setTiersPayeur(selectedDepense.tiersPayeur);
-      setShowTiersPayeur(Boolean(selectedDepense.tiersPayeur)); // Set to true if there is a tiers payeur
+      setShowTiersPayeur(Boolean(selectedDepense.tiersPayeur));
       setShowNonVersable(selectedDepense.nonVersable);
-      setShowReferencesExternes(Boolean(selectedDepense.referencesExternes)); // Set to true if there are external references
+      setShowReferencesExternes(Boolean(selectedDepense.referencesExternes));
     }
   }, [selectedDepense]);
 

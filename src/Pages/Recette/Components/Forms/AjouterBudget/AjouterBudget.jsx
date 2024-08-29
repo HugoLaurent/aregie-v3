@@ -39,8 +39,8 @@ export default function AjouterBudget({
       setDate(selectedDepense.date);
       setShowNonVersable(selectedDepense.nonVersable);
       setCommentaire(selectedDepense.commentaire);
-      setShowDate(Boolean(selectedDepense.date)); // Set to true if there is a date
-      setShowCommentaire(Boolean(selectedDepense.commentaire)); // Set to true if there is a commentaire
+      setShowDate(Boolean(selectedDepense.date));
+      setShowCommentaire(Boolean(selectedDepense.commentaire));
     } else {
       const savedModele = localStorage.getItem("modeleChoice");
       if (savedModele) {
