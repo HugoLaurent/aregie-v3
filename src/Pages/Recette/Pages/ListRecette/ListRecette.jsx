@@ -16,7 +16,7 @@ import { fetchRecettes } from "../../../../redux/slices/recettes/recetteSlice";
 
 export default function ListRecette() {
   const dispatch = useDispatch();
-  const { data, status, error } = useSelector((state) => state.recipes);
+  const { data, status } = useSelector((state) => state.recipes);
 
   useEffect(() => {
     if (status === "neutral") {
