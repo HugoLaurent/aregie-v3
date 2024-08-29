@@ -34,6 +34,7 @@ import {
 const checkIfFieldExists = (field) => field && field.trim() !== "";
 
 export default function RecetteForm() {
+  const location = window.location.pathname.split("/")[2];
   const { id } = useParams();
   const isEditMode = Boolean(id);
 
@@ -254,7 +255,11 @@ export default function RecetteForm() {
                   textColor={"white"}
                   color={"rgba(0, 129, 227, 1)"}
                   hoverColor={"rgba(0, 129, 227, 0.1)"}
-                  onClick={() => setLockButton(!lockButton)}
+                  onClick={() =>
+                    location === "ajouter-une-recette"
+                      ? navigate(-1)
+                      : setLockButton(!lockButton)
+                  }
                 />
               </>
             )}
