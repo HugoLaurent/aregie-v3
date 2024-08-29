@@ -1,7 +1,7 @@
 import "./popup-style.css";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { closePopup } from "./../../redux/reducers/popupReducer";
+import { closePopup } from "../../redux/slices/popupSlice";
 import { motion, AnimatePresence } from "framer-motion";
 import { CloseIcon } from "../../assets/images";
 
