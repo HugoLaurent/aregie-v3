@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Fetch recipes asynchronously
-export const fetchRecipes = createAsyncThunk(
-  "recipes/fetchRecipes",
+// Fetch recette asynchronously
+export const fetchRecettes = createAsyncThunk(
+  "recette/fetchRecettes",
   async () => {
     const response = await fetch("http://localhost:3000/recette", {
       headers: {
@@ -27,25 +27,25 @@ const initialState = {
   error: null,
 };
 
-const recipesSlice = createSlice({
-  name: "recipes",
+const recetteSlice = createSlice({
+  name: "recette",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchRecipes.pending, (state) => {
+      .addCase(fetchRecettes.pending, (state) => {
         state.status = "loading";
         state.error = null;
       })
-      .addCase(fetchRecipes.fulfilled, (state, action) => {
+      .addCase(fetchRecettes.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.data = action.payload;
       })
-      .addCase(fetchRecipes.rejected, (state, action) => {
+      .addCase(fetchRecettes.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message || "Unknown Error";
       });
   },
 });
 
-export default recipesSlice.reducer;
+export default recetteSlice.reducer;

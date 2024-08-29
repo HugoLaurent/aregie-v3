@@ -1,8 +1,7 @@
-// Children component of List.jsx
 import "./list-recette-style.css";
-
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { motion } from "framer-motion";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -13,37 +12,27 @@ import { AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
 import { BannerLogo } from "../../../../assets/images";
 import { CallToActions } from "../../Components";
 
+import { fetchRecettes } from "../../../../redux/slices/recettes/recetteSlice";
+
 export default function ListRecette() {
-  // On récupère les données de la location envoyé par le composant enfant au moment de la redirection au vu du succès de la creation d'une recette
-
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch("http://localhost:3000/recette", {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      setLoading(false);
-      setData(data);
-    } catch (error) {
-      console.error("Fetch error:", error);
-    }
-  };
+  const dispatch = useDispatch();
+  const { data, status, error } = useSelector((state) => state.recipes);
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    if (status === "neutral") {
+      dispatch(fetchRecettes());
+    }
+  }, [status, dispatch]);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (status === "loading") {
+      setLoading(true);
+    } else {
+      setLoading(false);
+    }
+  }, [status]);
 
   const CustomLoadingOverlay = () => (
     <div className="loading-container">
