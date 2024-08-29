@@ -54,7 +54,10 @@ export default function ReglementRecette({
       >
         <button
           type="button"
-          onClick={() => setShowModalReglement(true)}
+          onClick={() => {
+            setSelectedDepense(null);
+            setShowModalReglement(true);
+          }}
           className="reglement-recette__button"
         >
           Ajouter un règlement
