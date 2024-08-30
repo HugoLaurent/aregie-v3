@@ -7,7 +7,7 @@ const store = configureStore({
   reducer: {
     modal: modalSlice,
     popup: popupSlice,
-    recipes: recetteSlice,
+    recettes: recetteSlice,
   },
 });
 

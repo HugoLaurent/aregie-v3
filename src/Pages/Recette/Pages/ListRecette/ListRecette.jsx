@@ -9,18 +9,29 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import "ag-grid-enterprise";
 import { AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
 
-import { BannerLogo } from "../../../../assets/images";
+import { BannerLogo, WarningRedIcon } from "../../../../assets/images";
 import { CallToActions } from "../../Components";
 
 import { fetchRecettes } from "../../../../redux/slices/recettes/recetteSlice";
+import { openPopup } from "../../../../redux/slices/components/popupSlice";
 
 export default function ListRecette() {
   const dispatch = useDispatch();
-  const { data, status } = useSelector((state) => state.recipes);
+  const { data, status } = useSelector((state) => state.recettes);
 
   useEffect(() => {
     if (status === "neutral") {
       dispatch(fetchRecettes());
+    } else if (status === "failed") {
+      dispatch(
+        openPopup({
+          title: "Erreur",
+          description:
+            "Une erreur est survenue lors du chargement des données.",
+          icon: WarningRedIcon,
+          colorBorder: "red",
+        })
+      );
     }
   }, [status, dispatch]);
 

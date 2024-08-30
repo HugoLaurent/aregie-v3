@@ -39,8 +39,7 @@ export default function SelectionnerTiers({
               id="tiers-select"
               name="tiersSelect"
               onChange={handleSearch}
-              value={formData.tiersSelect === "" ? "" : formData.tiers}
-              placeholder="Rechercher un utilisateur..."
+              placeholder="Rechercher un tiers..."
             />
             <button
               type="button"
@@ -77,7 +76,7 @@ export default function SelectionnerTiers({
               onClick={() => {
                 setSearchResult([]),
                   setShowInput(true),
-                  setFormData({ tiersSelect: "" });
+                  setFormData({ ...formData, tiers: "" });
               }}
             >
               <img className="tiers-delete" src={RemoveIcon} alt="" />

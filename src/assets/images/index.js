@@ -41,6 +41,7 @@ import UserDarkIcon from "./icons/userDark.png";
 import UserIcon from "./icons/user.png";
 import UserSettingsIcon from "./icons/UserCircleGear.png";
 import WarningIcon from "./icons/warning-circle.png";
+import WarningRedIcon from "./icons/warning-circle-red.png";
 
 export {
   AddIcon,
@@ -55,6 +56,8 @@ export {
   CheckIcon,
   CloseDayIcon,
   CloseYearIcon,
+  CloseIcon,
+  ClockBackwardIcon,
   CodaLogoIcon,
   DashboardIcon,
   DoorIcon,
@@ -84,6 +87,5 @@ export {
   UserDarkIcon,
   UserSettingsIcon,
   WarningIcon,
-  CloseIcon,
-  ClockBackwardIcon,
+  WarningRedIcon,
 };

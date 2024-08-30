@@ -15,7 +15,6 @@ const Popup = () => {
         dispatch(closePopup());
       }, 5000);
 
-      // Cleanup function to clear the timeout if the component unmounts or if isOpen changes
       return () => clearTimeout(timeoutId);
     }
   }, [isOpen, dispatch]);
@@ -29,6 +28,7 @@ const Popup = () => {
           exit={{ opacity: 0, transform: "translateX(100%)" }}
           transition={{ duration: 1 }}
           className="popup-container"
+          style={{ "--color-border": popupProps.colorBorder }} // Utilisation de la variable CSS
         >
           <div className="popup">
             <div className="popup-header">
@@ -47,7 +47,6 @@ const Popup = () => {
             <img
               src={CloseIcon}
               className="popup-header-close"
-              style={{ color: popupProps.colorBorder }}
               onClick={() => dispatch(closePopup())}
               alt="Close Icon"
             />

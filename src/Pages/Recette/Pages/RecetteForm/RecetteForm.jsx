@@ -4,6 +4,7 @@ import { useEffect, useState, useCallback } from "react";
 import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { openPopup } from "../../../../redux/slices/components/popupSlice";
+import { fetchRecettes } from "../../../../redux/slices/recettes/recetteSlice";
 
 import userData from "../../../../assets/data/user.json";
 
@@ -98,6 +99,8 @@ export default function RecetteForm() {
   );
 
   const handleSubmit = async (e) => {
+    console.log("formData", formData);
+
     e.preventDefault();
     const url = isEditMode
       ? `http://localhost:3000/recette/${id}`
@@ -128,6 +131,7 @@ export default function RecetteForm() {
 
       if (result) {
         handleOpenPopup(isEditMode ? "Recette modifiée" : "Recette ajoutée");
+        dispatch(fetchRecettes());
         navigate("/recettes");
       }
     } catch (error) {
@@ -139,12 +143,12 @@ export default function RecetteForm() {
     setSearchResult([userData.find((user) => user.name === userName)]);
     setNumberOfResult(null);
     setShowInput(false);
-    setFormData((prevFormData) => ({ ...prevFormData, tiersSelect: userName }));
+    setFormData((prevFormData) => ({ ...prevFormData, tiers: userName }));
   };
 
   const handleSearch = (e) => {
     const search = e.target.value;
-    setFormData((prevFormData) => ({ ...prevFormData, tiers: search }));
+
     if (search === "") {
       setSearchResult([]);
       setNumberOfResult(null);
@@ -155,6 +159,7 @@ export default function RecetteForm() {
       setNumberOfResult(result.length - 4);
       setSearchResult(result.slice(0, 4));
     }
+    console.log(searchResult);
   };
 
   const titleToReturn = () => {
@@ -285,7 +290,7 @@ export default function RecetteForm() {
             setFormData={setFormData}
             lockButton={lockButton}
           />
-          {formData.reglement.some((item) => item.tiersPayeur) && (
+          {formData.reglement?.some((item) => item.tiersPayeur) && (
             <TiersPayeur formData={formData} />
           )}
           {showNoteInput && (

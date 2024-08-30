@@ -4,6 +4,7 @@
   padding-bottom: 4px;
   padding: 20px;
   overflow: hidden;
+  --color-border: green;
 }
 
 .popup-container::after {
@@ -13,7 +14,7 @@
   bottom: 0;
   width: 100%;
   height: 4px;
-  background: green;
+  background: var(--color-border);
   animation: slideInFromRight 5s ease;
 }
 
