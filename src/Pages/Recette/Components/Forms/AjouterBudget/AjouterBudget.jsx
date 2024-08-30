@@ -87,8 +87,8 @@ export default function AjouterBudget({
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      budget: selectedDepense
-        ? prevFormData.budget.map((item) =>
+      budgets: selectedDepense
+        ? prevFormData.budgets.map((item) =>
             item.id === selectedDepense.id
               ? {
                   ...item,
@@ -103,9 +103,9 @@ export default function AjouterBudget({
               : item
           )
         : [
-            ...prevFormData.budget,
+            ...prevFormData.budgets,
             {
-              id: prevFormData.budget.length + 1,
+              id: prevFormData.budgets?.length + 1,
               modele,
               budget,
               quantite,

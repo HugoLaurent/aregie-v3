@@ -3,7 +3,7 @@ import { ButtonIconText } from "../../../../Components/Buttons";
 import "./tiers-payeur-style.css";
 
 export default function TiersPayeur({ formData }) {
-  const tiersPayeur = formData.reglement.map((item) => item.tiersPayeur);
+  const tiersPayeur = formData.reglements.map((item) => item.tiersPayeur);
 
   return (
     <section className="recette__tiers-payeur">

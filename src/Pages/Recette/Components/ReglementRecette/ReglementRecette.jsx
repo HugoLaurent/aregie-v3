@@ -11,14 +11,14 @@ export default function ReglementRecette({
   lockButton,
 }) {
   // Calcul du montant total
-  const totalMontant = formData.reglement?.reduce((acc, depense) => {
+  const totalMontant = formData.reglements?.reduce((acc, depense) => {
     return acc + Number(depense.montant);
   }, 0);
 
   // Mise à jour de l'état du montant total
   useEffect(() => {
     setMontantReglementTotal(totalMontant);
-  }, [formData.reglement, setMontantReglementTotal, totalMontant]);
+  }, [formData.reglements, setMontantReglementTotal, totalMontant]);
 
   const handleModifyRecette = (depense) => {
     setSelectedDepense(depense);
@@ -34,7 +34,7 @@ export default function ReglementRecette({
         <p>Total</p>
       </article>
       <section className="budget-recette__items-container">
-        {formData.reglement?.map((depense, index) => (
+        {formData.reglements?.map((depense, index) => (
           <article key={index} className="reglement-recette__item">
             <p className="first-column">{depense.reglement}</p>
             <p>{depense.montant}€</p>

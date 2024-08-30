@@ -89,13 +89,13 @@ export default function ListRecette() {
     {
       headerName: "Modèle",
       field: "budget[0].modele",
-      valueGetter: (params) => params.data.budget?.[0]?.modele || "N/A",
+      valueGetter: (params) => params.data.budgets?.[0]?.modele || "N/A",
     },
     {
       headerName: "Montant",
       field: "reglement[0].montant",
       filter: "agNumberColumnFilter",
-      valueGetter: (params) => params.data.reglement?.[0]?.montant || "N/A",
+      valueGetter: (params) => params.data.reglements?.[0]?.montant || "N/A",
       valueFormatter: (params) =>
         params.value !== "N/A" ? `${params.value} €` : params.value,
       cellStyle: { display: "flex", justifyContent: "center" },
@@ -103,7 +103,7 @@ export default function ListRecette() {
     {
       headerName: "Règlement",
       field: "reglement[0].reglement",
-      valueGetter: (params) => params.data.reglement?.[0]?.reglement || "N/A",
+      valueGetter: (params) => params.data.reglements?.[0]?.reglement || "N/A",
       filter: true,
       cellStyle: { display: "flex", justifyContent: "center" },
     },

@@ -13,13 +13,13 @@ export default function BudgetRecette({
   // État pour la dépense sélectionnée
 
   // Calcul du montant total
-  const totalMontant = formData.budget?.reduce((acc, depense) => {
+  const totalMontant = formData.budgets?.reduce((acc, depense) => {
     return acc + depense.quantite * depense.prixUnitaire;
   }, 0);
 
   useEffect(() => {
     setMontantDepenseTotal(totalMontant);
-  }, [formData.budget, setMontantDepenseTotal, totalMontant]);
+  }, [formData.budgets, setMontantDepenseTotal, totalMontant]);
 
   // Modifier une entrée budget
   const handleModifyDepense = (depense) => {
@@ -38,7 +38,7 @@ export default function BudgetRecette({
         <p>P.T.</p>
       </article>
       <section className="budget-recette__items-container">
-        {formData.budget?.map((depense, index) => (
+        {formData.budgets?.map((depense, index) => (
           <article key={index} className="budget-recette__item">
             <p className="first-column">{depense.budget}</p>
             <p>{depense.quantite}</p>

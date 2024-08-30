@@ -30,9 +30,9 @@ export default function ResumeRecette({
     const isReferenceFilled =
       formData.reference && formData.reference.trim() !== "";
     const isNoteFilled = formData.note && formData.note.trim() !== "";
-    const isBudgetFilled = formData.budget && formData.budget.length > 0;
+    const isBudgetFilled = formData.budgets && formData.budgets.length > 0;
     const isReglementFilled =
-      formData.reglement && formData.reglement.length > 0;
+      formData.reglements && formData.reglements.length > 0;
 
     return (
       isTiersFilled &&

@@ -30,6 +30,7 @@ import {
   PaperclipIcon,
   EditWhiteIcon,
 } from "../../../../assets/images";
+import { CreerTiers } from "../../../../Components";
 
 // Fonction générique pour vérifier si un champ existe
 const checkIfFieldExists = (field) => field && field.trim() !== "";
@@ -57,8 +58,8 @@ export default function RecetteForm() {
     tiers: "",
     reference: "",
     note: "",
-    budget: [],
-    reglement: [],
+    budgets: [],
+    reglements: [],
   });
 
   const dispatch = useDispatch();
@@ -70,8 +71,8 @@ export default function RecetteForm() {
         try {
           const response = await fetch(`http://localhost:3000/recette/${id}`);
           const data = await response.json();
-          const { tiers, reference, note, budget, reglement } = data;
-          setFormData({ tiers, reference, note, budget, reglement });
+          const { tiers, reference, note, budgets, reglements } = data;
+          setFormData({ tiers, reference, note, budgets, reglements });
           setShowReference(checkIfFieldExists(reference));
           setShowNoteInput(checkIfFieldExists(note));
         } catch (error) {
@@ -125,8 +126,8 @@ export default function RecetteForm() {
         tiers: "",
         reference: "",
         note: "",
-        budget: [],
-        reglement: [],
+        budgets: [],
+        reglements: [],
       });
 
       if (result) {
@@ -290,7 +291,7 @@ export default function RecetteForm() {
             setFormData={setFormData}
             lockButton={lockButton}
           />
-          {formData.reglement?.some((item) => item.tiersPayeur) && (
+          {formData.reglements?.some((item) => item.tiersPayeur) && (
             <TiersPayeur formData={formData} />
           )}
           {showNoteInput && (
@@ -349,6 +350,9 @@ export default function RecetteForm() {
             selectedDepense={selectedDepense}
             lockButton={lockButton}
           />
+        </MainModal>
+        <MainModal show={false}>
+          <CreerTiers />
         </MainModal>
       </form>
     </motion.div>

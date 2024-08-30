@@ -54,8 +54,8 @@ export default function AjouterReglement({
 
     setFormData((prevFormData) => ({
       ...prevFormData,
-      reglement: selectedDepense
-        ? prevFormData.reglement.map((item) =>
+      reglements: selectedDepense
+        ? prevFormData.reglements.map((item) =>
             item.id === selectedDepense.id
               ? {
                   ...item,
@@ -70,9 +70,9 @@ export default function AjouterReglement({
               : item
           )
         : [
-            ...prevFormData.reglement,
+            ...prevFormData.reglements,
             {
-              id: prevFormData.reglement.length + 1,
+              id: prevFormData.reglements?.length + 1,
               reglement,
               montant,
               numeroCheque,
