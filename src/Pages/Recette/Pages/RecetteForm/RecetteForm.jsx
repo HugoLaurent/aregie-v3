@@ -1,13 +1,14 @@
 import "./ajouter-recette-style.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { useEffect, useState, useCallback } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { useDispatch } from "react-redux";
-import { openPopup } from "../../../../redux/slices/components/popupSlice";
-import { fetchRecettes } from "../../../../redux/slices/recettes/recetteSlice";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchRecettes,
+  createRecette,
+  updateRecette,
+} from "../../../../redux/slices/recettes/recetteSlice";
 import userData from "../../../../assets/data/user.json";
-
 import {
   AjouterNote,
   AjouterReference,
@@ -31,18 +32,18 @@ import {
   EditWhiteIcon,
 } from "../../../../assets/images";
 import { CreerTiers } from "../../../../Components";
-
-// Fonction générique pour vérifier si un champ existe
-const checkIfFieldExists = (field) => field && field.trim() !== "";
+import { useOpenPopup } from "../../../../Hooks";
 
 export default function RecetteForm() {
-  const location = window.location.pathname.split("/")[2];
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const openPopup = useOpenPopup();
+
   const { id } = useParams();
   const isEditMode = Boolean(id);
 
   const [searchResult, setSearchResult] = useState([]);
   const [numberOfResult, setNumberOfResult] = useState(null);
-
   const [showInput, setShowInput] = useState(true);
   const [showModalBudget, setShowModalBudget] = useState(false);
   const [showModalReglement, setShowModalReglement] = useState(false);
@@ -62,81 +63,35 @@ export default function RecetteForm() {
     reglements: [],
   });
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isEditMode) {
-      const fetchData = async () => {
-        try {
-          const response = await fetch(`http://localhost:3000/recette/${id}`);
-          const data = await response.json();
-          const { tiers, reference, note, budgets, reglements } = data;
-          setFormData({ tiers, reference, note, budgets, reglements });
-          setShowReference(checkIfFieldExists(reference));
-          setShowNoteInput(checkIfFieldExists(note));
-        } catch (error) {
-          console.error("Erreur lors du fetch:", error);
-        }
-      };
-      fetchData();
-    }
-  }, [id, isEditMode]);
-
-  const handleOpenPopup = useCallback(
-    (successMessage) => {
-      dispatch(
-        openPopup({
-          title: successMessage,
-          description: `La recette a été ${
-            isEditMode ? "modifiée" : "ajoutée"
-          } avec succès pour le tiers ${formData.tiersSelect}`,
-          icon: GreenCheckIcon,
-          colorBorder: "green",
-        })
-      );
-    },
-    [dispatch, formData.tiersSelect, isEditMode]
-  );
-
   const handleSubmit = async (e) => {
-    console.log("formData", formData);
-
     e.preventDefault();
-    const url = isEditMode
-      ? `http://localhost:3000/recette/${id}`
-      : "http://localhost:3000/recette/create-recette";
-    const method = isEditMode ? "PUT" : "POST";
 
-    try {
-      const response = await fetch(url, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const result = await response.json();
-      setFormData({
-        tiers: "",
-        reference: "",
-        note: "",
-        budgets: [],
-        reglements: [],
-      });
-
-      if (result) {
-        handleOpenPopup(isEditMode ? "Recette modifiée" : "Recette ajoutée");
-        dispatch(fetchRecettes());
-        navigate("/recettes");
-      }
-    } catch (error) {
-      console.error("Error:", error);
+    if (isEditMode) {
+      dispatch(updateRecette({ id, formData }))
+        .unwrap()
+        .then(() => {
+          openPopup({
+            title: "Recette modifiée",
+            icon: GreenCheckIcon,
+            colorBorder: "green",
+          });
+          dispatch(fetchRecettes());
+          navigate("/recettes");
+        })
+        .catch((error) => console.error("Error:", error));
+    } else {
+      dispatch(createRecette(formData))
+        .unwrap()
+        .then(() => {
+          openPopup({
+            title: "Recette ajoutée",
+            icon: GreenCheckIcon,
+            colorBorder: "green",
+          });
+          dispatch(fetchRecettes());
+          navigate("/recettes");
+        })
+        .catch((error) => console.error("Error:", error));
     }
   };
 
@@ -160,7 +115,6 @@ export default function RecetteForm() {
       setNumberOfResult(result.length - 4);
       setSearchResult(result.slice(0, 4));
     }
-    console.log(searchResult);
   };
 
   const titleToReturn = () => {
@@ -174,6 +128,15 @@ export default function RecetteForm() {
       return "Ajouter une recette";
     }
   };
+
+  const recettes = useSelector((state) => state.recettes).data;
+
+  const findRecette = (recettes) => {
+    console.log(typeof id);
+    return recettes.find((recette) => recette.id === +id);
+  };
+
+  console.log(findRecette(recettes));
 
   return (
     <motion.div
@@ -243,17 +206,6 @@ export default function RecetteForm() {
                   hoverColor={"rgba(128, 128, 128, 0.1)"}
                   onClick={() => setShowNoteInput(!showNoteInput)}
                 />
-                {!location === "ajouter-une-recette" && (
-                  <ButtonIconText
-                    type={"button"}
-                    icon={NoteBlankIcon}
-                    text="Modifier"
-                    textColor={"white"}
-                    color={"rgba(0, 129, 227, 1)"}
-                    hoverColor={"rgba(0, 129, 227, 0.1)"}
-                    onClick={() => setLockButton(!lockButton)}
-                  />
-                )}
                 <ButtonIconText
                   type={"button"}
                   icon={lockButton ? EditWhiteIcon : ArrowBackIcon}

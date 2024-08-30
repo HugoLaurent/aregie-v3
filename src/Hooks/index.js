@@ -1,3 +1,4 @@
-import useFullScreen from './useFullScreen';
+import useFullScreen from "./useFullScreen";
+import useOpenPopup from "./useOpenPopup";
 
-export { useFullScreen };
+export { useFullScreen, useOpenPopup };
