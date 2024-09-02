@@ -91,7 +91,14 @@ export default function RecetteForm() {
           dispatch(fetchRecettes());
           navigate("/recettes");
         })
-        .catch((error) => console.error("Error:", error));
+        .catch((error) => {
+          console.error("Error:", error),
+            openPopup({
+              title: "Erreur",
+              icon: GreenCheckIcon,
+              colorBorder: "green",
+            });
+        });
     }
   };
 
@@ -135,8 +142,6 @@ export default function RecetteForm() {
     console.log(typeof id);
     return recettes.find((recette) => recette.id === +id);
   };
-
-  console.log(findRecette(recettes));
 
   return (
     <motion.div
