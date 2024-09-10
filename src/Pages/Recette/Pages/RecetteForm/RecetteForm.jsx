@@ -30,6 +30,7 @@ import {
   NoteBlankIcon,
   PaperclipIcon,
   EditWhiteIcon,
+  WarningRedIcon,
 } from "../../../../assets/images";
 import { CreerTiers } from "../../../../Components";
 import { useOpenPopup } from "../../../../Hooks";
@@ -95,8 +96,10 @@ export default function RecetteForm() {
           console.error("Error:", error),
             openPopup({
               title: "Erreur",
-              icon: GreenCheckIcon,
-              colorBorder: "green",
+              icon: WarningRedIcon,
+              description:
+                "Une erreur est survenue lors de l'ajout de la recette",
+              colorBorder: "red",
             });
         });
     }
@@ -142,6 +145,8 @@ export default function RecetteForm() {
     console.log(typeof id);
     return recettes.find((recette) => recette.id === +id);
   };
+
+  const recette = findRecette(recettes);
 
   return (
     <motion.div
@@ -270,6 +275,7 @@ export default function RecetteForm() {
             montantDepenseTotal={montantDepenseTotal}
             setMontantDepenseTotal={setMontantDepenseTotal}
             lockButton={lockButton}
+            recette={recette}
           />
           <ReglementRecette
             formData={formData}
