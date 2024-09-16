@@ -1,6 +1,6 @@
 import "./ajouter-recette-style.css";
 import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -8,7 +8,6 @@ import {
   createRecette,
   updateRecette,
 } from "../../../../redux/slices/recettes/recetteSlice";
-import userData from "../../../../assets/data/user.json";
 import {
   AjouterNote,
   AjouterReference,
@@ -43,9 +42,6 @@ export default function RecetteForm() {
   const { id } = useParams();
   const isEditMode = Boolean(id);
 
-  const [searchResult, setSearchResult] = useState([]);
-  const [numberOfResult, setNumberOfResult] = useState(null);
-  const [showInput, setShowInput] = useState(true);
   const [showModalBudget, setShowModalBudget] = useState(false);
   const [showModalReglement, setShowModalReglement] = useState(false);
   const [montantDepenseTotal, setMontantDepenseTotal] = useState(0);
@@ -56,6 +52,17 @@ export default function RecetteForm() {
   const [showReference, setShowReference] = useState(false);
   const [showNoteInput, setShowNoteInput] = useState(false);
 
+  const recettes = useSelector((state) => state.recettes.data);
+
+  useEffect(() => {
+    dispatch(fetchRecettes());
+    const findRecette = (recettes) => {
+      return recettes.find((recette) => recette.id === +id);
+    };
+
+    setSelectedDepense(findRecette(recettes));
+  }, [dispatch, id]);
+
   const [formData, setFormData] = useState({
     tiers: "",
     reference: "",
@@ -63,6 +70,23 @@ export default function RecetteForm() {
     budgets: [],
     reglements: [],
   });
+
+  useEffect(() => {
+    isEditMode &&
+      recettes.forEach((recette) => {
+        if (recette.id === +id) {
+          setFormData({
+            tiers: recette.tiers,
+            reference: recette.reference,
+            note: recette.note,
+            budgets: recette.budgets,
+            reglements: recette.reglements,
+          });
+        }
+      });
+    formData.reference && setShowReference(true);
+    formData.note && setShowNoteInput(true);
+  }, [recettes, id, isEditMode]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,6 +97,7 @@ export default function RecetteForm() {
         .then(() => {
           openPopup({
             title: "Recette modifiée",
+            description: "La recette a bien été modifiée",
             icon: GreenCheckIcon,
             colorBorder: "green",
           });
@@ -86,6 +111,7 @@ export default function RecetteForm() {
         .then(() => {
           openPopup({
             title: "Recette ajoutée",
+            description: "La recette a bien été ajoutée",
             icon: GreenCheckIcon,
             colorBorder: "green",
           });
@@ -105,28 +131,6 @@ export default function RecetteForm() {
     }
   };
 
-  const handleUserClick = (userName) => {
-    setSearchResult([userData.find((user) => user.name === userName)]);
-    setNumberOfResult(null);
-    setShowInput(false);
-    setFormData((prevFormData) => ({ ...prevFormData, tiers: userName }));
-  };
-
-  const handleSearch = (e) => {
-    const search = e.target.value;
-
-    if (search === "") {
-      setSearchResult([]);
-      setNumberOfResult(null);
-    } else {
-      const result = userData.filter((user) =>
-        user.name.toLowerCase().includes(search.toLowerCase())
-      );
-      setNumberOfResult(result.length - 4);
-      setSearchResult(result.slice(0, 4));
-    }
-  };
-
   const titleToReturn = () => {
     if (isEditMode) {
       if (!lockButton) {
@@ -139,14 +143,7 @@ export default function RecetteForm() {
     }
   };
 
-  const recettes = useSelector((state) => state.recettes).data;
-
-  const findRecette = (recettes) => {
-    console.log(typeof id);
-    return recettes.find((recette) => recette.id === +id);
-  };
-
-  const recette = findRecette(recettes);
+  console.log("formData", formData);
 
   return (
     <motion.div
@@ -242,13 +239,6 @@ export default function RecetteForm() {
             />
           )}
           <SelectionnerTiers
-            handleUserClick={handleUserClick}
-            handleSearch={handleSearch}
-            searchResult={searchResult}
-            setSearchResult={setSearchResult}
-            showInput={showInput}
-            setShowInput={setShowInput}
-            numberOfResult={numberOfResult}
             formData={formData}
             setFormData={setFormData}
             lockButton={lockButton}
@@ -275,7 +265,6 @@ export default function RecetteForm() {
             montantDepenseTotal={montantDepenseTotal}
             setMontantDepenseTotal={setMontantDepenseTotal}
             lockButton={lockButton}
-            recette={recette}
           />
           <ReglementRecette
             formData={formData}

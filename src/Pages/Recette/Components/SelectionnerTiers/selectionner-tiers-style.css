@@ -53,8 +53,8 @@
 
 .tiers-delete {
   position: absolute;
-  right: 0.1rem;
-  top: -1.8rem;
+  right: -0.1rem;
+  top: -2.2rem;
 }
 
 .ajouter-recette__search-container button {

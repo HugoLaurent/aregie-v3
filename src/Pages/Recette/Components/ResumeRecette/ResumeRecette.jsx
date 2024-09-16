@@ -96,12 +96,7 @@ export default function ResumeRecette({
 
           <article className="resume-recette-total">
             <span>Reste à régler</span>
-            <NumberCounter
-              from={actualMontant}
-              to={montantDepenseTotal - montantReglementTotal}
-              duration={2}
-              setActualMontant={setActualMontant}
-            />
+            <p>{montantDepenseTotal - montantReglementTotal} €</p>
           </article>
         </section>
       </article>

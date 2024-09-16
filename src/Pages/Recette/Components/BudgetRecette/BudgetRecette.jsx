@@ -9,8 +9,10 @@ export default function BudgetRecette({
   montantDepenseTotal,
   setMontantDepenseTotal,
   lockButton,
+  selectedDepense,
+  recette,
 }) {
-  // État pour la dépense sélectionnée
+  console.log(selectedDepense, "ici");
 
   // Calcul du montant total
   const totalMontant = formData.budgets?.reduce((acc, depense) => {
@@ -23,11 +25,14 @@ export default function BudgetRecette({
 
   // Modifier une entrée budget
   const handleModifyDepense = (depense) => {
+    console.log("je passe par la");
     setSelectedDepense(depense);
     setShowModalBudget(true);
 
     // Définit la dépense sélectionnée
   };
+
+  console.log(recette);
 
   return (
     <section className="budget-recette__container">

@@ -66,6 +66,14 @@
   position: sticky;
   right: 0;
   background: white;
-  z-index: 1; /* Assurez-vous que la colonne est au-dessus des autres colonnes */
-  border-left: 1px solid #ddd; /* Optionnel, pour une séparation visuelle */
+  z-index: 1;
+  border-left: 1px solid #ddd;
+}
+
+.highlight-row::before {
+  border-left: 5px solid red;
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
 }

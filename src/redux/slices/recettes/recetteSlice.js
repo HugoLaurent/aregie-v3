@@ -4,7 +4,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchRecettes = createAsyncThunk(
   "recette/fetchRecettes",
   async () => {
-    const response = await fetch("http://localhost:3000/recette", {
+    const response = await fetch("/api/recette", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -25,7 +25,7 @@ export const fetchRecetteById = createAsyncThunk(
   "recette/fetchRecetteById",
   async (id, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:3000/recette/${id}`, {
+      const response = await fetch(`/api/recette/${id}`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -51,16 +51,13 @@ export const createRecette = createAsyncThunk(
     console.log("je passe par la");
 
     console.log(formData);
-    const response = await fetch(
-      "http://localhost:3000/recette/create-recette",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      }
-    );
+    const response = await fetch("/api/recette/create-recette", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
     console.log(response);
 
@@ -80,7 +77,7 @@ export const updateRecette = createAsyncThunk(
   "recette/updateRecette",
   async ({ id, formData }, { rejectWithValue }) => {
     try {
-      const response = await fetch(`http://localhost:3000/recette/${id}`, {
+      const response = await fetch(`/api/recette/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

@@ -1,7 +1,7 @@
 import "./list-recette-style.css";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { motion } from "framer-motion";
+import { color, motion } from "framer-motion";
 
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
@@ -18,6 +18,8 @@ import { openPopup } from "../../../../redux/slices/components/popupSlice";
 export default function ListRecette() {
   const dispatch = useDispatch();
   const { data, status } = useSelector((state) => state.recettes);
+
+  console.log(data, "data");
 
   useEffect(() => {
     if (status === "neutral") {
@@ -53,7 +55,27 @@ export default function ListRecette() {
     </div>
   );
 
-  // Définitions de colonnes pour AG Grid
+  const sumTotal = (datas) => {
+    const totalAmount = datas.reduce((total, item) => {
+      const prixUnitaire = parseFloat(item.prixUnitaire) || 0;
+      const quantite = parseFloat(item.quantite) || 0;
+      return total + prixUnitaire * quantite;
+    }, 0);
+
+    return totalAmount;
+  };
+
+  const calculateTotalsMismatch = (data) => {
+    const totalBudgets = sumTotal(data.budgets || []);
+    const totalReglements =
+      data.reglements?.reduce((total, item) => {
+        const montant = parseFloat(item.montant) || 0;
+        return total + montant;
+      }, 0) || 0;
+
+    return totalBudgets !== totalReglements;
+  };
+
   const depenseColumnDefs = [
     { headerName: "Ticket", field: "id", width: 100 },
     {
@@ -95,10 +117,10 @@ export default function ListRecette() {
       headerName: "Montant",
       field: "reglement[0].montant",
       filter: "agNumberColumnFilter",
-      valueGetter: (params) => params.data.reglements?.[0]?.montant || "N/A",
-      valueFormatter: (params) =>
-        params.value !== "N/A" ? `${params.value} €` : params.value,
-      cellStyle: { display: "flex", justifyContent: "center" },
+      valueGetter: (params) => {
+        const reglements = params.data.budgets || [];
+        return sumTotal(reglements) + " €" || "N/A";
+      },
     },
     {
       headerName: "Règlement",
@@ -140,6 +162,10 @@ export default function ListRecette() {
     noRowsOverlayComponent: "NoRowsOverlay",
   };
 
+  const rowClassRules = {
+    "highlight-row": (params) => calculateTotalsMismatch(params.data),
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -156,6 +182,7 @@ export default function ListRecette() {
         columnDefs={depenseColumnDefs}
         pagination={true}
         loadingOverlayComponent={CustomLoadingOverlay}
+        rowClassRules={rowClassRules} // Apply row class rules
       />
     </motion.div>
   );
