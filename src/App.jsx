@@ -1,21 +1,24 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { Home, Login, RecetteMain } from "./Pages";
+import { Auth, Home, Login, RecetteMain } from "./Pages";
 import { BreadCrumbs, NavBar, NavbarColumn, Popup } from "./Components";
 import RecetteForm from "./Pages/Recette/Pages/RecetteForm/RecetteForm";
 
 function App() {
+  const isLogged = false;
   return (
     <Router>
       <div className="app-container">
-        <NavBar />
+        {isLogged && <NavBar />}
         <div className="content-container">
-          <NavbarColumn />
+          {isLogged && <NavbarColumn />}
           <div className="main-content">
             <BreadCrumbs />
             <Routes>
-              <Route path="/" element={<Home />} />
+              {/* ROUTE AUTH */}
+              <Route path="/" element={isLogged ? <Home /> : <Auth />} />
+
               {/* ROUTES PIECE COMPTABLE */}
               <Route path="/recettes" element={<RecetteMain />} />
               <Route
