@@ -93,9 +93,9 @@ export default function Auth() {
               onChange={(e) => setPassword(e.target.value)}
             />
             <span>
-              Veuillez saisir un mot de passe d'au moins 12 caractères, incluant
-              des chiffres, une majuscule et un caractère spécial (comme @, #,
-              $, %, &).
+              Veuillez saisir un mot de passe d&apos;au moins 12 caractères,
+              incluant des chiffres, une majuscule et un caractère spécial
+              (comme @, #, $, %, &).
             </span>
           </div>
           <ButtonIconText
@@ -106,6 +106,7 @@ export default function Auth() {
             onClick={handleAuth}
           />
         </form>
+        <a>J&apos;ai oublié mon mot de passe.</a>
       </article>
     </section>
   );
