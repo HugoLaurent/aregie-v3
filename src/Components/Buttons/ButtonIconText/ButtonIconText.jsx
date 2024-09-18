@@ -12,12 +12,14 @@ export default function ButtonIconText({
   type,
   disabled,
   hoverColor,
+  noFlex,
 }) {
   // Crée un objet pour les styles en ligne
   const buttonStyle = {
     backgroundColor: color || "transparent",
     color: textColor || "inherit",
-    "--hover-color": hoverColor || "rgba(255, 255, 255, 0.2)", // Utilise la prop hoverColor
+    "--hover-color": hoverColor || "rgba(255, 255, 255, 0.2)",
+    display: noFlex ? "block" : "flex",
   };
 
   // Détermine le composant à utiliser
@@ -32,7 +34,7 @@ export default function ButtonIconText({
       style={buttonStyle}
       type={type}
     >
-      <img src={icon} alt={alt} className="icon" />
+      {icon && <img src={icon} alt={alt} className="icon" />}
       <span>{text}</span>
     </Component>
   );

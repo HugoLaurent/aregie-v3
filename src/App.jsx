@@ -13,7 +13,7 @@ function App() {
         {isLogged && <NavBar />}
         <div className="content-container">
           {isLogged && <NavbarColumn />}
-          <div className="main-content">
+          <div className={isLogged ? "main-content" : ""}>
             <BreadCrumbs />
             <Routes>
               {/* ROUTE AUTH */}

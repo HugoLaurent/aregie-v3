@@ -1,5 +1,6 @@
-import React from 'react';
-import './input.css';
+import "./input.css";
+
+import { useEffect, useState } from "react";
 
 /*
   Ce composant est un champ de saisie générique qui peut être utilisé dans divers formulaires.
@@ -25,18 +26,41 @@ export default function InputTextNumber({
   id,
   label,
 }) {
+  const [isFocused, setIsFocused] = useState(false);
+  const [hasValue, setHasValue] = useState(false);
+
+  useEffect(() => {
+    // Check if the input has a value on mount
+    const input = document.getElementById(id);
+    setHasValue(input.value.length > 0);
+  }, [id]);
+
+  const handleFocus = () => setIsFocused(true);
+
+  const handleBlur = (e) => {
+    setIsFocused(false);
+    setHasValue(e.target.value.length > 0);
+  };
+
+  const handleChange = (e) => {
+    setHasValue(e.target.value.length > 0);
+    onChange(e);
+  };
+
   return (
-    <div className='input-container'>
+    <div className="input-container">
       <input
-        className={`${className ? className : ''} input`}
+        className={`input ${isFocused || hasValue ? "has-content" : ""}`}
         type={type}
         placeholder={placeholder}
-        onChange={onChange}
+        onChange={handleChange}
         value={value}
         id={id}
         name={name}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
       />
-      <label htmlFor={id} className='input-label'>
+      <label htmlFor={id} className="input-label">
         {label}
       </label>
     </div>

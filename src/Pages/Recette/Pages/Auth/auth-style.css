@@ -1,0 +1,61 @@
+.auth-container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./../../../../assets/images/background/bg.webp");
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 0 50px;
+}
+
+.auth-left__wrapper {
+  width: 50%;
+}
+
+.auth-left__wrapper img {
+  width: 100%;
+}
+
+.auth-right__wrapper {
+  flex: 1;
+  width: 50%;
+  height: 95%;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 25px #00000061;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.auth-right__wrapper h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.auth-right__wrapper p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  width: 50%;
+  text-align: center;
+}
+
+.auth-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form-group span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: grey;
+  float: right;
+  text-align: right;
+  font-style: italic;
+}

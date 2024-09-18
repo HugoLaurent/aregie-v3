@@ -1,3 +1,6 @@
+// Desc: This file contains all the images used in the project.
+// This file is used to import all the images in the project and export them as a single object.
+// ICONS
 import AddIcon from "./icons/add.png";
 import AddUserIcon from "./icons/addUser.png";
 import ArrowBackIcon from "./icons/arrow-back.png";
@@ -43,10 +46,14 @@ import UserSettingsIcon from "./icons/UserCircleGear.png";
 import WarningIcon from "./icons/warning-circle.png";
 import WarningRedIcon from "./icons/warning-circle-red.png";
 
+// LOGOS
+import ArregieLogo from "./logo/aregie-logo.png";
+
 export {
   AddIcon,
   AddUserIcon,
   ArrowBackIcon,
+  ArregieLogo,
   BlueCalendarIcon,
   CalendarIcon,
   CardHolderIcon,
