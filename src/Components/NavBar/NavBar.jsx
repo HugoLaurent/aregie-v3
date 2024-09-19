@@ -22,8 +22,12 @@ import {
 import { ButtonList, ButtonIcon, ButtonIconText } from "../Buttons/index";
 
 import { useFullScreen } from "../../Hooks";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../../redux/slices/auth/authSlice";
 
 export default function NavBar() {
+  const dispatch = useDispatch();
+
   const [openNavModal, setOpenNavModal] = useState(null);
   const [openToolsModal, setOpenToolsModal] = useState(null);
   const { isFullScreen, toggleFullScreen } = useFullScreen();
@@ -154,6 +158,9 @@ export default function NavBar() {
             icon={SignOutIcon}
             alt="Icone de déconnexion"
             text="Déconnexion"
+            onClick={() => {
+              dispatch(logOutUser());
+            }}
           />
         </li>
       </ul>
