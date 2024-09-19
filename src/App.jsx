@@ -4,9 +4,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Auth, Home, Login, RecetteMain } from "./Pages";
 import { BreadCrumbs, NavBar, NavbarColumn, Popup } from "./Components";
 import RecetteForm from "./Pages/Recette/Pages/RecetteForm/RecetteForm";
+import { useSelector } from "react-redux";
 
 function App() {
-  const isLogged = false;
+  const isLogged = useSelector((state) => state.auth.isLogged);
+  console.log(isLogged);
+
   return (
     <Router>
       <div className="app-container">

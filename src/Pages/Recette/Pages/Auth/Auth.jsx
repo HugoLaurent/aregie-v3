@@ -2,7 +2,7 @@ import "./auth-style.css";
 
 import { useState } from "react";
 
-import { ArregieLogo } from "../../../../assets/images";
+import { ArregieLogo, WarningRedIcon } from "../../../../assets/images";
 import InputTextNumber from "../../../../Components/Inputs/InputTextNumber";
 import { ButtonIconText } from "../../../../Components/Buttons";
 import {
@@ -11,6 +11,8 @@ import {
   usePasswordCompromiseCheck,
 } from "../../../../Hooks";
 import { useDispatch } from "react-redux";
+import { openPopup } from "../../../../redux/slices/components/popupSlice";
+import { logUser } from "../../../../redux/slices/auth/authSlice";
 
 export default function Auth() {
   const dispatch = useDispatch();
@@ -33,8 +35,37 @@ export default function Auth() {
     // VÉRIFIER SI LE MOT DE PASSE A ÉTÉ COMPROMIS
     await checkPasswordCompromise(password);
 
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.status === 401) {
+        dispatch(
+          openPopup({
+            title: "Erreur d'authentification",
+            description: data.message,
+            colorBorder: "red",
+            icon: WarningRedIcon,
+          })
+        );
+        return;
+      }
+
+      // Dispatch an action to update the Redux store with the authentication data
+      dispatch(logUser());
+    } catch (error) {
+      console.error("There was a problem with the fetch operation:", error);
+    }
+
     // RÉINITIALISER LE CHAMP MOT DE PASSE
-    setPassword("");
+    // setPassword("");
   };
 
   return (
