@@ -1,68 +1,24 @@
 import "./auth-style.css";
 
 import { useState } from "react";
-import sha1 from "sha1";
 
-import { ArregieLogo, WarningRedIcon } from "../../../../assets/images";
+import { ArregieLogo } from "../../../../assets/images";
 import InputTextNumber from "../../../../Components/Inputs/InputTextNumber";
 import { ButtonIconText } from "../../../../Components/Buttons";
-import { useDispatch } from "react-redux";
-import { openPopup } from "../../../../redux/slices/components/popupSlice";
+import { usePasswordCompromiseCheck } from "../../../../Hooks";
 
 export default function Auth() {
-  const dispatch = useDispatch();
+  const { checkPasswordCompromise } = usePasswordCompromiseCheck();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleAuth = (e) => {
+  const handleAuth = async (e) => {
     e.preventDefault();
     console.log("Email :", email);
     console.log("Mot de passe :", password);
-    checkPasswordCompromise(password);
+    await checkPasswordCompromise(password);
   };
-
-  async function checkPasswordCompromise(password) {
-    // 1. Hasher le mot de passe en SHA-1
-    const sha1Password = sha1(password).toUpperCase();
-
-    // 2. Envoyer les 5 premiers caractères du hash à l'API
-    const prefix = sha1Password.substring(0, 5);
-    const suffix = sha1Password.substring(5);
-    const url = `https://api.pwnedpasswords.com/range/${prefix}`;
-
-    try {
-      const response = await fetch(url);
-      const data = await response.text();
-
-      // 3. Chercher le suffix correspondant dans la réponse
-      const result = data
-        .split("\n")
-        .find((line) => line.split(":")[0] === suffix);
-
-      if (result) {
-        const count = parseInt(result.split(":")[1], 10);
-        dispatch(
-          openPopup({
-            title: "Mot de passe compromis",
-            description: `Le mot de passe a été trouvé ${count} fois dans des bases de données compromises.`,
-            icon: WarningRedIcon,
-            colorBorder: "red",
-          })
-        );
-        console.log(
-          `Le mot de passe a été trouvé ${count} fois dans des bases de données compromises.`
-        );
-        return count;
-      } else {
-        console.log("Le mot de passe est sécurisé.");
-        return 0;
-      }
-    } catch (error) {
-      console.error("Erreur lors de la vérification du mot de passe :", error);
-      return 0;
-    }
-  }
 
   return (
     <section className="auth-container">
