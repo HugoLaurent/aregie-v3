@@ -5,19 +5,36 @@ import { useState } from "react";
 import { ArregieLogo } from "../../../../assets/images";
 import InputTextNumber from "../../../../Components/Inputs/InputTextNumber";
 import { ButtonIconText } from "../../../../Components/Buttons";
-import { usePasswordCompromiseCheck } from "../../../../Hooks";
+import {
+  useValidateEmail,
+  useValidatePassword,
+  usePasswordCompromiseCheck,
+} from "../../../../Hooks";
+import { useDispatch } from "react-redux";
 
 export default function Auth() {
+  const dispatch = useDispatch();
   const { checkPasswordCompromise } = usePasswordCompromiseCheck();
+  const { validatePassword } = useValidatePassword();
+  const { validateEmail } = useValidateEmail();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleAuth = async (e) => {
     e.preventDefault();
-    console.log("Email :", email);
+
     console.log("Mot de passe :", password);
+    console.log("Email :", email);
+
+    // VALIDER L'EMAIL ET LE MOT DE PASSE
+    if (!validateEmail(email) || !validatePassword(password)) return;
+
+    // VÉRIFIER SI LE MOT DE PASSE A ÉTÉ COMPROMIS
     await checkPasswordCompromise(password);
+
+    // RÉINITIALISER LE CHAMP MOT DE PASSE
+    setPassword("");
   };
 
   return (
@@ -39,6 +56,7 @@ export default function Auth() {
               name="email"
               label={"Email"}
               onChange={(e) => setEmail(e.target.value)}
+              value={email || ""}
             />
 
             <InputTextNumber
@@ -47,6 +65,7 @@ export default function Auth() {
               name="password"
               label={"Mot de passe"}
               onChange={(e) => setPassword(e.target.value)}
+              value={password || ""}
             />
             <span>
               Veuillez saisir un mot de passe d&apos;au moins 12 caractères,
